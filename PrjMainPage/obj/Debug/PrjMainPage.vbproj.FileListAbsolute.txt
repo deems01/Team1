@@ -10,3 +10,15 @@ C:\Users\veiko\source\repos\MovieNightPlanner\PrjMainPage\bin\Debug\PrjMainPage.
 C:\Users\veiko\source\repos\MovieNightPlanner\PrjMainPage\obj\Debug\PrjMainPage.exe
 C:\Users\veiko\source\repos\MovieNightPlanner\PrjMainPage\obj\Debug\PrjMainPage.xml
 C:\Users\veiko\source\repos\MovieNightPlanner\PrjMainPage\obj\Debug\PrjMainPage.pdb
+C:\Users\veiko\source\repos\Team12\PrjMainPage\bin\Debug\PrjMainPage.exe.config
+C:\Users\veiko\source\repos\Team12\PrjMainPage\bin\Debug\PrjMainPage.exe
+C:\Users\veiko\source\repos\Team12\PrjMainPage\bin\Debug\PrjMainPage.pdb
+C:\Users\veiko\source\repos\Team12\PrjMainPage\bin\Debug\PrjMainPage.xml
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.vbproj.AssemblyReference.cache
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.MainPageForm.resources
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.Resources.resources
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.vbproj.GenerateResource.cache
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.vbproj.CoreCompileInputs.cache
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.exe
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.xml
+C:\Users\veiko\source\repos\Team12\PrjMainPage\obj\Debug\PrjMainPage.pdb
