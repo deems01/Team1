@@ -34,3 +34,5 @@ C:\Users\veiko\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.vbproj.CoreC
 C:\Users\veiko\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.exe
 C:\Users\veiko\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.xml
 C:\Users\veiko\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.pdb
+C:\Users\veiko\source\repos\Team1\PrjMainPage\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\veiko\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.vbproj.CopyComplete

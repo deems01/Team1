@@ -22,5 +22,30 @@ PrjMainPage
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:PrjMainPage.My.Resources.Resources._2024_03_22___veiko">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:PrjMainPage.My.Resources.Resources.icons8_search_bar_100">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:PrjMainPage.My.Resources.Resources.search_bar">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:PrjMainPage.My.Resources.Resources.search_bar1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:PrjMainPage.My.Resources.Resources.wallpaperflare_com_wallpaper">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>
