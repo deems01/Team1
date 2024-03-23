@@ -1,25 +1,22 @@
-﻿
-Imports System.Runtime.InteropServices
-Imports System.Xml
+﻿Imports System.Runtime.InteropServices
+Imports FontAwesome.Sharp
 
 Public Class MainPageForm
 
-    ' Constants for mouse messages
     Private Const WM_NCLBUTTONDOWN As Integer = &HA1
     Private Const HT_CAPTION As Integer = &H2
+    Private currentChildForm As Form
 
     Public Sub New()
         ' This call is required by the designer.'
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.'
-        'Form'
-        'Me.Text = String.Empty
+        Me.Text = String.Empty
         Me.ControlBox = False
-        Me.DoubleBuffered = True
+        Me.DoubleBuffered = True ' Enable double buffering
         Me.MaximizedBounds = Screen.PrimaryScreen.WorkingArea
     End Sub
 
-    ' Import ReleaseCapture and SendMessage functions
     <DllImport("user32.DLL", EntryPoint:="ReleaseCapture")>
     Private Shared Sub ReleaseCapture()
     End Sub
@@ -32,55 +29,41 @@ Public Class MainPageForm
         If sender Is Nothing Then
             Throw New ArgumentNullException(NameOf(sender))
         End If
-        ' Check if the left mouse button is pressed
         If e.Button = MouseButtons.Left Then
-            ' Call ReleaseCapture function to release mouse capture from the form
             ReleaseCapture()
-            ' Send the WM_NCLBUTTONDOWN message to the form with HT_CAPTION parameter
             SendMessage(Me.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
         End If
     End Sub
 
-    Private Sub btnCategory_MouseEnter(sender As Object, e As EventArgs)
-        ' Change the background color when the mouse enters the panel
-        btnCategory.BackColor = Color.Gold
-    End Sub
-
-    Private Sub btnCategory_MouseLeave(sender As Object, e As EventArgs)
-        ' Restore the original background color when the mouse leaves the panel
-        btnCategory.BackColor = Color.White
-    End Sub
-
     Private Sub btnExit_MouseEnter(sender As Object, e As EventArgs) Handles btnExit.MouseEnter
-        ' Change the background color when the mouse enters the panel
         btnExit.BackColor = Color.Red
     End Sub
 
     Private Sub btnExit_MouseLeave(sender As Object, e As EventArgs) Handles btnExit.MouseLeave
-        ' Restore the original background color when the mouse leaves the panel
         btnExit.BackColor = Color.Transparent
     End Sub
 
     Private Sub MainPageForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        btnMinimize.FlatStyle = FlatStyle.Flat
-        btnMinimize.FlatAppearance.BorderSize = 0
+        UiHelpFunctions.setMainPanel(pnlPage)
 
-        btnMaximize.FlatStyle = FlatStyle.Flat
-        btnMaximize.FlatAppearance.BorderSize = 0
+        UiHelpFunctions.MakeRoundedEdgesPanel(pnlPage, 30)
+        UiHelpFunctions.MakeRoundedEdgesPanel(pnlMainMenu, 30)
+        UiHelpFunctions.MakeRoundedEdgesForm(Me, 20)
+        UiHelpFunctions.OpenChildForm(New FormSearchBar)
 
-        btnExit.FlatStyle = FlatStyle.Flat
-        btnExit.FlatAppearance.BorderSize = 0
-
+        ' Remove button default style
+        Dim buttons As IconButton() = {btnMinimize, btnMaximize, btnExit}
+        For Each button As IconButton In buttons
+            button.FlatStyle = FlatStyle.Flat
+            button.FlatAppearance.BorderSize = 0
+        Next
     End Sub
 
-    'Remove transparent border in maximized state'
-
-
-    'Close-Maximize-Minimize'
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Application.Exit()
     End Sub
+
     Private Sub btnMaximize_Click(sender As Object, e As EventArgs) Handles btnMaximize.Click
         If WindowState = FormWindowState.Normal Then
             WindowState = FormWindowState.Maximized
@@ -92,4 +75,9 @@ Public Class MainPageForm
     Private Sub btnMinimize_Click(sender As Object, e As EventArgs) Handles btnMinimize.Click
         WindowState = FormWindowState.Minimized
     End Sub
+
+    Private Sub btnHomePage_Click(sender As Object, e As EventArgs) Handles btnHomePage.Click
+        UiHelpFunctions.OpenChildForm(New FormSearchBar)
+    End Sub
+
 End Class

@@ -80,6 +80,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\FormSearchBar.Designer.vb">
+      <DependentUpon>FormSearchBar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormSearchBar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormSearchResultPage.Designer.vb">
+      <DependentUpon>FormSearchResultPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormSearchResultPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui functions\NameSearchFunctions.vb" />
+    <Compile Include="ui functions\UiHelpFunctions.vb" />
     <Compile Include="MainPageForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +118,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\FormSearchBar.resx">
+      <DependentUpon>FormSearchBar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormSearchResultPage.resx">
+      <DependentUpon>FormSearchResultPage.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainPageForm.resx">
       <DependentUpon>MainPageForm.vb</DependentUpon>
     </EmbeddedResource>
