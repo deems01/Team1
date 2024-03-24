@@ -1,4 +1,6 @@
-﻿Module CategoryFunctions
+﻿Imports SortClass
+
+Module CategoryFunctions
 
     Private pickedCategory As String
     Private enteredSearch As String
@@ -18,17 +20,42 @@
     Public Function getSearch()
         Return enteredSearch
     End Function
-    Public Sub AddPanelsDynamically(resultForm As Form)
 
-        Dim inputData As New List(Of String) From {"veiko", "uku", "juhan"}
+    Public Async Sub AddPanelsDynamically(resultForm As Form)
+        ' Create an instance of TMDBClient with your API key
+        Dim tmdbClient As New TMDBClient("Your_API_Key_Here")
 
+        ' Fetch popular movies
+        Dim popularMovies As List(Of Movie) = Await tmdbClient.FetchPopularMovies()
+
+        ' Determine which sorting function to use based on the picked category
+        Dim sortedMovies As List(Of Movie)
+        Select Case pickedCategory
+            Case "Genre"
+                sortedMovies = tmdbClient.SortMoviesByGenre(popularMovies, enteredSearch)
+            Case "ReleaseDateAscending"
+                sortedMovies = tmdbClient.SortMoviesByReleaseDateAscending(popularMovies)
+            Case "ReleaseDateDescending"
+                sortedMovies = tmdbClient.SortMoviesByReleaseDateDescending(popularMovies)
+            Case "Language"
+                sortedMovies = tmdbClient.SortMoviesByLanguage(popularMovies, enteredSearch)
+            Case "Company"
+                sortedMovies = tmdbClient.SortMoviesByCompany(popularMovies, enteredSearch)
+            Case "Actor"
+                sortedMovies = tmdbClient.SortMoviesByActor(popularMovies, enteredSearch)
+            Case Else
+                ' Handle invalid or unspecified category
+                sortedMovies = popularMovies ' Default to using popular movies
+        End Select
+
+        ' Now you have the sorted list of movies, you can proceed to create panels dynamically as before...
         Dim panelStartX As Integer = 12
         Dim panelStartY As Integer = 45
         Dim spacingBetweenLabels As Integer = 25
         Dim panelWidth As Integer = 539
         Dim initialPanelHeight As Integer = 20
 
-        For Each name As String In inputData
+        For Each movie As Movie In sortedMovies
             Dim newPanel As New Panel()
             newPanel.BackColor = Color.LightBlue
             newPanel.AutoSize = True
@@ -38,7 +65,7 @@
 
             ' Title Label
             Dim titleLabel As New Label()
-            titleLabel.Text = name
+            titleLabel.Text = movie.Title ' Assuming Movie class has a Title property
             titleLabel.AutoSize = True
 
             newPanel.Controls.Add(titleLabel)
@@ -46,7 +73,6 @@
 
             panelStartY += newPanel.Height + 10
         Next
-
     End Sub
 
 End Module

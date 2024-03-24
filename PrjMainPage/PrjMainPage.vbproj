@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="ui functions\CategoryFunctions.vb" />
     <Compile Include="ui functions\NameSearchFunctions.vb" />
+    <Compile Include="ui functions\SortClass.vb" />
     <Compile Include="ui functions\UiHelpFunctions.vb" />
     <Compile Include="MainPageForm.vb">
       <SubType>Form</SubType>
@@ -203,6 +204,10 @@
     <ProjectReference Include="..\NameSearchDLL\NameSearchDLL.vbproj">
       <Project>{93f33b6a-680e-4486-a44b-ee7800c75b88}</Project>
       <Name>NameSearchDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SortClass\SortProject.vbproj">
+      <Project>{ae4ca7b7-6267-4dc9-bf00-23a7f52f927c}</Project>
+      <Name>SortProject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
