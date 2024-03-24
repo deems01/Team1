@@ -1,6 +1,4 @@
-﻿
-Imports System.Net
-Imports System.Net.Http
+﻿Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
 
 Public Class TMDBClient
@@ -43,7 +41,7 @@ Public Class TMDBClient
             Console.WriteLine($"HTTP Request Error: {ex.Message}")      ' HTTP request errors
         Catch ex As Exception
 
-            Console.WriteLine($"Error: {ex.Message}")
+            Console.WriteLine($"Error: {ex.Message}")           'any error
         End Try
 
         Return movies       'list
