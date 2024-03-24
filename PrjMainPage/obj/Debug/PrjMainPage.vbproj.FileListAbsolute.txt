@@ -38,3 +38,6 @@ C:\Users\veiko\source\repos\Team1\PrjMainPage\bin\Debug\FontAwesome.Sharp.dll
 C:\Users\veiko\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.vbproj.CopyComplete
 C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormSearchBar.resources
 C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormSearchResultPage.resources
+C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormCategories.resources
+C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormGenreSelection.resources
+C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormActorandCompanySearch.resources
