@@ -1,43 +1,93 @@
-﻿Module NameSearchFunctions
+﻿Imports NameSearchDLL
 
+Module NameSearchFunctions
+
+    Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
     Private SearchedFilmName As String
-    Private inputData As New List(Of String) From {"tere", "veiko", "uku"}
+    Private inputData As New List(Of Movie)()
 
-    Public Sub setSearchedFilmName(name As String)
+    Public Sub SetSearchedFilmName(name As String)
         SearchedFilmName = name
     End Sub
 
-    Public Function getSearchedFilmName()
+    Public Function GetSearchedFilmName()
         Return SearchedFilmName
     End Function
 
-    Public Sub AddPanelsDynamically(resultForm As Form)
-        Dim startX As Integer = 12
-        Dim startY As Integer = 45
-        Dim spacing As Integer = 30
-        Dim width As Integer = 539
-        Dim height As Integer = 25
+    Public Async Sub AddPanelsDynamically(resultForm As Form)
+        Dim nameSearch As New CNameSearch(apiKey)
+        inputData = Await nameSearch.SearchMovieAsync(GetSearchedFilmName())
+
         Dim i As Integer = 0
-        ' Loop through the input data
-        For Each item As String In inputData
-            ' Create a new label
+
+        Dim panelStartX As Integer = 12
+        Dim panelStartY As Integer = 45
+        Dim spacingBetweenLabels As Integer = 25
+        Dim panelWidth As Integer = 539
+        Dim initialPanelHeight As Integer = 75
+        Dim currentYPosition As Integer
+
+        For Each movie As Movie In inputData
             Dim newPanel As New Panel()
-            Dim newLabel As New Label()
-
-            newPanel.BackColor = Color.Red
+            newPanel.BackColor = Color.LightBlue
             newPanel.AutoSize = True
-            newPanel.Width = width
-            newPanel.Height = height
-            newPanel.Location = New Point(startX, startY + (i * spacing))
-            ' Set properties for the new label
-            newLabel.Text = item
-            newLabel.AutoSize = True ' Adjust size automatically based on content
-            ' You can set other properties as needed (e.g., font, color, etc.)
+            newPanel.Width = panelWidth
+            newPanel.Location = New Point(panelStartX, panelStartY)
+            currentYPosition = 5
 
-            ' Add the new label to the FlowLayoutPanel
-            newPanel.Controls.Add(newLabel)
+            ' Title Label
+            Dim titleLabel As New Label()
+            titleLabel.Text = $"Title: {movie.Title}"
+            titleLabel.AutoSize = True
+            titleLabel.Location = New Point(5, currentYPosition)
+            newPanel.Controls.Add(titleLabel)
+            currentYPosition += spacingBetweenLabels
+
+            ' Poster label
+            Dim posterLabel As New Label()
+            posterLabel.Text = $"Poster: {movie.PosterUrl}"
+            posterLabel.AutoSize = True
+            newPanel.Controls.Add(posterLabel)
+            posterLabel.Location = New Point(5, currentYPosition)
+            currentYPosition += spacingBetweenLabels
+
+            ' Overview Label (added only if the overview is not empty)
+            If Not String.IsNullOrWhiteSpace(movie.Overview) Then
+                Dim overviewLabel As New Label()
+                overviewLabel.Text = $"Overview: {movie.Overview}"
+                overviewLabel.AutoSize = True
+                overviewLabel.Location = New Point(5, currentYPosition)
+                overviewLabel.Width = panelWidth - 10
+                overviewLabel.Height = 60 ' Adjusted for potential multiline overviews
+                overviewLabel.TextAlign = ContentAlignment.TopLeft
+                overviewLabel.AutoEllipsis = True
+                newPanel.Controls.Add(overviewLabel)
+                currentYPosition += overviewLabel.Height + 5
+            End If
+
+            ' Release Date Label (Adjust position based on the presence of overview)
+            Dim releaseDateLabel As New Label()
+            releaseDateLabel.Text = $"Release Date: {movie.ReleaseDate.ToShortDateString()}"
+            releaseDateLabel.AutoSize = True
+            releaseDateLabel.Location = New Point(5, currentYPosition)
+            newPanel.Controls.Add(releaseDateLabel)
+            currentYPosition += spacingBetweenLabels
+
+            ' Language Label (Adjust position based on the presence of overview)
+            Dim languageLabel As New Label()
+            languageLabel.Text = $"Language: {movie.Language}"
+            languageLabel.AutoSize = True
+            languageLabel.Location = New Point(5, currentYPosition)
+            newPanel.Controls.Add(languageLabel)
+            currentYPosition += spacingBetweenLabels
+
+            ' Adjust the panel height based on the content
+            newPanel.Height = currentYPosition + 5 ' Adding some padding at the bottom
+
             resultForm.Controls.Add(newPanel)
+            panelStartY += newPanel.Height + 10
             i += 1
         Next
+
     End Sub
 End Module

@@ -25,11 +25,11 @@ Partial Class MainPageForm
         Me.btnMinimize = New FontAwesome.Sharp.IconButton()
         Me.btnMaximize = New FontAwesome.Sharp.IconButton()
         Me.btnExit = New FontAwesome.Sharp.IconButton()
-        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
-        Me.IconButton4 = New FontAwesome.Sharp.IconButton()
+        Me.btnWatchlist = New FontAwesome.Sharp.IconButton()
         Me.btnCategory = New FontAwesome.Sharp.IconButton()
-        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.btnPlanned = New FontAwesome.Sharp.IconButton()
+        Me.btnNewPlan = New FontAwesome.Sharp.IconButton()
+        Me.btnStats = New FontAwesome.Sharp.IconButton()
         Me.pnlPage = New System.Windows.Forms.Panel()
         Me.btnHomePage = New FontAwesome.Sharp.IconButton()
         Me.pnlMainMenu = New System.Windows.Forms.Panel()
@@ -83,33 +83,19 @@ Partial Class MainPageForm
         Me.btnExit.TabIndex = 3
         Me.btnExit.UseVisualStyleBackColor = False
         '
-        'IconButton3
+        'btnWatchlist
         '
-        Me.IconButton3.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.IconButton3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.BarChart
-        Me.IconButton3.IconColor = System.Drawing.Color.Black
-        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton3.IconSize = 80
-        Me.IconButton3.Location = New System.Drawing.Point(194, 3)
-        Me.IconButton3.Name = "IconButton3"
-        Me.IconButton3.Size = New System.Drawing.Size(185, 78)
-        Me.IconButton3.TabIndex = 6
-        Me.IconButton3.UseVisualStyleBackColor = False
-        '
-        'IconButton4
-        '
-        Me.IconButton4.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.IconButton4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.IconButton4.IconChar = FontAwesome.Sharp.IconChar.BarChart
-        Me.IconButton4.IconColor = System.Drawing.Color.Black
-        Me.IconButton4.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton4.IconSize = 80
-        Me.IconButton4.Location = New System.Drawing.Point(3, 3)
-        Me.IconButton4.Name = "IconButton4"
-        Me.IconButton4.Size = New System.Drawing.Size(185, 78)
-        Me.IconButton4.TabIndex = 7
-        Me.IconButton4.UseVisualStyleBackColor = False
+        Me.btnWatchlist.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnWatchlist.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnWatchlist.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnWatchlist.IconColor = System.Drawing.Color.Black
+        Me.btnWatchlist.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnWatchlist.IconSize = 80
+        Me.btnWatchlist.Location = New System.Drawing.Point(194, 3)
+        Me.btnWatchlist.Name = "btnWatchlist"
+        Me.btnWatchlist.Size = New System.Drawing.Size(185, 78)
+        Me.btnWatchlist.TabIndex = 6
+        Me.btnWatchlist.UseVisualStyleBackColor = False
         '
         'btnCategory
         '
@@ -119,39 +105,53 @@ Partial Class MainPageForm
         Me.btnCategory.IconColor = System.Drawing.Color.Black
         Me.btnCategory.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnCategory.IconSize = 80
-        Me.btnCategory.Location = New System.Drawing.Point(767, 3)
+        Me.btnCategory.Location = New System.Drawing.Point(3, 3)
         Me.btnCategory.Name = "btnCategory"
-        Me.btnCategory.Size = New System.Drawing.Size(187, 78)
-        Me.btnCategory.TabIndex = 0
+        Me.btnCategory.Size = New System.Drawing.Size(185, 78)
+        Me.btnCategory.TabIndex = 7
         Me.btnCategory.UseVisualStyleBackColor = False
         '
-        'IconButton2
+        'btnPlanned
         '
-        Me.IconButton2.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.IconButton2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.BarChart
-        Me.IconButton2.IconColor = System.Drawing.Color.Black
-        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton2.IconSize = 80
-        Me.IconButton2.Location = New System.Drawing.Point(576, 3)
-        Me.IconButton2.Name = "IconButton2"
-        Me.IconButton2.Size = New System.Drawing.Size(185, 78)
-        Me.IconButton2.TabIndex = 5
-        Me.IconButton2.UseVisualStyleBackColor = False
+        Me.btnPlanned.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnPlanned.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnPlanned.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnPlanned.IconColor = System.Drawing.Color.Black
+        Me.btnPlanned.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnPlanned.IconSize = 80
+        Me.btnPlanned.Location = New System.Drawing.Point(767, 3)
+        Me.btnPlanned.Name = "btnPlanned"
+        Me.btnPlanned.Size = New System.Drawing.Size(187, 78)
+        Me.btnPlanned.TabIndex = 0
+        Me.btnPlanned.UseVisualStyleBackColor = False
         '
-        'IconButton1
+        'btnNewPlan
         '
-        Me.IconButton1.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.IconButton1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.BarChart
-        Me.IconButton1.IconColor = System.Drawing.Color.Black
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 80
-        Me.IconButton1.Location = New System.Drawing.Point(385, 3)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(185, 78)
-        Me.IconButton1.TabIndex = 4
-        Me.IconButton1.UseVisualStyleBackColor = False
+        Me.btnNewPlan.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnNewPlan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnNewPlan.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnNewPlan.IconColor = System.Drawing.Color.Black
+        Me.btnNewPlan.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnNewPlan.IconSize = 80
+        Me.btnNewPlan.Location = New System.Drawing.Point(576, 3)
+        Me.btnNewPlan.Name = "btnNewPlan"
+        Me.btnNewPlan.Size = New System.Drawing.Size(185, 78)
+        Me.btnNewPlan.TabIndex = 5
+        Me.btnNewPlan.UseVisualStyleBackColor = False
+        '
+        'btnStats
+        '
+        Me.btnStats.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnStats.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnStats.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnStats.IconColor = System.Drawing.Color.Black
+        Me.btnStats.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnStats.IconSize = 80
+        Me.btnStats.Location = New System.Drawing.Point(385, 3)
+        Me.btnStats.Name = "btnStats"
+        Me.btnStats.Size = New System.Drawing.Size(185, 78)
+        Me.btnStats.TabIndex = 4
+        Me.btnStats.UseVisualStyleBackColor = False
         '
         'pnlPage
         '
@@ -198,11 +198,11 @@ Partial Class MainPageForm
         Me.tabPnlMainMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.tabPnlMainMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.tabPnlMainMenu.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.tabPnlMainMenu.Controls.Add(Me.btnCategory, 4, 0)
-        Me.tabPnlMainMenu.Controls.Add(Me.IconButton1, 2, 0)
-        Me.tabPnlMainMenu.Controls.Add(Me.IconButton4, 0, 0)
-        Me.tabPnlMainMenu.Controls.Add(Me.IconButton2, 3, 0)
-        Me.tabPnlMainMenu.Controls.Add(Me.IconButton3, 1, 0)
+        Me.tabPnlMainMenu.Controls.Add(Me.btnPlanned, 4, 0)
+        Me.tabPnlMainMenu.Controls.Add(Me.btnStats, 2, 0)
+        Me.tabPnlMainMenu.Controls.Add(Me.btnCategory, 0, 0)
+        Me.tabPnlMainMenu.Controls.Add(Me.btnNewPlan, 3, 0)
+        Me.tabPnlMainMenu.Controls.Add(Me.btnWatchlist, 1, 0)
         Me.tabPnlMainMenu.Location = New System.Drawing.Point(43, 3)
         Me.tabPnlMainMenu.Name = "tabPnlMainMenu"
         Me.tabPnlMainMenu.RowCount = 1
@@ -223,7 +223,6 @@ Partial Class MainPageForm
         Me.Controls.Add(Me.btnMaximize)
         Me.Controls.Add(Me.btnMinimize)
         Me.Controls.Add(Me.pnlPage)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "MainPageForm"
         Me.Padding = New System.Windows.Forms.Padding(10)
         Me.Text = "Form1"
@@ -235,11 +234,11 @@ Partial Class MainPageForm
     Friend WithEvents btnMinimize As FontAwesome.Sharp.IconButton
     Friend WithEvents btnMaximize As FontAwesome.Sharp.IconButton
     Friend WithEvents btnExit As FontAwesome.Sharp.IconButton
-    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
-    Friend WithEvents IconButton4 As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnWatchlist As FontAwesome.Sharp.IconButton
     Friend WithEvents btnCategory As FontAwesome.Sharp.IconButton
-    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
-    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnPlanned As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnNewPlan As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnStats As FontAwesome.Sharp.IconButton
     Friend WithEvents pnlPage As Panel
     Friend WithEvents btnHomePage As FontAwesome.Sharp.IconButton
     Friend WithEvents pnlMainMenu As Panel

@@ -53,7 +53,8 @@ Public Class MainPageForm
         UiHelpFunctions.OpenChildForm(New FormSearchBar)
 
         ' Remove button default style
-        Dim buttons As IconButton() = {btnMinimize, btnMaximize, btnExit}
+        Dim buttons As IconButton() = {btnMinimize, btnMaximize, btnExit, btnCategory, btnNewPlan,
+            btnPlanned, btnStats, btnWatchlist, btnHomePage}
         For Each button As IconButton In buttons
             button.FlatStyle = FlatStyle.Flat
             button.FlatAppearance.BorderSize = 0
@@ -80,4 +81,15 @@ Public Class MainPageForm
         UiHelpFunctions.OpenChildForm(New FormSearchBar)
     End Sub
 
+    Private Sub MainPageForm_ResizeBegin(sender As Object, e As EventArgs) Handles MyBase.ResizeBegin
+        SuspendLayout() ' Suspend layout updates during resizing
+    End Sub
+
+    Private Sub MainPageForm_ResizeEnd(sender As Object, e As EventArgs) Handles MyBase.ResizeEnd
+        ResumeLayout(True) ' Resume layout updates and perform a layout immediately
+    End Sub
+
+    Private Sub btnCategory_Click(sender As Object, e As EventArgs) Handles btnCategory.Click
+        UiHelpFunctions.OpenChildForm(New FormCategories)
+    End Sub
 End Class
