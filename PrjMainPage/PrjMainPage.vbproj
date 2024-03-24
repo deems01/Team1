@@ -89,6 +89,12 @@
     <Compile Include="forms\FormActorandCompanySearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\FormCategoryResult.Designer.vb">
+      <DependentUpon>FormCategoryResult.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormCategoryResult.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\FormGenreSelection.Designer.vb">
       <DependentUpon>FormGenreSelection.vb</DependentUpon>
     </Compile>
@@ -142,6 +148,9 @@
   <ItemGroup>
     <EmbeddedResource Include="forms\FormActorandCompanySearch.resx">
       <DependentUpon>FormActorandCompanySearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormCategoryResult.resx">
+      <DependentUpon>FormCategoryResult.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FormGenreSelection.resx">
       <DependentUpon>FormGenreSelection.vb</DependentUpon>

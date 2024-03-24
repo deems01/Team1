@@ -67,3 +67,4 @@ C:\Users\veiko\Source\Repos\Team1\PrjMainPage\bin\Debug\Newtonsoft.Json.xml
 C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormActorandCompanySearch.resources
 C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormGenreSelection.resources
 C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormCategories.resources
+C:\Users\veiko\Source\Repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormCategoryResult.resources
