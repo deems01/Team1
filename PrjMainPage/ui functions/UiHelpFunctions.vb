@@ -4,6 +4,10 @@ Module UiHelpFunctions
     Private currentChildForm As Form
     Private mainPanel As Panel
 
+    Public Function getChildForm()
+        Return currentChildForm
+    End Function
+
     Public Sub setMainPanel(panel As Panel)
         mainPanel = panel
     End Sub
@@ -18,7 +22,9 @@ Module UiHelpFunctions
         mainPanel.Controls.Add(childForm)
         mainPanel.Tag = childForm
         childForm.BringToFront()
-        childForm.Show()
+        If Not currentChildForm.IsDisposed() Then
+            currentChildForm.Show()
+        End If
     End Sub
     Public Sub MakeRoundedEdgesPanel(panel As Panel, cornerRadius As Integer)
         ' Create a GraphicsPath

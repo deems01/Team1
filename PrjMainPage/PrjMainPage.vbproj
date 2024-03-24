@@ -83,6 +83,30 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\FormActorandCompanySearch.Designer.vb">
+      <DependentUpon>FormActorandCompanySearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormActorandCompanySearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormCategoryResult.Designer.vb">
+      <DependentUpon>FormCategoryResult.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormCategoryResult.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormGenreSelection.Designer.vb">
+      <DependentUpon>FormGenreSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormGenreSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormCategories.Designer.vb">
+      <DependentUpon>FormCategories.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormCategories.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\FormSearchBar.Designer.vb">
       <DependentUpon>FormSearchBar.vb</DependentUpon>
     </Compile>
@@ -95,6 +119,7 @@
     <Compile Include="forms\FormSearchResultPage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ui functions\CategoryFunctions.vb" />
     <Compile Include="ui functions\NameSearchFunctions.vb" />
     <Compile Include="ui functions\UiHelpFunctions.vb" />
     <Compile Include="MainPageForm.vb">
@@ -121,6 +146,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\FormActorandCompanySearch.resx">
+      <DependentUpon>FormActorandCompanySearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormCategoryResult.resx">
+      <DependentUpon>FormCategoryResult.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormGenreSelection.resx">
+      <DependentUpon>FormGenreSelection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormCategories.resx">
+      <DependentUpon>FormCategories.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\FormSearchBar.resx">
       <DependentUpon>FormSearchBar.vb</DependentUpon>
     </EmbeddedResource>
