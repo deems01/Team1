@@ -56,6 +56,10 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SortClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Team1\SortClass\obj\Debug\SortClass.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -121,7 +125,6 @@
     </Compile>
     <Compile Include="ui functions\CategoryFunctions.vb" />
     <Compile Include="ui functions\NameSearchFunctions.vb" />
-    <Compile Include="ui functions\SortClass.vb" />
     <Compile Include="ui functions\UiHelpFunctions.vb" />
     <Compile Include="MainPageForm.vb">
       <SubType>Form</SubType>

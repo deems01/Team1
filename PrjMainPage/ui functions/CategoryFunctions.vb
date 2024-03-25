@@ -20,35 +20,33 @@ Module CategoryFunctions
     Public Function getSearch()
         Return enteredSearch
     End Function
-
     Public Async Sub AddPanelsDynamically(resultForm As Form)
+
         ' Create an instance of TMDBClient with your API key
-        Dim tmdbClient As New TMDBClient("Your_API_Key_Here")
+        Dim tmdbClient As New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
 
         ' Fetch popular movies
-        Dim popularMovies As List(Of Movie) = Await tmdbClient.FetchPopularMovies()
+        Dim inputData As New List(Of Movie)
+        inputData = Await tmdbClient.FetchPopularMovies()
 
-        ' Determine which sorting function to use based on the picked category
-        Dim sortedMovies As List(Of Movie)
+        Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
         Select Case pickedCategory
-            Case "Genre"
-                sortedMovies = tmdbClient.SortMoviesByGenre(popularMovies, enteredSearch)
-            Case "ReleaseDateAscending"
-                sortedMovies = tmdbClient.SortMoviesByReleaseDateAscending(popularMovies)
-            Case "ReleaseDateDescending"
-                sortedMovies = tmdbClient.SortMoviesByReleaseDateDescending(popularMovies)
+            Case "genre"
+                sortedMovies = tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
+            Case "Old"
+                sortedMovies = tmdbClient.SortMoviesByReleaseDateAscending(inputData)
+            Case "New"
+                sortedMovies = tmdbClient.SortMoviesByReleaseDateDescending(inputData)
             Case "Language"
-                sortedMovies = tmdbClient.SortMoviesByLanguage(popularMovies, enteredSearch)
+                sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
             Case "Company"
-                sortedMovies = tmdbClient.SortMoviesByCompany(popularMovies, enteredSearch)
+                sortedMovies = tmdbClient.SortMoviesByCompany(inputData, enteredSearch)
             Case "Actor"
-                sortedMovies = tmdbClient.SortMoviesByActor(popularMovies, enteredSearch)
+                sortedMovies = tmdbClient.SortMoviesByActor(inputData, enteredSearch)
             Case Else
-                ' Handle invalid or unspecified category
-                sortedMovies = popularMovies ' Default to using popular movies
+                sortedMovies = Await tmdbClient.FetchPopularMovies() ' Default to using popular movies
         End Select
 
-        ' Now you have the sorted list of movies, you can proceed to create panels dynamically as before...
         Dim panelStartX As Integer = 12
         Dim panelStartY As Integer = 45
         Dim spacingBetweenLabels As Integer = 25
@@ -65,7 +63,9 @@ Module CategoryFunctions
 
             ' Title Label
             Dim titleLabel As New Label()
-            titleLabel.Text = movie.Title ' Assuming Movie class has a Title property
+            titleLabel.Text = movie.Title 'filmi nimi
+
+            'poster link here
             titleLabel.AutoSize = True
 
             newPanel.Controls.Add(titleLabel)
@@ -73,6 +73,7 @@ Module CategoryFunctions
 
             panelStartY += newPanel.Height + 10
         Next
+
     End Sub
 
 End Module
