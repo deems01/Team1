@@ -26,8 +26,9 @@ Module CategoryFunctions
         Dim tmdbClient As New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
 
         ' Fetch popular movies
-        Dim inputData As New List(Of Movie)
-        inputData = Await tmdbClient.FetchPopularMovies()
+        Dim inputData As List(Of Movie)
+        'inputData = Await tmdbClient.FetchPopularMovies()
+        inputData = Await tmdbClient.FetchAllMovies()
 
         Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
         Select Case pickedCategory
@@ -65,7 +66,8 @@ Module CategoryFunctions
             Dim titleLabel As New Label()
             titleLabel.Text = movie.Title 'filmi nimi
 
-            'poster link here
+            'poster movie.PosterUrl
+
             titleLabel.AutoSize = True
 
             newPanel.Controls.Add(titleLabel)

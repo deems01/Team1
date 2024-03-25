@@ -11,6 +11,57 @@ Public Class TMDBClient
         Me.httpClient = New HttpClient()
     End Sub
 
+    Public Async Function FetchAllMovies() As Task(Of List(Of Movie))
+        Dim movies As New List(Of Movie)()
+
+        Dim url As String = $"{baseURL}/discover/movie?api_key={apiKey}"
+
+        Try
+            Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
+            response.EnsureSuccessStatusCode()
+            Dim json As String = Await response.Content.ReadAsStringAsync()
+
+            Dim data As JObject = JObject.Parse(json)
+            Dim results As JArray = DirectCast(data("results"), JArray)
+
+            Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
+
+            For Each item As JObject In results
+
+                Dim movieGenres As New List(Of String)()
+                For Each genreId As JValue In item("genre_ids")
+                    Dim genreIdValue As Integer = genreId.Value
+                    Dim genreName As String = GetGenreName(genreIdValue)
+                    movieGenres.Add(genreName)
+                Next
+
+                Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
+                Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
+
+                Dim movie As New Movie With {
+                            .Genres = movieGenres,
+                            .Title = item("title").ToString(),
+                            .Overview = item("overview").ToString(),
+                            .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
+                            .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                            .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
+                            .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
+                            .PosterUrl = fullPosterUrl
+                        }
+                movies.Add(movie)
+            Next
+
+
+        Catch ex As HttpRequestException
+            Console.WriteLine($"HTTP Request Error: {ex.Message}")      ' HTTP request errors
+        Catch ex As Exception
+            Console.WriteLine($"Error: {ex.Message}")           'any error
+        End Try
+
+        Return movies       'list
+    End Function
+
+
     Public Async Function FetchPopularMovies() As Task(Of List(Of Movie))
         Dim movies As New List(Of Movie)()
 
@@ -24,15 +75,30 @@ Public Class TMDBClient
             Dim data As JObject = JObject.Parse(json)
             Dim results As JArray = DirectCast(data("results"), JArray)
 
+            Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
+
             For Each item As JObject In results
+
+                Dim movieGenres As New List(Of String)()
+                For Each genreId As JValue In item("genre_ids")
+                    Dim genreIdValue As Integer = genreId.Value
+                    Dim genreName As String = GetGenreName(genreIdValue)
+                    movieGenres.Add(genreName)
+                Next
+
+                Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
+                Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
+
                 Dim movie As New Movie With {
-                    .Title = item("title").ToString(),
-                    .Overview = item("overview").ToString(),
-                    .ReleaseDate = If(item("release_date") IsNot Nothing, CDate(item("release_date")), Nothing),
-                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
-                    .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)),
-                    .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String))
-                }
+                            .Genres = movieGenres,
+                            .Title = item("title").ToString(),
+                            .Overview = item("overview").ToString(),
+                            .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
+                            .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                            .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
+                            .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
+                            .PosterUrl = fullPosterUrl
+                        }
                 movies.Add(movie)
             Next
 
@@ -67,8 +133,10 @@ Public Class TMDBClient
     'Default:   popularity.desc  
 
     Public Function SortMoviesByGenre(movies As List(Of Movie), genre As String) As List(Of Movie)
-        Return movies.Where(Function(m) m.Genres.Contains(genre)).ToList()
+        Dim genreId As Integer = GetGenreId(genre)
+        Return movies.Where(Function(m) m.Genres.Contains(genreId)).ToList()
     End Function
+
 
     Public Function SortMoviesByReleaseDateAscending(movies As List(Of Movie)) As List(Of Movie)
         Return movies.OrderBy(Function(m) m.ReleaseDate).ToList()
@@ -90,6 +158,69 @@ Public Class TMDBClient
         Return movies.Where(Function(m) m.Actors.Contains(actor)).ToList()
     End Function
 
+    Private Function GetGenreName(genreId As Integer) As String
+        ' Dictionary to map genre IDs to names
+        Dim genreMapping As New Dictionary(Of Integer, String) From {
+        {28, "Action"},
+        {12, "Adventure"},
+        {16, "Animation"},
+        {35, "Comedy"},
+        {80, "Crime"},
+        {99, "Documentary"},
+        {18, "Drama"},
+        {10751, "Family"},
+        {14, "Fantasy"},
+        {36, "History"},
+        {27, "Horror"},
+        {10402, "Music"},
+        {9648, "Mystery"},
+        {10749, "Romance"},
+        {878, "Science Fiction"},
+        {10770, "TV Movie"},
+        {53, "Thriller"},
+        {10752, "War"},
+        {37, "Western"}}
+
+        ' Check if the genreId exists in the dictionary
+        If genreMapping.ContainsKey(genreId) Then
+            Return genreMapping(genreId)
+        Else
+            Return "Unknown" ' Default to "Unknown" if the genre ID is not found
+        End If
+    End Function
+
+    Private Function GetGenreId(genreName As String) As Integer
+        ' Dictionary to map genre names to IDs
+        Dim genreMapping As New Dictionary(Of String, Integer) From {
+        {"Action", 28},
+        {"Adventure", 12},
+        {"Animation", 16},
+        {"Comedy", 35},
+        {"Crime", 80},
+        {"Documentary", 99},
+        {"Drama", 18},
+        {"Family", 10751},
+        {"Fantasy", 14},
+        {"History", 36},
+        {"Horror", 27},
+        {"Music", 10402},
+        {"Mystery", 9648},
+        {"Romance", 10749},
+        {"Science Fiction", 878},
+        {"TV Movie", 10770},
+        {"Thriller", 53},
+        {"War", 10752},
+        {"Western", 37}
+    }
+
+        ' Check if the genreName exists in the dictionary
+        If genreMapping.ContainsKey(genreName) Then
+            Return genreMapping(genreName)
+        Else
+            Return -1 ' Return -1 if the genre name is not found
+        End If
+    End Function
+
 
 End Class
 
@@ -101,4 +232,5 @@ Public Class Movie      ' this for all, to main
     Public Property Genres As New List(Of String)
     Public Property ProductionCompanies As New List(Of String)
     Public Property Actors As New List(Of String)
+    Public Property PosterUrl As String
 End Class
