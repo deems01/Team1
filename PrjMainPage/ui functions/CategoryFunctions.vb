@@ -33,7 +33,8 @@ Module CategoryFunctions
         Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
         Select Case pickedCategory
             Case "genre"
-                sortedMovies = tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
+                sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
+                    'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
             Case "Old"
                 sortedMovies = tmdbClient.SortMoviesByReleaseDateAscending(inputData)
             Case "New"

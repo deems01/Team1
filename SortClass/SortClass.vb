@@ -11,6 +11,66 @@ Public Class TMDBClient
         Me.httpClient = New HttpClient()
     End Sub
 
+    Public Async Function GetGenres(Genre As String) As Task(Of List(Of Movie))
+        Dim movies As New List(Of Movie)()
+        Dim genres As Integer = GetGenreId(Genre)
+        Dim url As String = $"{baseURL}/discover/movie?api_key={apiKey}&sort_by=popularity.desc&with_genres={genres}"
+        Try
+            Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
+            response.EnsureSuccessStatusCode()
+            Dim json As String = Await response.Content.ReadAsStringAsync()
+
+            Dim data As JObject = JObject.Parse(json)
+            Dim results As JArray = DirectCast(data("results"), JArray)
+
+            For Each item As JObject In results
+                Dim movieGenres As New List(Of String)()
+                For Each genreId As JValue In item("genre_ids")
+                    Dim genreIdValue As Integer = genreId.Value
+                    Dim genreName As String = GetGenreName(genreIdValue)
+                    movieGenres.Add(genreName)
+                Next
+
+                Dim movie As New Movie With {
+                    .Genres = movieGenres,
+                    .Title = item("title").ToString(),
+                    .Overview = item("overview").ToString(),
+                    .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
+                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), "")
+                }
+                movies.Add(movie)
+            Next
+
+        Catch ex As HttpRequestException
+            Console.WriteLine($"HTTP Request Error: {ex.Message}") ' HTTP request errors
+        Catch ex As Exception
+            Console.WriteLine($"Error: {ex.Message}") 'any error
+        End Try
+
+        Return movies
+
+    End Function
+
+    Private Async Function GetCompanyName(companyId As Integer) As Task(Of String)
+        Dim url As String = $"{baseURL}/company/{companyId}?api_key={apiKey}"
+
+        Try
+            Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
+            response.EnsureSuccessStatusCode()
+            Dim json As String = Await response.Content.ReadAsStringAsync()
+
+            Dim data As JObject = JObject.Parse(json)
+            Return data("name").ToString()
+
+        Catch ex As HttpRequestException
+            Console.WriteLine($"HTTP Request Error: {ex.Message}") ' HTTP request errors
+        Catch ex As Exception
+            Console.WriteLine($"Error: {ex.Message}") 'any error
+        End Try
+
+        Return "Unknown"
+    End Function
+
     Public Async Function FetchAllMovies() As Task(Of List(Of Movie))
         Dim movies As New List(Of Movie)()
 
@@ -27,7 +87,6 @@ Public Class TMDBClient
             Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
 
             For Each item As JObject In results
-
                 Dim movieGenres As New List(Of String)()
                 For Each genreId As JValue In item("genre_ids")
                     Dim genreIdValue As Integer = genreId.Value
@@ -35,31 +94,50 @@ Public Class TMDBClient
                     movieGenres.Add(genreName)
                 Next
 
+                Dim productionCompanies As New List(Of String)()
+                If item("production_companies") IsNot Nothing Then
+                    For Each company As JObject In item("production_companies")
+                        Dim companyName As String = company("name").ToString()
+                        productionCompanies.Add(companyName)
+                    Next
+                End If
+
+                Dim creditsUrl As String = $"{baseURL}/movie/{item("id")}/credits?api_key={apiKey}"
+                Dim creditsResponse As HttpResponseMessage = Await httpClient.GetAsync(creditsUrl)
+                creditsResponse.EnsureSuccessStatusCode()
+                Dim creditsJson As String = Await creditsResponse.Content.ReadAsStringAsync()
+                Dim creditsData As JObject = JObject.Parse(creditsJson)
+
+                Dim actors As New List(Of String)()
+                For Each actor As JObject In creditsData("cast")
+                    actors.Add(actor("name").ToString())
+                Next
+
                 Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
                 Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                 Dim movie As New Movie With {
-                            .Genres = movieGenres,
-                            .Title = item("title").ToString(),
-                            .Overview = item("overview").ToString(),
-                            .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
-                            .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
-                            .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
-                            .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
-                            .PosterUrl = fullPosterUrl
-                        }
+                .Genres = movieGenres,
+                .Title = item("title").ToString(),
+                .Overview = item("overview").ToString(),
+                .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
+                .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                .ProductionCompanies = productionCompanies,
+                .Actors = actors,
+                .PosterUrl = fullPosterUrl
+            }
                 movies.Add(movie)
             Next
 
-
         Catch ex As HttpRequestException
-            Console.WriteLine($"HTTP Request Error: {ex.Message}")      ' HTTP request errors
+            Console.WriteLine($"HTTP Request Error: {ex.Message}") ' HTTP request errors
         Catch ex As Exception
-            Console.WriteLine($"Error: {ex.Message}")           'any error
+            Console.WriteLine($"Error: {ex.Message}") 'any error
         End Try
 
-        Return movies       'list
+        Return movies 'list
     End Function
+
 
 
     Public Async Function FetchPopularMovies() As Task(Of List(Of Movie))
@@ -134,9 +212,8 @@ Public Class TMDBClient
 
     Public Function SortMoviesByGenre(movies As List(Of Movie), genre As String) As List(Of Movie)
         Dim genreId As Integer = GetGenreId(genre)
-        Return movies.Where(Function(m) m.Genres.Contains(genreId)).ToList()
+        Return movies.Where(Function(m) m.Genres.Contains(genreId.ToString())).ToList()
     End Function
-
 
     Public Function SortMoviesByReleaseDateAscending(movies As List(Of Movie)) As List(Of Movie)
         Return movies.OrderBy(Function(m) m.ReleaseDate).ToList()
