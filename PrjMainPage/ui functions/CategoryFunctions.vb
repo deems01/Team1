@@ -28,7 +28,7 @@ Module CategoryFunctions
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
-        inputData = Await tmdbClient.FetchAllMovies()
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "None")
 
         Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
         Select Case pickedCategory
@@ -36,17 +36,19 @@ Module CategoryFunctions
                 sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
                     'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
             Case "Old"
-                sortedMovies = tmdbClient.SortMoviesByReleaseDateAscending(inputData)
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None")
             Case "New"
-                sortedMovies = tmdbClient.SortMoviesByReleaseDateDescending(inputData)
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None")
             Case "Language"
                 sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
             Case "Company"
-                sortedMovies = tmdbClient.SortMoviesByCompany(inputData, enteredSearch)
+                sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
-                sortedMovies = tmdbClient.SortMoviesByActor(inputData, enteredSearch)
+                sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
+            Case "Popular"
+                sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
             Case Else
-                sortedMovies = Await tmdbClient.FetchPopularMovies() ' Default to using popular movies
+                sortedMovies = inputData ' Default to using popular movies
         End Select
 
         Dim panelStartX As Integer = 12
