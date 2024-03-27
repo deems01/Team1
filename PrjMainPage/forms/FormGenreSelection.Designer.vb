@@ -31,17 +31,19 @@ Partial Class FormGenreSelection
         Me.cmbGenreSelection.FormattingEnabled = True
         Me.cmbGenreSelection.Items.AddRange(New Object() {"Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Music", "Mystery", "Romance", "Science Fiction", "Thriller", "TV Movie", "War", "Western"})
         Me.cmbGenreSelection.Location = New System.Drawing.Point(0, 0)
+        Me.cmbGenreSelection.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbGenreSelection.Name = "cmbGenreSelection"
-        Me.cmbGenreSelection.Size = New System.Drawing.Size(139, 21)
+        Me.cmbGenreSelection.Size = New System.Drawing.Size(197, 24)
         Me.cmbGenreSelection.TabIndex = 0
         '
         'FormGenreSelection
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(139, 19)
+        Me.ClientSize = New System.Drawing.Size(197, 23)
         Me.Controls.Add(Me.cmbGenreSelection)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormGenreSelection"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
