@@ -25,20 +25,30 @@ Public Class TMDBClient
             Dim data As JObject = JObject.Parse(json)
             Dim results As JArray = DirectCast(data("results"), JArray)
 
+            Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
+
+            Dim limit As Integer = 0
+
             For Each item As JObject In results
+
+                If limit > 20 Then
+                    Exit For
+                End If
                 Dim movieGenres As New List(Of String)()
                 For Each genreId As JValue In item("genre_ids")
                     Dim genreIdValue As Integer = genreId.Value
                     Dim genreName As String = GetGenreName(genreIdValue)
                     movieGenres.Add(genreName)
                 Next
-
+                Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
+                Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
                 Dim movie As New Movie With {
                     .Genres = movieGenres,
                     .Title = item("title").ToString(),
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
-                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), "")
+                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                    .PosterUrl = fullPosterUrl
                 }
                 movies.Add(movie)
             Next
@@ -183,6 +193,7 @@ Public Class TMDBClient
 
             ' Process each movie in the results
             Dim limit As Integer = 0
+            Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
 
             For Each item As JObject In results
 
@@ -190,12 +201,15 @@ Public Class TMDBClient
                     Exit For
                 End If
 
+                Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
+                Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                 Dim movie As New Movie With {
                     .Title = item("title").ToString(),
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
-                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), "")
+                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                    .PosterUrl = fullPosterUrl
                 }
                 movies.Add(movie)
                 limit += 1
@@ -243,13 +257,17 @@ Public Class TMDBClient
             Dim data As JObject = JObject.Parse(json)
             Dim cast As JArray = DirectCast(data("cast"), JArray)
 
+            Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
             ' Process each movie in the cast
             For Each item As JObject In cast
+                Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
+                Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
                 Dim movie As New Movie With {
                     .Title = item("title").ToString(),
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
-                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), "")
+                    .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                    .PosterUrl = fullPosterUrl
                 }
                 movies.Add(movie)
             Next
@@ -271,7 +289,7 @@ Public Class TMDBClient
             Dim data As JObject = JObject.Parse(json)
             Dim results As JArray = DirectCast(data("results"), JArray)
             If results.Count > 0 Then
-                actorId = Convert.ToInt32(results(0)("id"))
+                actorId = Convert.ToInt32(results(0)("id")) 'siia lisaks posteri tagastus ja saamine (tuple)
             End If
         Catch ex As Exception
             Console.WriteLine($"Error getting actor ID: {ex.Message}")

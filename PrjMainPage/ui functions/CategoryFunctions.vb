@@ -67,9 +67,9 @@ Module CategoryFunctions
 
             ' Title Label
             Dim titleLabel As New Label()
-            titleLabel.Text = movie.Title 'filmi nimi
+            'titleLabel.Text = movie.Title 'filmi nimi
 
-            'poster movie.PosterUrl
+            'Image = movie.PosterUrl
 
             titleLabel.AutoSize = True
 
