@@ -36,10 +36,10 @@ Partial Class FormActorandCompanySearch
         Me.pnlSearch.Controls.Add(Me.txtSearch)
         Me.pnlSearch.Controls.Add(Me.btnSearch)
         Me.pnlSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.pnlSearch.Location = New System.Drawing.Point(16, 15)
-        Me.pnlSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.pnlSearch.Location = New System.Drawing.Point(18, 19)
+        Me.pnlSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.pnlSearch.Name = "pnlSearch"
-        Me.pnlSearch.Size = New System.Drawing.Size(236, 27)
+        Me.pnlSearch.Size = New System.Drawing.Size(266, 34)
         Me.pnlSearch.TabIndex = 13
         '
         'txtSearch
@@ -47,9 +47,9 @@ Partial Class FormActorandCompanySearch
         Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtSearch.Location = New System.Drawing.Point(0, 0)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(200, 30)
+        Me.txtSearch.Size = New System.Drawing.Size(226, 35)
         Me.txtSearch.TabIndex = 12
         '
         'btnSearch
@@ -63,20 +63,20 @@ Partial Class FormActorandCompanySearch
         Me.btnSearch.IconColor = System.Drawing.Color.Black
         Me.btnSearch.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnSearch.IconSize = 20
-        Me.btnSearch.Location = New System.Drawing.Point(200, 0)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnSearch.Location = New System.Drawing.Point(226, 0)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(36, 27)
+        Me.btnSearch.Size = New System.Drawing.Size(40, 34)
         Me.btnSearch.TabIndex = 11
         Me.btnSearch.UseVisualStyleBackColor = False
         '
         'FormActorandCompanySearch
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1368, 276)
+        Me.ClientSize = New System.Drawing.Size(1539, 345)
         Me.Controls.Add(Me.pnlSearch)
-        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FormActorandCompanySearch"
         Me.Text = "Form1"
         Me.pnlSearch.ResumeLayout(False)

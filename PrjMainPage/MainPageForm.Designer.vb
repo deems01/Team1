@@ -90,7 +90,7 @@ Partial Class MainPageForm
         '
         Me.btnWatchlist.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnWatchlist.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnWatchlist.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnWatchlist.IconChar = FontAwesome.Sharp.IconChar.List
         Me.btnWatchlist.IconColor = System.Drawing.Color.Black
         Me.btnWatchlist.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnWatchlist.IconSize = 80
@@ -105,7 +105,7 @@ Partial Class MainPageForm
         '
         Me.btnCategory.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnCategory.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnCategory.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnCategory.IconChar = FontAwesome.Sharp.IconChar.SortAlphaUp
         Me.btnCategory.IconColor = System.Drawing.Color.Black
         Me.btnCategory.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnCategory.IconSize = 80
@@ -120,7 +120,7 @@ Partial Class MainPageForm
         '
         Me.btnPlanned.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnPlanned.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnPlanned.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnPlanned.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck
         Me.btnPlanned.IconColor = System.Drawing.Color.Black
         Me.btnPlanned.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnPlanned.IconSize = 80
@@ -135,7 +135,7 @@ Partial Class MainPageForm
         '
         Me.btnNewPlan.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnNewPlan.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnNewPlan.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnNewPlan.IconChar = FontAwesome.Sharp.IconChar.Calendar
         Me.btnNewPlan.IconColor = System.Drawing.Color.Black
         Me.btnNewPlan.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnNewPlan.IconSize = 80
@@ -150,7 +150,7 @@ Partial Class MainPageForm
         '
         Me.btnStats.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.btnStats.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnStats.IconChar = FontAwesome.Sharp.IconChar.BarChart
+        Me.btnStats.IconChar = FontAwesome.Sharp.IconChar.Sliders
         Me.btnStats.IconColor = System.Drawing.Color.Black
         Me.btnStats.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnStats.IconSize = 80
@@ -237,7 +237,7 @@ Partial Class MainPageForm
         Me.Controls.Add(Me.pnlPage)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "MainPageForm"
-        Me.Padding = New System.Windows.Forms.Padding(15, 15, 15, 15)
+        Me.Padding = New System.Windows.Forms.Padding(15)
         Me.Text = "Form1"
         Me.pnlMainMenu.ResumeLayout(False)
         Me.tabPnlMainMenu.ResumeLayout(False)
