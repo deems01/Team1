@@ -90,4 +90,21 @@ Module NameSearchFunctions
         Next
 
     End Sub
+
+    Public Async Sub AddPosterDynamically(resultFlowPanel As FlowLayoutPanel)
+        Dim nameSearch As New CNameSearch(apiKey)
+        inputData = Await nameSearch.SearchMovieAsync(GetSearchedFilmName())
+
+        For Each movie As Movie In inputData
+            Dim posterPicBox As New PictureBox
+            posterPicBox.Load(movie.PosterUrl)
+            posterPicBox.SizeMode = PictureBoxSizeMode.StretchImage
+            posterPicBox.Width = 200
+            posterPicBox.Height = 300
+            posterPicBox.Margin = New Padding(1)
+            resultFlowPanel.Controls.Add(posterPicBox)
+        Next
+
+    End Sub
+
 End Module
