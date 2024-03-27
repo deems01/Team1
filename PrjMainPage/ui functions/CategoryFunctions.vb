@@ -1,4 +1,6 @@
-﻿Module CategoryFunctions
+﻿Imports SortClass
+
+Module CategoryFunctions
 
     Private pickedCategory As String
     Private enteredSearch As String
@@ -18,9 +20,83 @@
     Public Function getSearch()
         Return enteredSearch
     End Function
-    Public Sub AddPanelsDynamically(resultForm As Form)
 
-        Dim inputData As New List(Of String) From {"veiko", "uku", "juhan"}
+    Public Async Sub AddPosterDynamicallyCategory(resultFlowPanel As FlowLayoutPanel)
+        ' Create an instance of TMDBClient with your API key
+        Dim tmdbClient As New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
+
+        ' Fetch popular movies
+        Dim inputData As List(Of Movie)
+        'inputData = Await tmdbClient.FetchPopularMovies()
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "None")
+
+        Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
+        Select Case pickedCategory
+            Case "genre"
+                sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
+                    'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
+            Case "Old"
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None")
+            Case "New"
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None")
+            Case "Language"
+                sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
+            Case "Company"
+                sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
+            Case "Actor"
+                sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
+            Case "Popular"
+                sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
+            Case Else
+                sortedMovies = inputData ' Default to using popular movies
+        End Select
+
+        'Image = movie.PosterUrl
+
+        For Each movie As Movie In sortedMovies
+            Dim posterPicBox As New PictureBox
+            If Not (movie.PosterUrl = "") Then
+                posterPicBox.Load(movie.PosterUrl)
+                posterPicBox.SizeMode = PictureBoxSizeMode.StretchImage
+                posterPicBox.Width = 200
+                posterPicBox.Height = 300
+                posterPicBox.Margin = New Padding(1)
+                resultFlowPanel.Controls.Add(posterPicBox)
+
+            End If
+        Next
+
+    End Sub
+    Public Async Sub AddPanelsDynamically(resultForm As Form)
+
+        ' Create an instance of TMDBClient with your API key
+        Dim tmdbClient As New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
+
+        ' Fetch popular movies
+        Dim inputData As List(Of Movie)
+        'inputData = Await tmdbClient.FetchPopularMovies()
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "None")
+
+        Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
+        Select Case pickedCategory
+            Case "genre"
+                sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
+                    'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
+            Case "Old"
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None")
+            Case "New"
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None")
+            Case "Language"
+                sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
+            Case "Company"
+                sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
+            Case "Actor"
+                sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
+            Case "Popular"
+                sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
+            Case Else
+                sortedMovies = inputData ' Default to using popular movies
+        End Select
 
         Dim panelStartX As Integer = 12
         Dim panelStartY As Integer = 45
@@ -28,23 +104,26 @@
         Dim panelWidth As Integer = 539
         Dim initialPanelHeight As Integer = 20
 
-        For Each name As String In inputData
-            Dim newPanel As New Panel()
-            newPanel.BackColor = Color.LightBlue
-            newPanel.AutoSize = True
-            newPanel.Width = panelWidth
-            newPanel.Height = initialPanelHeight
-            newPanel.Location = New Point(panelStartX, panelStartY)
+        For Each movie As Movie In sortedMovies
+            'Dim newPanel As New Panel()
+            'newPanel.BackColor = Color.LightBlue
+            'newPanel.AutoSize = True
+            'newPanel.Width = panelWidth
+            'newPanel.Height = initialPanelHeight
+            'newPanel.Location = New Point(panelStartX, panelStartY)
 
-            ' Title Label
-            Dim titleLabel As New Label()
-            titleLabel.Text = name
-            titleLabel.AutoSize = True
+            '' Title Label
+            'Dim titleLabel As New Label()
+            ''titleLabel.Text = movie.Title 'filmi nimi
 
-            newPanel.Controls.Add(titleLabel)
-            resultForm.Controls.Add(newPanel)
+            ''Image = movie.PosterUrl
 
-            panelStartY += newPanel.Height + 10
+            'titleLabel.AutoSize = True
+
+            'newPanel.Controls.Add(titleLabel)
+            'resultForm.Controls.Add(newPanel)
+
+            'panelStartY += newPanel.Height + 10
         Next
 
     End Sub
