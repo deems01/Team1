@@ -10,7 +10,7 @@
             lblCateSearch.Text = CategoryFunctions.getSearch()
         End If
 
-        CategoryFunctions.AddPanelsDynamically(Me)
+        CategoryFunctions.AddPosterDynamicallyCategory(flowPanelResult)
 
     End Sub
 

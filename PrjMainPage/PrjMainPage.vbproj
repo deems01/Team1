@@ -56,6 +56,10 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SortClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SortClass\bin\Debug\SortClass.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -204,6 +208,13 @@
       <Project>{93f33b6a-680e-4486-a44b-ee7800c75b88}</Project>
       <Name>NameSearchDLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SortClass\SortProject.vbproj">
+      <Project>{ae4ca7b7-6267-4dc9-bf00-23a7f52f927c}</Project>
+      <Name>SortProject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

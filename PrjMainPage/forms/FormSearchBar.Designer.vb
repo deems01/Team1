@@ -36,18 +36,20 @@ Partial Class FormSearchBar
         Me.Panel1.Controls.Add(Me.txtSearch)
         Me.Panel1.Controls.Add(Me.btnSearch)
         Me.Panel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel1.Location = New System.Drawing.Point(287, 153)
+        Me.Panel1.Location = New System.Drawing.Point(430, 235)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(449, 37)
+        Me.Panel1.Size = New System.Drawing.Size(674, 58)
         Me.Panel1.TabIndex = 12
         '
         'txtSearch
         '
         Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 35.0!, System.Drawing.FontStyle.Bold)
         Me.txtSearch.Location = New System.Drawing.Point(0, 0)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(376, 38)
+        Me.txtSearch.Size = New System.Drawing.Size(564, 87)
         Me.txtSearch.TabIndex = 10
         Me.txtSearch.Text = "Search"
         '
@@ -62,19 +64,21 @@ Partial Class FormSearchBar
         Me.btnSearch.IconColor = System.Drawing.Color.Black
         Me.btnSearch.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnSearch.IconSize = 40
-        Me.btnSearch.Location = New System.Drawing.Point(376, 0)
+        Me.btnSearch.Location = New System.Drawing.Point(564, 0)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(73, 37)
+        Me.btnSearch.Size = New System.Drawing.Size(110, 58)
         Me.btnSearch.TabIndex = 11
         Me.btnSearch.UseVisualStyleBackColor = False
         '
         'FormSearchBar
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.ClientSize = New System.Drawing.Size(1022, 342)
+        Me.ClientSize = New System.Drawing.Size(1533, 526)
         Me.Controls.Add(Me.Panel1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FormSearchBar"
         Me.Text = "Form1"
         Me.Panel1.ResumeLayout(False)

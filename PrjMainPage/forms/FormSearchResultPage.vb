@@ -4,7 +4,7 @@
 
         lbl.Text = NameSearchFunctions.getSearchedFilmName()
 
-        NameSearchFunctions.AddPanelsDynamically(Me)
+        NameSearchFunctions.AddPosterDynamically(flowPanelResult)
     End Sub
 
 End Class

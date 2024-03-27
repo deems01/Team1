@@ -33,4 +33,5 @@ Public Class FormCategories
     Private Sub FormCategories_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CategoryFunctions.setSearch("")
     End Sub
+
 End Class
