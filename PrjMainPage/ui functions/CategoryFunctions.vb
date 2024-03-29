@@ -28,7 +28,7 @@ Module CategoryFunctions
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
-        inputData = Await tmdbClient.FetchAllMovies("Pop", "None")
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "None", "")
 
         Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
         Select Case pickedCategory
@@ -36,9 +36,9 @@ Module CategoryFunctions
                 sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
                     'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
             Case "Old"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None", "")
             Case "New"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", "")
             Case "Language"
                 sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
             Case "Company"
@@ -75,7 +75,7 @@ Module CategoryFunctions
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
-        inputData = Await tmdbClient.FetchAllMovies("Pop", "None")
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "None", "")
 
         Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
         Select Case pickedCategory
@@ -83,15 +83,17 @@ Module CategoryFunctions
                 sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
                     'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
             Case "Old"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None", "")
             Case "New"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", "")
             Case "Language"
                 sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
             Case "Company"
                 sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
                 sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
+            Case "Language"
+                sortedMovies = Await tmdbClient.FetchAllMovies("", "None", enteredSearch) 'movies all list mida saab otsida prg
             Case "Popular"
                 sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
             Case Else

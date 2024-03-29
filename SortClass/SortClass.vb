@@ -1,4 +1,5 @@
-﻿Imports System.Diagnostics.Eventing.Reader
+﻿Imports System.CodeDom.Compiler
+Imports System.Diagnostics.Eventing.Reader
 Imports System.Net.Http
 Imports System.Reflection
 Imports Newtonsoft.Json.Linq
@@ -63,9 +64,54 @@ Public Class TMDBClient
 
     End Function
 
+    Private ReadOnly languageMapping As Dictionary(Of String, String) = New Dictionary(Of String, String) From {
+    {"English", "en"},
+    {"French", "fr"},
+    {"Spanish", "es"},
+    {"German", "de"},
+    {"Italian", "it"},
+    {"Portuguese", "pt"},
+    {"Russian", "ru"},
+    {"Chinese", "zh"},
+    {"Japanese", "ja"},
+    {"Arabic", "ar"},
+    {"Hindi", "hi"},
+    {"Korean", "ko"},
+    {"Dutch", "nl"},
+    {"Swedish", "sv"},
+    {"Norwegian", "no"},
+    {"Danish", "da"},
+    {"Finnish", "fi"},
+    {"Greek", "el"},
+    {"Turkish", "tr"},
+    {"Polish", "pl"},
+    {"Hungarian", "hu"},
+    {"Czech", "cs"},
+    {"Thai", "th"},
+    {"Indonesian", "id"},
+    {"Vietnamese", "vi"}
+    }
 
+    Public Function FetchLanguage(languageCode As String) As String
+        Dim languageName As String = ""
+        If languageMapping.ContainsKey(languageCode.ToLower()) Then
+            languageName = languageMapping(languageCode.ToLower())
+        Else
+            languageName = "Unknown"
+        End If
+        Return languageName
+    End Function
 
-    Public Async Function FetchAllMovies(input As String, actorr As String) As Task(Of List(Of Movie))
+    Public Function FetchLanguageCode(languageName As String) As String
+        Dim languageCode As String = ""
+        If languageMapping.ContainsKey(languageName) Then
+            languageCode = languageMapping(languageName)
+        Else
+            languageCode = "Unknown"
+        End If
+        Return languageCode
+    End Function
+    Public Async Function FetchAllMovies(input As String, actorr As String, language As String) As Task(Of List(Of Movie))
         Dim movies As New List(Of Movie)()
 
         Dim url As String = $"{baseURL}/movie/popular?api_key={apiKey}"
@@ -76,6 +122,14 @@ Public Class TMDBClient
         ElseIf input = "Asc" Then
             url = $"{baseURL}/discover/movie?api_key={apiKey}&sort_by=release_date.asc"
         End If
+        If language <> "" Then
+            url &= "&with_original_language=" ' Sorting by English language
+            Dim temp As String = FetchLanguage(language)
+            If temp <> "Unknown" Then
+                url &= temp
+            End If
+        End If
+
         Try
             Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
             response.EnsureSuccessStatusCode()
