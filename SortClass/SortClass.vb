@@ -123,9 +123,9 @@ Public Class TMDBClient
             url = $"{baseURL}/discover/movie?api_key={apiKey}&sort_by=release_date.asc"
         End If
         If language <> "" Then
-            url &= "&with_original_language=" ' Sorting by English language
-            Dim temp As String = FetchLanguage(language)
+            Dim temp As String = FetchLanguageCode(language)
             If temp <> "Unknown" Then
+                url &= "&with_original_language="
                 url &= temp
             End If
         End If
@@ -168,27 +168,6 @@ Public Class TMDBClient
         End Try
         Return movies 'list
     End Function
-
-    'Public Function SortMoviesByGenre(movies As List(Of Movie), genre As String) As List(Of Movie)
-    'Dim genreId As Integer = GetGenreId(genre)
-    'Return movies.Where(Function(m) m.Genres.Contains(genreId.ToString())).ToList()
-    ' End Function
-
-    'Public Function SortMoviesByReleaseDateAscending(movies As List(Of Movie)) As List(Of Movie)
-    'Return movies.OrderBy(Function(m) m.ReleaseDate).ToList()
-    'End Function
-
-    Public Function SortMoviesByLanguage(movies As List(Of Movie), language As String) As List(Of Movie)
-        Return movies.Where(Function(m) m.Language.Equals(language, StringComparison.OrdinalIgnoreCase)).ToList()
-    End Function
-
-    ' Public Function SortMoviesByCompany(movies As List(Of Movie), company As String) As List(Of Movie)
-    'Return movies.Where(Function(m) m.ProductionCompanies.Contains(company)).ToList()
-    ' End Function
-
-    'Public Function SortMoviesByActor(movies As List(Of Movie), actor As String) As List(Of Movie)
-    'Return movies.Where(Function(m) m.Actors.Contains(actor)).ToList()
-    'End Function
 
     Private genreMapping As New Dictionary(Of Integer, String) From {
         {28, "Action"},

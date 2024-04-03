@@ -40,7 +40,7 @@ Module CategoryFunctions
             Case "New"
                 sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", "")
             Case "Language"
-                sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", enteredSearch)
             Case "Company"
                 sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
@@ -103,13 +103,12 @@ Module CategoryFunctions
         Select Case pickedCategory
             Case "genre"
                 sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
-                    'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
             Case "Old"
                 sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None", "")
             Case "New"
                 sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", "")
             Case "Language"
-                sortedMovies = tmdbClient.SortMoviesByLanguage(inputData, enteredSearch)
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", enteredSearch)
             Case "Company"
                 sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
