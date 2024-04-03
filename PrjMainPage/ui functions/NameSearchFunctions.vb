@@ -1,5 +1,4 @@
 ﻿Imports NameSearchDLL
-
 Module NameSearchFunctions
 
     Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
@@ -102,9 +101,30 @@ Module NameSearchFunctions
             posterPicBox.Width = 200
             posterPicBox.Height = 300
             posterPicBox.Margin = New Padding(1)
+            AddHandler posterPicBox.MouseEnter, AddressOf posterPicBox_MouseEnter
+            AddHandler posterPicBox.MouseLeave, AddressOf posterPicBox_MouseLeave
+            AddHandler posterPicBox.Click, AddressOf posterPicBox_Click
             resultFlowPanel.Controls.Add(posterPicBox)
         Next
 
+    End Sub
+
+    Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
+        Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
+        UiHelpFunctions.OpenChildForm(New FormFilmPage)
+    End Sub
+
+
+    Private Sub posterPicBox_MouseEnter(sender As Object, e As EventArgs)
+        Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
+        pictureBox.Size = New Size(pictureBox.Width + 20, pictureBox.Height + 20) ' Increase size in every direction
+        pictureBox.Location = New Point(pictureBox.Location.X - 10, pictureBox.Location.Y - 10) ' Move picture box to center
+    End Sub
+
+    Private Sub posterPicBox_MouseLeave(sender As Object, e As EventArgs)
+        Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
+        pictureBox.Size = New Size(pictureBox.Width - 20, pictureBox.Height - 20) ' Return to original size
+        pictureBox.Location = New Point(pictureBox.Location.X + 10, pictureBox.Location.Y + 10) ' Move picture box back
     End Sub
 
 End Module

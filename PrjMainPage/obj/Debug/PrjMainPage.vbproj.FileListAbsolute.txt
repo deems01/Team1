@@ -180,3 +180,6 @@ C:\Users\veiko\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainP.794500D
 C:\Users\veiko\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.exe
 C:\Users\veiko\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.xml
 C:\Users\veiko\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.pdb
+C:\Users\veiko\source\repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormLanguageSelection.resources
+C:\Users\veiko\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormFilmPage.resources
+C:\Users\veiko\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormNightPlanner.resources

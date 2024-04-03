@@ -33,7 +33,7 @@ Partial Class FormCategories
         Me.tabelpnlOld = New System.Windows.Forms.TableLayoutPanel()
         Me.lblOld = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.tablePanelLanguage = New System.Windows.Forms.TableLayoutPanel()
         Me.lblLanguage = New System.Windows.Forms.Label()
         Me.tabelpnlGenre.SuspendLayout()
         Me.tabelpnlNew.SuspendLayout()
@@ -41,7 +41,7 @@ Partial Class FormCategories
         Me.tabelpnlActor.SuspendLayout()
         Me.tabelpnlOld.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.TableLayoutPanel2.SuspendLayout()
+        Me.tablePanelLanguage.SuspendLayout()
         Me.SuspendLayout()
         '
         'tabelpnlGenre
@@ -196,7 +196,7 @@ Partial Class FormCategories
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.83168!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.83168!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.84158!))
-        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 5, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.tablePanelLanguage, 5, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tabelpnlGenre, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tabelpnlCompany, 4, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tabelpnlNew, 3, 0)
@@ -209,21 +209,21 @@ Partial Class FormCategories
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1454, 100)
         Me.TableLayoutPanel1.TabIndex = 2
         '
-        'TableLayoutPanel2
+        'tablePanelLanguage
         '
-        Me.TableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TableLayoutPanel2.ColumnCount = 1
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.lblLanguage, 0, 0)
-        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(1224, 5)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 2
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(226, 90)
-        Me.TableLayoutPanel2.TabIndex = 3
+        Me.tablePanelLanguage.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.tablePanelLanguage.ColumnCount = 1
+        Me.tablePanelLanguage.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tablePanelLanguage.Controls.Add(Me.lblLanguage, 0, 0)
+        Me.tablePanelLanguage.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tablePanelLanguage.Location = New System.Drawing.Point(1224, 5)
+        Me.tablePanelLanguage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tablePanelLanguage.Name = "tablePanelLanguage"
+        Me.tablePanelLanguage.RowCount = 2
+        Me.tablePanelLanguage.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tablePanelLanguage.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tablePanelLanguage.Size = New System.Drawing.Size(226, 90)
+        Me.tablePanelLanguage.TabIndex = 3
         '
         'lblLanguage
         '
@@ -259,8 +259,8 @@ Partial Class FormCategories
         Me.tabelpnlOld.ResumeLayout(False)
         Me.tabelpnlOld.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel2.PerformLayout()
+        Me.tablePanelLanguage.ResumeLayout(False)
+        Me.tablePanelLanguage.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -275,6 +275,6 @@ Partial Class FormCategories
     Friend WithEvents tabelpnlOld As TableLayoutPanel
     Friend WithEvents lblOld As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents tablePanelLanguage As TableLayoutPanel
     Friend WithEvents lblLanguage As Label
 End Class
