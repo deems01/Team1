@@ -99,6 +99,12 @@
     <Compile Include="forms\FormCategoryResult.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\FormFilmPage.Designer.vb">
+      <DependentUpon>FormFilmPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormFilmPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\FormGenreSelection.Designer.vb">
       <DependentUpon>FormGenreSelection.vb</DependentUpon>
     </Compile>
@@ -109,6 +115,18 @@
       <DependentUpon>FormCategories.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\FormCategories.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormLanguageSelection.Designer.vb">
+      <DependentUpon>FormLanguageSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormLanguageSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormNightPlanner.Designer.vb">
+      <DependentUpon>FormNightPlanner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormNightPlanner.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\FormSearchBar.Designer.vb">
@@ -156,11 +174,20 @@
     <EmbeddedResource Include="forms\FormCategoryResult.resx">
       <DependentUpon>FormCategoryResult.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormFilmPage.resx">
+      <DependentUpon>FormFilmPage.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\FormGenreSelection.resx">
       <DependentUpon>FormGenreSelection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FormCategories.resx">
       <DependentUpon>FormCategories.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormLanguageSelection.resx">
+      <DependentUpon>FormLanguageSelection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormNightPlanner.resx">
+      <DependentUpon>FormNightPlanner.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FormSearchBar.resx">
       <DependentUpon>FormSearchBar.vb</DependentUpon>

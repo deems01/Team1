@@ -92,4 +92,8 @@ Public Class MainPageForm
     Private Sub btnCategory_Click(sender As Object, e As EventArgs) Handles btnCategory.Click
         UiHelpFunctions.OpenChildForm(New FormCategories)
     End Sub
+
+    Private Sub btnNewPlan_Click(sender As Object, e As EventArgs) Handles btnNewPlan.Click
+        UiHelpFunctions.OpenChildForm(New FormNightPlanner)
+    End Sub
 End Class

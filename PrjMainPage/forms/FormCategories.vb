@@ -34,4 +34,9 @@ Public Class FormCategories
         CategoryFunctions.setSearch("")
     End Sub
 
+    Private Sub lblLanguage_Click(sender As Object, e As EventArgs) Handles lblLanguage.Click
+        Dim languageForm As New FormLanguageSelection()
+        tablePanelLanguage.Controls.Add(languageForm.cmbLanguageSelection, 1, 1)
+        CategoryFunctions.setPickedCategory("Language")
+    End Sub
 End Class
