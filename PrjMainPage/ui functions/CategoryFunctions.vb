@@ -28,23 +28,29 @@ Module CategoryFunctions
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
-        inputData = Await tmdbClient.FetchAllMovies("Pop", "None", "")
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "")
 
-        Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
+        Dim sortedMovies As List(Of Movie)
+        sortedMovies = inputData
+
         Select Case pickedCategory
             Case "genre"
                 sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
                     'tmdbClient.SortMoviesByGenre(inputData, enteredSearch)
             Case "Old"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None", "")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "")
             Case "New"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", "")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "")
             Case "Language"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", enteredSearch)
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", enteredSearch)
             Case "Company"
                 sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
                 sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
+            Case "Random"
+                sortedMovies.Clear() ' Clear the contents of the list
+                Dim randomMovie As Movie = Await tmdbClient.GetRandomMovie()
+                sortedMovies.Add(randomMovie)
             Case "Popular"
                 sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
             Case Else
@@ -97,24 +103,29 @@ Module CategoryFunctions
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
-        inputData = Await tmdbClient.FetchAllMovies("Pop", "None", "")
+        inputData = Await tmdbClient.FetchAllMovies("Pop", "")
 
         Dim sortedMovies As List(Of Movie)                             'every time it has to go here again
+        sortedMovies = inputData
         Select Case pickedCategory
             Case "genre"
                 sortedMovies = Await tmdbClient.GetGenres(enteredSearch)
             Case "Old"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "None", "")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Asc", "")
             Case "New"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", "")
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "")
             Case "Language"
-                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", "None", enteredSearch)
+                sortedMovies = Await tmdbClient.FetchAllMovies("Desc", enteredSearch)
             Case "Company"
                 sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
                 sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
             Case "Language"
-                sortedMovies = Await tmdbClient.FetchAllMovies("", "None", enteredSearch) 'movies all list mida saab otsida prg
+                sortedMovies = Await tmdbClient.FetchAllMovies("", enteredSearch) 'movies all list mida saab otsida prg
+            Case "Random"
+                sortedMovies.Clear() ' Clear the contents of the list
+                Dim randomMovie As Movie = Await tmdbClient.GetRandomMovie()
+                sortedMovies.Add(randomMovie)
             Case "Popular"
                 sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
             Case Else

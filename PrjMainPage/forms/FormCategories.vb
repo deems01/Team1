@@ -39,4 +39,9 @@ Public Class FormCategories
         tablePanelLanguage.Controls.Add(languageForm.cmbLanguageSelection, 1, 1)
         CategoryFunctions.setPickedCategory("Language")
     End Sub
+
+    Private Sub BtnRandom_Click(sender As Object, e As EventArgs) Handles BtnRandom.Click
+        CategoryFunctions.setPickedCategory("Random")
+        UiHelpFunctions.OpenChildForm(FormCategoryResult)
+    End Sub
 End Class
