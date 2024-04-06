@@ -76,7 +76,25 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilmMigrationsConfiguration.vb" />
     <Compile Include="FilmdbModel.vb" />
+    <Compile Include="Migrations\202404061937352_InitialCreate.designer.vb">
+      <DependentUpon>202404061937352_InitialCreate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404061937352_InitialCreate.vb" />
+    <Compile Include="Migrations\202404061945389_Mig_test.designer.vb">
+      <DependentUpon>202404061945389_Mig_test.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404061945389_Mig_test.vb" />
+    <Compile Include="Migrations\202404062005111_Mig_testremove.designer.vb">
+      <DependentUpon>202404062005111_Mig_testremove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404062005111_Mig_testremove.vb" />
+    <Compile Include="Migrations\202404062055358_Mig_imdbtype2.designer.vb">
+      <DependentUpon>202404062055358_Mig_imdbtype2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404062055358_Mig_imdbtype2.vb" />
+    <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -94,6 +112,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202404061937352_InitialCreate.resx">
+      <DependentUpon>202404061937352_InitialCreate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404061945389_Mig_test.resx">
+      <DependentUpon>202404061945389_Mig_test.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404062005111_Mig_testremove.resx">
+      <DependentUpon>202404062005111_Mig_testremove.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404062055358_Mig_imdbtype2.resx">
+      <DependentUpon>202404062055358_Mig_imdbtype2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

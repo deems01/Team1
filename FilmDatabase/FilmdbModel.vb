@@ -4,6 +4,7 @@ Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Linq
 Imports System.Data.Entity.Core.Common.EntitySql
+Imports System.Data.Entity.Migrations
 
 Public Class FilmdbInitializer
     Inherits CreateDatabaseIfNotExists(Of FilmdbModel)
@@ -25,8 +26,12 @@ Public Class FilmdbModel
     ' connection string in the application configuration file.
     Public Sub New()
         MyBase.New("name=FilmdbModel")
-        Database.SetInitializer(Of FilmdbModel)(New FilmdbInitializer())
+        Database.SetInitializer(Of FilmdbModel)(Nothing)
+    End Sub
 
+    Public Sub UpdateDatabaseStructureFromMigration()
+        Dim migrator As New DbMigrator(New FilmMigrationsConfiguration())
+        migrator.Update()
     End Sub
 
     ' Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -62,7 +67,8 @@ Public Class Films
     <Key>
     Public Property Id As Integer
     <Index("AK_Films", IsUnique:=True)>
-    Public Property Imdb_Id As Integer
+    <StringLength(100)>
+    Public Property Imdb_Id As String
     Public Property Name As String
     Public Property ReleaseYear As String
     Public Property FilmLength As String

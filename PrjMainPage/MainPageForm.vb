@@ -1,9 +1,10 @@
 ﻿Imports System.Runtime.InteropServices
 Imports FontAwesome.Sharp
 Imports FilmDatabase
+Imports System.Data.Entity.Migrations
 
 Public Class MainPageForm
-
+    'Andmebaasi access
     Dim db As New FilmdbModel()
 
     Private Const WM_NCLBUTTONDOWN As Integer = &HA1
@@ -47,7 +48,7 @@ Public Class MainPageForm
     End Sub
 
     Private Sub MainPageForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim query = From f In db.Films Select New With {f.Id, f.Name}
+        db.UpdateDatabaseStructureFromMigration()
 
         UiHelpFunctions.setMainPanel(pnlPage)
 
@@ -63,6 +64,17 @@ Public Class MainPageForm
             button.FlatStyle = FlatStyle.Flat
             button.FlatAppearance.BorderSize = 0
         Next
+    End Sub
+
+    'TODO REMOVE LATER
+    Private Sub ExampleNewfilm()
+        Dim uusfilm As New Films()
+        uusfilm.Name = "neljas"
+        uusfilm.Imdb_Id = Guid.NewGuid().ToString()
+        uusfilm.Tags = New List(Of Tags) From {New Tags() With {.Tag = "v2ga hea 4"}, New Tags() With {.Tag = "another tag 4"}}
+
+        db.Films.Add(uusfilm)
+        db.SaveChanges()
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
