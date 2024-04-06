@@ -1,7 +1,10 @@
 ﻿Imports System.Runtime.InteropServices
 Imports FontAwesome.Sharp
+Imports FilmDatabase
 
 Public Class MainPageForm
+
+    Dim db As New FilmdbModel()
 
     Private Const WM_NCLBUTTONDOWN As Integer = &HA1
     Private Const HT_CAPTION As Integer = &H2
@@ -44,6 +47,7 @@ Public Class MainPageForm
     End Sub
 
     Private Sub MainPageForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim query = From f In db.Films Select New With {f.Id, f.Name}
 
         UiHelpFunctions.setMainPanel(pnlPage)
 
