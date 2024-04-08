@@ -245,3 +245,4 @@ C:\Users\veiko\Source\Repos\Team1234\PrjMainPage\obj\Debug\PrjMainP.794500D4.Up2
 C:\Users\veiko\Source\Repos\Team1234\PrjMainPage\obj\Debug\PrjMainPage.exe
 C:\Users\veiko\Source\Repos\Team1234\PrjMainPage\obj\Debug\PrjMainPage.xml
 C:\Users\veiko\Source\Repos\Team1234\PrjMainPage\obj\Debug\PrjMainPage.pdb
+C:\Users\veiko\Source\Repos\Team1234\PrjMainPage\obj\Debug\PrjMainPage.FormWatchlist.resources

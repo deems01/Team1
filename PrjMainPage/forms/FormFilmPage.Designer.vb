@@ -23,37 +23,129 @@ Partial Class FormFilmPage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btnAddToWatchlist = New System.Windows.Forms.Button()
-        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
+        Me.pbPoster = New System.Windows.Forms.PictureBox()
+        Me.pnlFilmName = New System.Windows.Forms.Panel()
+        Me.lblFilmName = New System.Windows.Forms.Label()
+        Me.btnComments = New System.Windows.Forms.Button()
+        Me.flowPanelTags = New System.Windows.Forms.FlowLayoutPanel()
+        Me.pnlDescription = New System.Windows.Forms.Panel()
+        Me.rTxtDescription = New System.Windows.Forms.RichTextBox()
+        Me.pnlPoster = New System.Windows.Forms.Panel()
+        CType(Me.pbPoster, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlFilmName.SuspendLayout()
+        Me.pnlDescription.SuspendLayout()
+        Me.pnlPoster.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnAddToWatchlist
         '
-        Me.btnAddToWatchlist.Location = New System.Drawing.Point(341, 215)
+        Me.btnAddToWatchlist.Location = New System.Drawing.Point(987, 12)
         Me.btnAddToWatchlist.Name = "btnAddToWatchlist"
-        Me.btnAddToWatchlist.Size = New System.Drawing.Size(139, 45)
+        Me.btnAddToWatchlist.Size = New System.Drawing.Size(154, 34)
         Me.btnAddToWatchlist.TabIndex = 0
         Me.btnAddToWatchlist.Text = "Watchlist"
         Me.btnAddToWatchlist.UseVisualStyleBackColor = True
         '
-        'MonthCalendar1
+        'pbPoster
         '
-        Me.MonthCalendar1.Location = New System.Drawing.Point(650, 135)
-        Me.MonthCalendar1.Name = "MonthCalendar1"
-        Me.MonthCalendar1.TabIndex = 1
+        Me.pbPoster.Location = New System.Drawing.Point(3, 0)
+        Me.pbPoster.Name = "pbPoster"
+        Me.pbPoster.Size = New System.Drawing.Size(353, 475)
+        Me.pbPoster.TabIndex = 2
+        Me.pbPoster.TabStop = False
+        '
+        'pnlFilmName
+        '
+        Me.pnlFilmName.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.pnlFilmName.Controls.Add(Me.lblFilmName)
+        Me.pnlFilmName.Location = New System.Drawing.Point(12, 21)
+        Me.pnlFilmName.Name = "pnlFilmName"
+        Me.pnlFilmName.Size = New System.Drawing.Size(967, 63)
+        Me.pnlFilmName.TabIndex = 3
+        '
+        'lblFilmName
+        '
+        Me.lblFilmName.AutoSize = True
+        Me.lblFilmName.Location = New System.Drawing.Point(20, 20)
+        Me.lblFilmName.Name = "lblFilmName"
+        Me.lblFilmName.Size = New System.Drawing.Size(0, 20)
+        Me.lblFilmName.TabIndex = 0
+        '
+        'btnComments
+        '
+        Me.btnComments.Location = New System.Drawing.Point(987, 52)
+        Me.btnComments.Name = "btnComments"
+        Me.btnComments.Size = New System.Drawing.Size(154, 32)
+        Me.btnComments.TabIndex = 4
+        Me.btnComments.Text = "Comments"
+        Me.btnComments.UseVisualStyleBackColor = True
+        '
+        'flowPanelTags
+        '
+        Me.flowPanelTags.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.flowPanelTags.Location = New System.Drawing.Point(12, 102)
+        Me.flowPanelTags.Name = "flowPanelTags"
+        Me.flowPanelTags.Size = New System.Drawing.Size(1129, 100)
+        Me.flowPanelTags.TabIndex = 5
+        '
+        'pnlDescription
+        '
+        Me.pnlDescription.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.pnlDescription.Controls.Add(Me.rTxtDescription)
+        Me.pnlDescription.Location = New System.Drawing.Point(12, 218)
+        Me.pnlDescription.Name = "pnlDescription"
+        Me.pnlDescription.Size = New System.Drawing.Size(1129, 278)
+        Me.pnlDescription.TabIndex = 6
+        '
+        'rTxtDescription
+        '
+        Me.rTxtDescription.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.rTxtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.rTxtDescription.Enabled = False
+        Me.rTxtDescription.Font = New System.Drawing.Font("Rockwell", 14.0!)
+        Me.rTxtDescription.Location = New System.Drawing.Point(24, 14)
+        Me.rTxtDescription.Name = "rTxtDescription"
+        Me.rTxtDescription.Size = New System.Drawing.Size(1080, 236)
+        Me.rTxtDescription.TabIndex = 0
+        Me.rTxtDescription.Text = ""
+        '
+        'pnlPoster
+        '
+        Me.pnlPoster.Controls.Add(Me.pbPoster)
+        Me.pnlPoster.Location = New System.Drawing.Point(1159, 21)
+        Me.pnlPoster.Name = "pnlPoster"
+        Me.pnlPoster.Size = New System.Drawing.Size(353, 475)
+        Me.pnlPoster.TabIndex = 7
         '
         'FormFilmPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1538, 526)
-        Me.Controls.Add(Me.MonthCalendar1)
+        Me.Controls.Add(Me.pnlPoster)
+        Me.Controls.Add(Me.pnlDescription)
+        Me.Controls.Add(Me.flowPanelTags)
+        Me.Controls.Add(Me.btnComments)
+        Me.Controls.Add(Me.pnlFilmName)
         Me.Controls.Add(Me.btnAddToWatchlist)
         Me.Name = "FormFilmPage"
         Me.Text = "FormFilmPage"
+        CType(Me.pbPoster, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlFilmName.ResumeLayout(False)
+        Me.pnlFilmName.PerformLayout()
+        Me.pnlDescription.ResumeLayout(False)
+        Me.pnlPoster.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents btnAddToWatchlist As Button
-    Friend WithEvents MonthCalendar1 As MonthCalendar
+    Friend WithEvents pbPoster As PictureBox
+    Friend WithEvents pnlFilmName As Panel
+    Friend WithEvents lblFilmName As Label
+    Friend WithEvents btnComments As Button
+    Friend WithEvents flowPanelTags As FlowLayoutPanel
+    Friend WithEvents pnlDescription As Panel
+    Friend WithEvents pnlPoster As Panel
+    Friend WithEvents rTxtDescription As RichTextBox
 End Class
