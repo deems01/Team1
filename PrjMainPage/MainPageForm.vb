@@ -96,4 +96,8 @@ Public Class MainPageForm
     Private Sub btnNewPlan_Click(sender As Object, e As EventArgs) Handles btnNewPlan.Click
         UiHelpFunctions.OpenChildForm(New FormNightPlanner)
     End Sub
+
+    Private Sub btnWatchlist_Click(sender As Object, e As EventArgs) Handles btnWatchlist.Click
+        UiHelpFunctions.OpenChildForm(New FormWatchlist)
+    End Sub
 End Class
