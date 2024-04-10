@@ -26,6 +26,7 @@ Public Class FormCategories
 
     Private Sub lblGenre_Click(sender As Object, e As EventArgs) Handles lblGenre.Click
         Dim genreForm As New FormGenreSelection()
+        genreForm.cmbGenreSelection.DropDownStyle = ComboBoxStyle.DropDownList
         tabelpnlGenre.Controls.Add(genreForm.cmbGenreSelection, 1, 1)
         CategoryFunctions.setPickedCategory("genre")
     End Sub
@@ -36,6 +37,7 @@ Public Class FormCategories
 
     Private Sub lblLanguage_Click(sender As Object, e As EventArgs) Handles lblLanguage.Click
         Dim languageForm As New FormLanguageSelection()
+        languageForm.cmbLanguageSelection.DropDownStyle = ComboBoxStyle.DropDownList
         tablePanelLanguage.Controls.Add(languageForm.cmbLanguageSelection, 1, 1)
         CategoryFunctions.setPickedCategory("Language")
     End Sub
