@@ -375,7 +375,5 @@ Public Class Movie      ' this for all, to main
     Public Property ReleaseDate As Date
     Public Property Language As String
     Public Property Genres As New List(Of String)
-    Public Property ProductionCompanies As New List(Of String)
-    Public Property Actors As New List(Of String)
     Public Property PosterUrl As String
 End Class
