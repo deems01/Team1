@@ -35,6 +35,7 @@ Partial Class FormCategories
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.tablePanelLanguage = New System.Windows.Forms.TableLayoutPanel()
         Me.lblLanguage = New System.Windows.Forms.Label()
+        Me.BtnRandom = New System.Windows.Forms.Button()
         Me.tabelpnlGenre.SuspendLayout()
         Me.tabelpnlNew.SuspendLayout()
         Me.tabelpnlCompany.SuspendLayout()
@@ -51,13 +52,13 @@ Partial Class FormCategories
         Me.tabelpnlGenre.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tabelpnlGenre.Controls.Add(Me.lblGenre, 0, 0)
         Me.tabelpnlGenre.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabelpnlGenre.Location = New System.Drawing.Point(4, 5)
-        Me.tabelpnlGenre.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tabelpnlGenre.Location = New System.Drawing.Point(4, 4)
+        Me.tabelpnlGenre.Margin = New System.Windows.Forms.Padding(4)
         Me.tabelpnlGenre.Name = "tabelpnlGenre"
         Me.tabelpnlGenre.RowCount = 2
         Me.tabelpnlGenre.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tabelpnlGenre.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tabelpnlGenre.Size = New System.Drawing.Size(236, 90)
+        Me.tabelpnlGenre.Size = New System.Drawing.Size(209, 72)
         Me.tabelpnlGenre.TabIndex = 0
         '
         'lblGenre
@@ -68,7 +69,7 @@ Partial Class FormCategories
         Me.lblGenre.Location = New System.Drawing.Point(4, 0)
         Me.lblGenre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblGenre.Name = "lblGenre"
-        Me.lblGenre.Size = New System.Drawing.Size(228, 45)
+        Me.lblGenre.Size = New System.Drawing.Size(201, 36)
         Me.lblGenre.TabIndex = 0
         Me.lblGenre.Text = "Genre"
         '
@@ -79,13 +80,13 @@ Partial Class FormCategories
         Me.tabelpnlNew.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tabelpnlNew.Controls.Add(Me.lblNew, 0, 0)
         Me.tabelpnlNew.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabelpnlNew.Location = New System.Drawing.Point(736, 5)
-        Me.tabelpnlNew.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tabelpnlNew.Location = New System.Drawing.Point(655, 4)
+        Me.tabelpnlNew.Margin = New System.Windows.Forms.Padding(4)
         Me.tabelpnlNew.Name = "tabelpnlNew"
         Me.tabelpnlNew.RowCount = 2
         Me.tabelpnlNew.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tabelpnlNew.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tabelpnlNew.Size = New System.Drawing.Size(236, 90)
+        Me.tabelpnlNew.Size = New System.Drawing.Size(209, 72)
         Me.tabelpnlNew.TabIndex = 1
         '
         'lblNew
@@ -96,7 +97,7 @@ Partial Class FormCategories
         Me.lblNew.Location = New System.Drawing.Point(4, 0)
         Me.lblNew.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNew.Name = "lblNew"
-        Me.lblNew.Size = New System.Drawing.Size(228, 45)
+        Me.lblNew.Size = New System.Drawing.Size(201, 36)
         Me.lblNew.TabIndex = 2
         Me.lblNew.Text = "New"
         '
@@ -107,13 +108,13 @@ Partial Class FormCategories
         Me.tabelpnlCompany.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tabelpnlCompany.Controls.Add(Me.lblCompany, 0, 0)
         Me.tabelpnlCompany.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabelpnlCompany.Location = New System.Drawing.Point(980, 5)
-        Me.tabelpnlCompany.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tabelpnlCompany.Location = New System.Drawing.Point(872, 4)
+        Me.tabelpnlCompany.Margin = New System.Windows.Forms.Padding(4)
         Me.tabelpnlCompany.Name = "tabelpnlCompany"
         Me.tabelpnlCompany.RowCount = 2
         Me.tabelpnlCompany.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tabelpnlCompany.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tabelpnlCompany.Size = New System.Drawing.Size(236, 90)
+        Me.tabelpnlCompany.Size = New System.Drawing.Size(209, 72)
         Me.tabelpnlCompany.TabIndex = 1
         '
         'lblCompany
@@ -125,7 +126,7 @@ Partial Class FormCategories
         Me.lblCompany.Location = New System.Drawing.Point(4, 0)
         Me.lblCompany.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCompany.Name = "lblCompany"
-        Me.lblCompany.Size = New System.Drawing.Size(228, 45)
+        Me.lblCompany.Size = New System.Drawing.Size(201, 36)
         Me.lblCompany.TabIndex = 3
         Me.lblCompany.Text = "Company"
         '
@@ -136,13 +137,13 @@ Partial Class FormCategories
         Me.tabelpnlActor.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tabelpnlActor.Controls.Add(Me.lblActor, 0, 0)
         Me.tabelpnlActor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabelpnlActor.Location = New System.Drawing.Point(492, 5)
-        Me.tabelpnlActor.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tabelpnlActor.Location = New System.Drawing.Point(438, 4)
+        Me.tabelpnlActor.Margin = New System.Windows.Forms.Padding(4)
         Me.tabelpnlActor.Name = "tabelpnlActor"
         Me.tabelpnlActor.RowCount = 2
         Me.tabelpnlActor.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tabelpnlActor.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tabelpnlActor.Size = New System.Drawing.Size(236, 90)
+        Me.tabelpnlActor.Size = New System.Drawing.Size(209, 72)
         Me.tabelpnlActor.TabIndex = 1
         '
         'lblActor
@@ -153,7 +154,7 @@ Partial Class FormCategories
         Me.lblActor.Location = New System.Drawing.Point(4, 0)
         Me.lblActor.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblActor.Name = "lblActor"
-        Me.lblActor.Size = New System.Drawing.Size(228, 45)
+        Me.lblActor.Size = New System.Drawing.Size(201, 36)
         Me.lblActor.TabIndex = 4
         Me.lblActor.Text = "Actor"
         '
@@ -164,13 +165,13 @@ Partial Class FormCategories
         Me.tabelpnlOld.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tabelpnlOld.Controls.Add(Me.lblOld, 0, 0)
         Me.tabelpnlOld.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabelpnlOld.Location = New System.Drawing.Point(248, 5)
-        Me.tabelpnlOld.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tabelpnlOld.Location = New System.Drawing.Point(221, 4)
+        Me.tabelpnlOld.Margin = New System.Windows.Forms.Padding(4)
         Me.tabelpnlOld.Name = "tabelpnlOld"
         Me.tabelpnlOld.RowCount = 2
         Me.tabelpnlOld.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tabelpnlOld.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tabelpnlOld.Size = New System.Drawing.Size(236, 90)
+        Me.tabelpnlOld.Size = New System.Drawing.Size(209, 72)
         Me.tabelpnlOld.TabIndex = 1
         '
         'lblOld
@@ -181,7 +182,7 @@ Partial Class FormCategories
         Me.lblOld.Location = New System.Drawing.Point(4, 0)
         Me.lblOld.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblOld.Name = "lblOld"
-        Me.lblOld.Size = New System.Drawing.Size(228, 45)
+        Me.lblOld.Size = New System.Drawing.Size(201, 36)
         Me.lblOld.TabIndex = 1
         Me.lblOld.Text = "Old"
         '
@@ -202,11 +203,12 @@ Partial Class FormCategories
         Me.TableLayoutPanel1.Controls.Add(Me.tabelpnlNew, 3, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tabelpnlOld, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.tabelpnlActor, 2, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(43, 78)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(38, 62)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1454, 100)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1292, 80)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'tablePanelLanguage
@@ -216,13 +218,13 @@ Partial Class FormCategories
         Me.tablePanelLanguage.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tablePanelLanguage.Controls.Add(Me.lblLanguage, 0, 0)
         Me.tablePanelLanguage.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tablePanelLanguage.Location = New System.Drawing.Point(1224, 5)
-        Me.tablePanelLanguage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.tablePanelLanguage.Location = New System.Drawing.Point(1089, 4)
+        Me.tablePanelLanguage.Margin = New System.Windows.Forms.Padding(4)
         Me.tablePanelLanguage.Name = "tablePanelLanguage"
         Me.tablePanelLanguage.RowCount = 2
         Me.tablePanelLanguage.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tablePanelLanguage.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tablePanelLanguage.Size = New System.Drawing.Size(226, 90)
+        Me.tablePanelLanguage.Size = New System.Drawing.Size(199, 72)
         Me.tablePanelLanguage.TabIndex = 3
         '
         'lblLanguage
@@ -234,18 +236,29 @@ Partial Class FormCategories
         Me.lblLanguage.Location = New System.Drawing.Point(4, 0)
         Me.lblLanguage.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblLanguage.Name = "lblLanguage"
-        Me.lblLanguage.Size = New System.Drawing.Size(218, 45)
+        Me.lblLanguage.Size = New System.Drawing.Size(191, 36)
         Me.lblLanguage.TabIndex = 3
         Me.lblLanguage.Text = "Language"
         '
+        'BtnRandom
+        '
+        Me.BtnRandom.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtnRandom.Location = New System.Drawing.Point(51, 274)
+        Me.BtnRandom.Name = "BtnRandom"
+        Me.BtnRandom.Size = New System.Drawing.Size(248, 95)
+        Me.BtnRandom.TabIndex = 3
+        Me.BtnRandom.Text = "Random movie"
+        Me.BtnRandom.UseVisualStyleBackColor = False
+        '
         'FormCategories
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1538, 526)
+        Me.ClientSize = New System.Drawing.Size(1367, 421)
+        Me.Controls.Add(Me.BtnRandom)
         Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormCategories"
         Me.Text = "FormCategories"
         Me.tabelpnlGenre.ResumeLayout(False)
@@ -277,4 +290,5 @@ Partial Class FormCategories
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents tablePanelLanguage As TableLayoutPanel
     Friend WithEvents lblLanguage As Label
+    Friend WithEvents BtnRandom As Button
 End Class
