@@ -276,3 +276,6 @@ C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainP.794500D4
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.exe
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.xml
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.pdb
+C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\RandomMovie.dll
+C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\RandomMovie.pdb
+C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\RandomMovie.xml

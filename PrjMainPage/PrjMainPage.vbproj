@@ -235,6 +235,10 @@
       <Project>{93f33b6a-680e-4486-a44b-ee7800c75b88}</Project>
       <Name>NameSearchDLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RandomMovie\RandomMovie.vbproj">
+      <Project>{3609bb05-752e-4651-86de-ba5de611b0b5}</Project>
+      <Name>RandomMovie</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SortClass\SortProject.vbproj">
       <Project>{ae4ca7b7-6267-4dc9-bf00-23a7f52f927c}</Project>
       <Name>SortProject</Name>

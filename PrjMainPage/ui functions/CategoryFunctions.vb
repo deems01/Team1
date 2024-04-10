@@ -1,4 +1,5 @@
 ﻿Imports SortClass
+Imports RandomMovie
 
 Module CategoryFunctions
 
@@ -24,7 +25,7 @@ Module CategoryFunctions
     Public Async Sub AddPosterDynamicallyCategory(resultFlowPanel As FlowLayoutPanel)
         ' Create an instance of TMDBClient with your API key
         Dim tmdbClient As New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
-
+        Dim RandomClient As New RandomMovieRec("e9bb467295d762ec5f93dffdab6761bd")
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
@@ -49,7 +50,7 @@ Module CategoryFunctions
                 sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
             Case "Random"
                 sortedMovies.Clear() ' Clear the contents of the list
-                Dim randomMovie As Movie = Await tmdbClient.GetRandomMovie()
+                Dim randomMovie As Movie = Await RandomClient.GetRandomMovie()
                 sortedMovies.Add(randomMovie)
             Case "Popular"
                 sortedMovies = inputData ' popular movies kui kuskil vaja, pärast saab ära deletida siit
