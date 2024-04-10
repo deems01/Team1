@@ -6,4 +6,5 @@
 
         UiHelpFunctions.OpenChildForm(FormCategoryResult)
     End Sub
+
 End Class
