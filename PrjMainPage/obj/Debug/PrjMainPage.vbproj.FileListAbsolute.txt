@@ -398,3 +398,7 @@ C:\Users\veiko\source\repos\mergimine\PrjMainPage\bin\Debug\RandomMovie.dll
 C:\Users\veiko\source\repos\mergimine\PrjMainPage\bin\Debug\RandomMovie.pdb
 C:\Users\veiko\source\repos\mergimine\PrjMainPage\bin\Debug\RandomMovie.xml
 C:\Users\veiko\source\repos\mergimine\PrjMainPage\obj\Debug\PrjMainPage.FormWatchlist.resources
+C:\Users\Kasutaja\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.FormWatchlist.resources
+C:\Users\Kasutaja\source\repos\Team1\PrjMainPage\bin\Debug\RandomMovie.dll
+C:\Users\Kasutaja\source\repos\Team1\PrjMainPage\bin\Debug\RandomMovie.pdb
+C:\Users\Kasutaja\source\repos\Team1\PrjMainPage\bin\Debug\RandomMovie.xml

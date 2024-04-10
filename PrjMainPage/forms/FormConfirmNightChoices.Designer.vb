@@ -92,7 +92,7 @@ Partial Class FormConfirmNightChoices
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(636, 98)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(178, 199)
+        Me.ListBox1.Size = New System.Drawing.Size(213, 199)
         Me.ListBox1.TabIndex = 6
         '
         'txtBoxAddHostEmail
@@ -173,7 +173,7 @@ Partial Class FormConfirmNightChoices
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(844, 451)
+        Me.ClientSize = New System.Drawing.Size(901, 451)
         Me.Controls.Add(Me.lblLocation)
         Me.Controls.Add(Me.txtBoxSelectedLocation)
         Me.Controls.Add(Me.lblInviteStatus)
