@@ -180,11 +180,11 @@ Module NameSearchFunctions
                     Dim posterPicBox As New PictureBox
                     Try
                         posterPicBox.Load(movie.PosterUrl)
-                        posterPicBox.Tag = movie.Title
                         posterPicBox.SizeMode = PictureBoxSizeMode.StretchImage
                         posterPicBox.Width = 200
                         posterPicBox.Height = 300
                         posterPicBox.Margin = New Padding(1)
+                        posterPicBox.Tag = movie
                         AddHandler posterPicBox.MouseEnter, AddressOf posterPicBox_MouseEnter
                         AddHandler posterPicBox.MouseLeave, AddressOf posterPicBox_MouseLeave
                         AddHandler posterPicBox.Click, AddressOf posterPicBox_Click
@@ -201,7 +201,7 @@ Module NameSearchFunctions
 
     Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
-        Dim movieTitle As String = TryCast(pictureBox.Tag, String)
+        Dim movieTitle As String = TryCast(pictureBox.Tag.Title, String)
 
         If movieTitle IsNot Nothing Then
             If dateFlag = 1 Then
@@ -217,6 +217,8 @@ Module NameSearchFunctions
 
         If dateFlag = 0 Then
             'user just wants to see movie search results
+            Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
+            FilmPageFunctions.setClickedMovie(movie)
             UiHelpFunctions.OpenChildForm(New FormFilmPage)
         End If
     End Sub
