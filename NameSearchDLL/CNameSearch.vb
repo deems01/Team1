@@ -3,6 +3,8 @@ Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
 Imports System.Threading.Tasks
 Imports System.Runtime.CompilerServices
+Imports System.IO.MemoryMappedFiles
+Imports System.Threading
 
 
 Public Class CNameSearch
@@ -26,10 +28,13 @@ Public Class CNameSearch
     End Function
 
     Public Async Function SearchMovieAsync(movieName As String) As Task(Of List(Of Movie))
-        'Dim movies As New List(Of Movie)()
 
+        Console.WriteLine("Sening request")
+        movies.Clear()
         Dim query As String = Uri.EscapeDataString(movieName)
         Dim url As String = $"{baseURL}/search/movie?api_key={apiKey}&query={query}"
+
+
         Try
             Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
             If response.IsSuccessStatusCode Then

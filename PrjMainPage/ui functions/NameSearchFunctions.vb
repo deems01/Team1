@@ -1,9 +1,46 @@
-﻿Imports NameSearchDLL
+﻿Imports System.Net
+Imports System.Security.Cryptography.X509Certificates
+Imports System.Threading
+Imports NameSearchDLL
 Module NameSearchFunctions
 
     Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
-    Private SearchedFilmName As String
+    Private SearchedFilmName As String = ""
     Private inputData As New List(Of Movie)()
+    Private selectedDate As DateTime = DateTime.MinValue
+    Private selectedFilmName As String = ""
+    Private selectedPlace As String = ""
+    Private dateFlag = 0
+
+    Public Sub SetSelectedPlace(place As String)
+        selectedPlace = place
+    End Sub
+
+    Public Function GetSelectedPlace() As String
+        Return selectedPlace
+    End Function
+
+
+    Public Function GetDateFlag() As Integer
+        Return dateFlag
+    End Function
+
+    Public Sub SetSelectedFilmName(userSelectedFilmName As String)
+        selectedFilmName = userSelectedFilmName
+    End Sub
+
+    Public Function GetSelectedFilmName() As String
+        Return selectedFilmName
+    End Function
+
+    Public Sub SetSelectedDate(userSelectedDate As DateTime)
+        dateFlag = 1
+        selectedDate = userSelectedDate
+    End Sub
+
+    Public Function GetSelectedDate() As DateTime
+        Return selectedDate
+    End Function
 
     Public Sub SetSearchedFilmName(name As String)
         SearchedFilmName = name
@@ -27,6 +64,7 @@ Module NameSearchFunctions
         Dim currentYPosition As Integer
 
         For Each movie As Movie In inputData
+
             Dim newPanel As New Panel()
             newPanel.BackColor = Color.LightBlue
             newPanel.AutoSize = True
@@ -88,30 +126,99 @@ Module NameSearchFunctions
             i += 1
         Next
 
+
+        If i = 0 Then
+            Dim newPanel As New Panel()
+            newPanel.BackColor = Color.LightBlue
+            newPanel.AutoSize = True
+            newPanel.Width = panelWidth
+            newPanel.Location = New Point(panelStartX, panelStartY)
+            currentYPosition = 5
+
+            Dim emptyLabel As New Label()
+            emptyLabel.Text = "Could not find that movie"
+            emptyLabel.AutoSize = True
+            emptyLabel.Location = New Point(5, currentYPosition)
+            newPanel.Controls.Add(emptyLabel)
+        End If
+
     End Sub
 
     Public Async Sub AddPosterDynamically(resultFlowPanel As FlowLayoutPanel)
         Dim nameSearch As New CNameSearch(apiKey)
         inputData = Await nameSearch.SearchMovieAsync(GetSearchedFilmName())
 
-        For Each movie As Movie In inputData
-            Dim posterPicBox As New PictureBox
-            posterPicBox.Load(movie.PosterUrl)
-            posterPicBox.SizeMode = PictureBoxSizeMode.StretchImage
-            posterPicBox.Width = 200
-            posterPicBox.Height = 300
-            posterPicBox.Margin = New Padding(1)
-            AddHandler posterPicBox.MouseEnter, AddressOf posterPicBox_MouseEnter
-            AddHandler posterPicBox.MouseLeave, AddressOf posterPicBox_MouseLeave
-            AddHandler posterPicBox.Click, AddressOf posterPicBox_Click
-            resultFlowPanel.Controls.Add(posterPicBox)
-        Next
+        If inputData.Count = 0 Then
+            Dim panelStartX As Integer = 12
+            Dim panelStartY As Integer = 45
+            Dim spacingBetweenLabels As Integer = 25
+            Dim panelWidth As Integer = 539
+            Dim initialPanelHeight As Integer = 75
+            Dim currentYPosition As Integer
+
+
+            Dim newPanel As New Panel()
+            newPanel.BackColor = Color.LightBlue
+            newPanel.AutoSize = True
+            newPanel.Width = panelWidth
+            newPanel.Location = New Point(panelStartX, panelStartY)
+            currentYPosition = 5
+
+            Dim eLabel As New Label()
+            eLabel.Text = "This film was not found."
+            eLabel.AutoSize = True
+            eLabel.Location = New Point(5, currentYPosition)
+            newPanel.Controls.Add(eLabel)
+            currentYPosition += spacingBetweenLabels
+
+            resultFlowPanel.Controls.Add(newPanel)
+
+        Else
+            For Each movie As Movie In inputData
+                'disregarding films with faulty poster URLs 
+                If Not String.IsNullOrWhiteSpace(movie.PosterUrl) Then
+                    Dim posterPicBox As New PictureBox
+                    Try
+                        posterPicBox.Load(movie.PosterUrl)
+                        posterPicBox.Tag = movie.Title
+                        posterPicBox.SizeMode = PictureBoxSizeMode.StretchImage
+                        posterPicBox.Width = 200
+                        posterPicBox.Height = 300
+                        posterPicBox.Margin = New Padding(1)
+                        AddHandler posterPicBox.MouseEnter, AddressOf posterPicBox_MouseEnter
+                        AddHandler posterPicBox.MouseLeave, AddressOf posterPicBox_MouseLeave
+                        AddHandler posterPicBox.Click, AddressOf posterPicBox_Click
+                        resultFlowPanel.Controls.Add(posterPicBox)
+                    Catch ex As WebException
+                        'log something.... or not
+                    End Try
+                End If
+            Next
+        End If
+
 
     End Sub
 
     Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
-        UiHelpFunctions.OpenChildForm(New FormFilmPage)
+        Dim movieTitle As String = TryCast(pictureBox.Tag, String)
+
+        If movieTitle IsNot Nothing Then
+            If dateFlag = 1 Then
+                'date has been selected, so let's continue movie night planning
+                dateFlag = 0
+                SetSelectedFilmName(movieTitle)
+                UiHelpFunctions.OpenChildForm(New FormConfirmNightChoices)
+                Return
+            End If
+        Else
+            MessageBox.Show("Could not cast movie title!")
+        End If
+
+        If dateFlag = 0 Then
+            'user just wants to see movie search results
+            UiHelpFunctions.OpenChildForm(New FormFilmPage)
+        End If
     End Sub
 
 

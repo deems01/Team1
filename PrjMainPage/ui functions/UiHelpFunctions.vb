@@ -87,4 +87,5 @@ Module UiHelpFunctions
         Dim form As Form = DirectCast(sender, Form)
         MakeRoundedEdgesForm(form, 20)
     End Sub
+
 End Module

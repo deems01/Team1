@@ -60,6 +60,15 @@
     <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.3.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2420.47, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2420.47\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2420.47, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2420.47\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2420.47, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2420.47\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -107,6 +116,12 @@
       <DependentUpon>FormCategoryResult.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\FormCategoryResult.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormConfirmNightChoices.Designer.vb">
+      <DependentUpon>FormConfirmNightChoices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormConfirmNightChoices.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\FormFilmPage.Designer.vb">
@@ -184,6 +199,9 @@
     <EmbeddedResource Include="forms\FormCategoryResult.resx">
       <DependentUpon>FormCategoryResult.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormConfirmNightChoices.resx">
+      <DependentUpon>FormConfirmNightChoices.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\FormFilmPage.resx">
       <DependentUpon>FormFilmPage.vb</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +259,10 @@
     <None Include="background\icons8-search-bar-100.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmailSender\EmailSender.vbproj">
+      <Project>{1a845aed-dc4c-41a4-b1e3-a7de3ee9bd45}</Project>
+      <Name>EmailSender</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FilmDatabase\FilmDatabase.vbproj">
       <Project>{84c66ce3-a2fd-4d9c-8f4a-3be875d75e2a}</Project>
       <Name>FilmDatabase</Name>
@@ -264,6 +286,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets')" />
 </Project>
