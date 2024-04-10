@@ -23,9 +23,16 @@
     End Sub
 
     Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
-        DateTimeFlag = True
         selectedDateTime = DateTimePicker1.Value
-        NameSearchFunctions.SetSelectedDate(selectedDateTime)
+        If selectedDateTime < DateTime.Now Then
+            lblDateWarning.ForeColor = Color.Red
+            lblDateWarning.Text = "Please select a date and time later than the current date and time."
+            DateTimeFlag = False
+        Else
+            lblDateWarning.Text = ""
+            DateTimeFlag = True
+            NameSearchFunctions.SetSelectedDate(selectedDateTime)
+        End If
         ValidateSubmit()
     End Sub
 

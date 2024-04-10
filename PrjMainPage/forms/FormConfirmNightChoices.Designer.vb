@@ -43,6 +43,7 @@ Partial Class FormConfirmNightChoices
         '
         'txtBoxSelectedDate
         '
+        Me.txtBoxSelectedDate.Enabled = False
         Me.txtBoxSelectedDate.Location = New System.Drawing.Point(78, 98)
         Me.txtBoxSelectedDate.Name = "txtBoxSelectedDate"
         Me.txtBoxSelectedDate.Size = New System.Drawing.Size(253, 20)
@@ -55,6 +56,7 @@ Partial Class FormConfirmNightChoices
         '
         'txtBoxSelectedMovie
         '
+        Me.txtBoxSelectedMovie.Enabled = False
         Me.txtBoxSelectedMovie.Location = New System.Drawing.Point(78, 152)
         Me.txtBoxSelectedMovie.Name = "txtBoxSelectedMovie"
         Me.txtBoxSelectedMovie.Size = New System.Drawing.Size(253, 20)
@@ -152,6 +154,7 @@ Partial Class FormConfirmNightChoices
         '
         'txtBoxSelectedLocation
         '
+        Me.txtBoxSelectedLocation.Enabled = False
         Me.txtBoxSelectedLocation.Location = New System.Drawing.Point(78, 205)
         Me.txtBoxSelectedLocation.Name = "txtBoxSelectedLocation"
         Me.txtBoxSelectedLocation.Size = New System.Drawing.Size(253, 20)
