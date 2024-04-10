@@ -166,7 +166,14 @@
     <Compile Include="forms\FormSearchResultPage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\FormWatchlist.Designer.vb">
+      <DependentUpon>FormWatchlist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FormWatchlist.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ui functions\CategoryFunctions.vb" />
+    <Compile Include="ui functions\FilmPageFunctions.vb" />
     <Compile Include="ui functions\NameSearchFunctions.vb" />
     <Compile Include="ui functions\UiHelpFunctions.vb" />
     <Compile Include="MainPageForm.vb">
@@ -191,6 +198,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ui functions\WatchlistFunctions.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="forms\FormActorandCompanySearch.resx">
@@ -222,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\FormSearchResultPage.resx">
       <DependentUpon>FormSearchResultPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormWatchlist.resx">
+      <DependentUpon>FormWatchlist.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPageForm.resx">
       <DependentUpon>MainPageForm.vb</DependentUpon>
@@ -270,6 +281,10 @@
     <ProjectReference Include="..\NameSearchDLL\NameSearchDLL.vbproj">
       <Project>{93f33b6a-680e-4486-a44b-ee7800c75b88}</Project>
       <Name>NameSearchDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RandomMovie\RandomMovie.vbproj">
+      <Project>{3609bb05-752e-4651-86de-ba5de611b0b5}</Project>
+      <Name>RandomMovie</Name>
     </ProjectReference>
     <ProjectReference Include="..\SortClass\SortProject.vbproj">
       <Project>{ae4ca7b7-6267-4dc9-bf00-23a7f52f927c}</Project>
