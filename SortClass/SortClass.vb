@@ -5,6 +5,8 @@ Imports System.Reflection
 Imports Newtonsoft.Json.Linq
 
 Public Class TMDBClient
+    Implements ISortClass
+
     Private ReadOnly apiKey As String = "e9bb467295d762ec5f93dffdab6761bd"      'this to one universal
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient
@@ -14,7 +16,7 @@ Public Class TMDBClient
         Me.httpClient = New HttpClient()
     End Sub
 
-    Public Async Function GetGenres(Genre As String) As Task(Of List(Of Movie))
+    Public Async Function GetGenres(Genre As String) As Task(Of List(Of Movie)) Implements ISortClass.GetGenres
         Dim movies As New List(Of Movie)()
         Dim genres As Integer = GetGenreId(Genre)
         Dim url As String = $"{baseURL}/discover/movie?api_key={apiKey}&sort_by=popularity.desc&with_genres={genres}"
@@ -111,7 +113,7 @@ Public Class TMDBClient
         End If
         Return languageCode
     End Function
-    Public Async Function FetchAllMovies(input As String, language As String) As Task(Of List(Of Movie))
+    Public Async Function FetchAllMovies(input As String, language As String) As Task(Of List(Of Movie)) Implements ISortClass.FetchAllMovies
         Dim movies As New List(Of Movie)()
 
         Dim url As String = $"{baseURL}/movie/popular?api_key={apiKey}"
@@ -207,7 +209,7 @@ Public Class TMDBClient
         Return -1
     End Function
 
-    Public Async Function GetMoviesByCompany(companyName As String) As Task(Of List(Of Movie))
+    Public Async Function GetMoviesByCompany(companyName As String) As Task(Of List(Of Movie)) Implements ISortClass.GetMoviesByCompany
         Dim movies As New List(Of Movie)()
 
         Try
@@ -273,7 +275,7 @@ Public Class TMDBClient
         Return companyId
     End Function
 
-    Public Async Function GetMoviesByActor(actorName As String) As Task(Of List(Of Movie))
+    Public Async Function GetMoviesByActor(actorName As String) As Task(Of List(Of Movie)) Implements ISortClass.GetMoviesByActor
         Dim movies As New List(Of Movie)()
 
         Try
@@ -329,7 +331,7 @@ Public Class TMDBClient
         End Try
         Return actorId
     End Function
-    Public Async Function GetRandomMovie() As Task(Of Movie)
+    Public Async Function GetRandomMovie() As Task(Of Movie) Implements ISortClass.GetRandomMovie
         Dim randomMovie As New Movie()
 
         Try

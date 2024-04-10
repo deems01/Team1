@@ -3,6 +3,7 @@ Imports Newtonsoft.Json.Linq
 Imports SortClass
 
 Public Class RandomMovieRec
+    Implements IRandomMovieRec
 
     Private ReadOnly apiKey As String = "e9bb467295d762ec5f93dffdab6761bd"      'this to one universal
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
@@ -12,7 +13,7 @@ Public Class RandomMovieRec
         Me.apiKey = apiKey
         Me.httpClient = New HttpClient()
     End Sub
-    Public Async Function GetRandomMovie() As Task(Of Movie)
+    Private Async Function GetRandomMovie() As Task(Of Movie) Implements IRandomMovieRec.GetRandomMovie
         Dim randomMovie As New Movie()
 
         Try
@@ -48,4 +49,5 @@ Public Class RandomMovieRec
 
         Return randomMovie
     End Function
+
 End Class

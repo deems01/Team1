@@ -24,8 +24,8 @@ Module CategoryFunctions
 
     Public Async Sub AddPosterDynamicallyCategory(resultFlowPanel As FlowLayoutPanel)
         ' Create an instance of TMDBClient with your API key
-        Dim tmdbClient As New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
-        Dim RandomClient As New RandomMovieRec("e9bb467295d762ec5f93dffdab6761bd")
+        Dim tmdbClient As ISortClass = New TMDBClient("e9bb467295d762ec5f93dffdab6761bd")
+        Dim RandomClient As IRandomMovieRec = New RandomMovieRec("e9bb467295d762ec5f93dffdab6761bd")
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
