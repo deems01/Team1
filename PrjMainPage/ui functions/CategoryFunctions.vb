@@ -68,6 +68,7 @@ Module CategoryFunctions
                 posterPicBox.Width = 200
                 posterPicBox.Height = 300
                 posterPicBox.Margin = New Padding(1)
+                posterPicBox.Tag = movie
                 AddHandler posterPicBox.MouseEnter, AddressOf posterPicBox_MouseEnter
                 AddHandler posterPicBox.MouseLeave, AddressOf posterPicBox_MouseLeave
                 AddHandler posterPicBox.Click, AddressOf posterPicBox_Click
@@ -80,9 +81,10 @@ Module CategoryFunctions
 
     Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
+        Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
+        FilmPageFunctions.setClickedMovie(movie)
         UiHelpFunctions.OpenChildForm(New FormFilmPage)
     End Sub
-
 
     Private Sub posterPicBox_MouseEnter(sender As Object, e As EventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
