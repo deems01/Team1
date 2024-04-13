@@ -5,10 +5,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84C66CE3-A2FD-4D9C-8F4A-3BE875D75E2A}</ProjectGuid>
+    <ProjectGuid>{8CAC1B7B-E8B9-4A4D-BBAA-952316E09C3D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FilmDatabase</RootNamespace>
-    <AssemblyName>FilmDatabase</AssemblyName>
+    <RootNamespace>RecAlgorythm</RootNamespace>
+    <AssemblyName>RecAlgorythm</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>FilmDatabase.xml</DocumentationFile>
+    <DocumentationFile>RecAlgorythm.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>FilmDatabase.xml</DocumentationFile>
+    <DocumentationFile>RecAlgorythm.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -53,20 +53,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2420.47, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2420.47\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2420.47, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2420.47\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2420.47, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2420.47\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -85,29 +77,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilmMigrationsConfiguration.vb" />
-    <Compile Include="FilmdbModel.vb" />
-    <Compile Include="Migrations\202404061937352_InitialCreate.designer.vb">
-      <DependentUpon>202404061937352_InitialCreate.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404061937352_InitialCreate.vb" />
-    <Compile Include="Migrations\202404061945389_Mig_test.designer.vb">
-      <DependentUpon>202404061945389_Mig_test.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404061945389_Mig_test.vb" />
-    <Compile Include="Migrations\202404062005111_Mig_testremove.designer.vb">
-      <DependentUpon>202404062005111_Mig_testremove.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404062005111_Mig_testremove.vb" />
-    <Compile Include="Migrations\202404062055358_Mig_imdbtype2.designer.vb">
-      <DependentUpon>202404062055358_Mig_imdbtype2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404062055358_Mig_imdbtype2.vb" />
-    <Compile Include="Migrations\202404130931369_Mig_RemovedStatistics.Designer.vb">
-      <DependentUpon>202404130931369_Mig_RemovedStatistics.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404130931369_Mig_RemovedStatistics.vb" />
-    <Compile Include="Migrations\Configuration.vb" />
+    <Compile Include="IRecommendation.vb" />
+    <Compile Include="Recommendation.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -125,21 +96,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404061937352_InitialCreate.resx">
-      <DependentUpon>202404061937352_InitialCreate.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404061945389_Mig_test.resx">
-      <DependentUpon>202404061945389_Mig_test.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404062005111_Mig_testremove.resx">
-      <DependentUpon>202404062005111_Mig_testremove.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404062055358_Mig_imdbtype2.resx">
-      <DependentUpon>202404062055358_Mig_imdbtype2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404130931369_Mig_RemovedStatistics.resx">
-      <DependentUpon>202404130931369_Mig_RemovedStatistics.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -160,6 +116,16 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FilmDatabase\FilmDatabase.vbproj">
+      <Project>{84C66CE3-A2FD-4D9C-8F4A-3BE875D75E2A}</Project>
+      <Name>FilmDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SortClass\SortProject.vbproj">
+      <Project>{ae4ca7b7-6267-4dc9-bf00-23a7f52f927c}</Project>
+      <Name>SortProject</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -167,8 +133,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
-  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2420.47\build\Microsoft.Web.WebView2.targets')" />
 </Project>
