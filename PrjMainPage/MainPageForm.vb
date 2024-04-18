@@ -130,4 +130,8 @@ Public Class MainPageForm
     Private Sub btnWatchlist_Click(sender As Object, e As EventArgs) Handles btnWatchlist.Click
         UiHelpFunctions.OpenChildForm(New FormWatchlist)
     End Sub
+
+    Private Sub btnStats_Click(sender As Object, e As EventArgs) Handles btnStats.Click
+        UiHelpFunctions.OpenChildForm(New FormStatsOrHistorySelection)
+    End Sub
 End Class

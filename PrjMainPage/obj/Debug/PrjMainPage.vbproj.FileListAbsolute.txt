@@ -398,3 +398,6 @@ C:\Users\veiko\source\repos\mergimine\PrjMainPage\bin\Debug\RandomMovie.dll
 C:\Users\veiko\source\repos\mergimine\PrjMainPage\bin\Debug\RandomMovie.pdb
 C:\Users\veiko\source\repos\mergimine\PrjMainPage\bin\Debug\RandomMovie.xml
 C:\Users\veiko\source\repos\mergimine\PrjMainPage\obj\Debug\PrjMainPage.FormWatchlist.resources
+C:\Users\veiko\source\repos\mergimine\PrjMainPage\obj\Debug\PrjMainPage.FormStatsOrHistorySelection.resources
+C:\Users\veiko\source\repos\mergimine\PrjMainPage\obj\Debug\PrjMainPage.FormStats.resources
+C:\Users\veiko\source\repos\mergimine\PrjMainPage\obj\Debug\PrjMainPage.FormWatchHistory.resources
