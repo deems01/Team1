@@ -30,13 +30,13 @@ Partial Class FormWatchlist
         '
         'lblWatchlist
         '
-        Me.lblWatchlist.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblWatchlist.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblWatchlist.AutoSize = True
         Me.lblWatchlist.Font = New System.Drawing.Font("Malgun Gothic", 29.0!, System.Drawing.FontStyle.Bold)
         Me.lblWatchlist.Location = New System.Drawing.Point(-1, 0)
+        Me.lblWatchlist.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblWatchlist.Name = "lblWatchlist"
-        Me.lblWatchlist.Size = New System.Drawing.Size(289, 77)
+        Me.lblWatchlist.Size = New System.Drawing.Size(195, 52)
         Me.lblWatchlist.TabIndex = 0
         Me.lblWatchlist.Text = "Watchlist"
         '
@@ -47,9 +47,10 @@ Partial Class FormWatchlist
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flowPnlWatchlist.AutoScroll = True
         Me.flowPnlWatchlist.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.flowPnlWatchlist.Location = New System.Drawing.Point(75, 92)
+        Me.flowPnlWatchlist.Location = New System.Drawing.Point(50, 60)
+        Me.flowPnlWatchlist.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.flowPnlWatchlist.Name = "flowPnlWatchlist"
-        Me.flowPnlWatchlist.Size = New System.Drawing.Size(1386, 397)
+        Me.flowPnlWatchlist.Size = New System.Drawing.Size(924, 258)
         Me.flowPnlWatchlist.TabIndex = 1
         '
         'pnlWatchlistLabel
@@ -57,19 +58,21 @@ Partial Class FormWatchlist
         Me.pnlWatchlistLabel.AutoSize = True
         Me.pnlWatchlistLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.pnlWatchlistLabel.Controls.Add(Me.lblWatchlist)
-        Me.pnlWatchlistLabel.Location = New System.Drawing.Point(586, 4)
+        Me.pnlWatchlistLabel.Location = New System.Drawing.Point(391, 3)
+        Me.pnlWatchlistLabel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.pnlWatchlistLabel.Name = "pnlWatchlistLabel"
-        Me.pnlWatchlistLabel.Size = New System.Drawing.Size(288, 82)
+        Me.pnlWatchlistLabel.Size = New System.Drawing.Size(192, 53)
         Me.pnlWatchlistLabel.TabIndex = 2
         '
         'FormWatchlist
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ClientSize = New System.Drawing.Size(1538, 526)
+        Me.ClientSize = New System.Drawing.Size(1025, 342)
         Me.Controls.Add(Me.pnlWatchlistLabel)
         Me.Controls.Add(Me.flowPnlWatchlist)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "FormWatchlist"
         Me.Text = "FormWatchlist"
         Me.pnlWatchlistLabel.ResumeLayout(False)
