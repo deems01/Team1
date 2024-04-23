@@ -47,6 +47,7 @@ Public Class CNameSearch
                     Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                     Dim movie As New Movie With {
+                            .Id = item("id").ToObject(Of Integer)(), 'see lisaks
                             .Title = item("title").ToString(),
                             .Overview = item("overview").ToString(),
                             .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
@@ -93,6 +94,7 @@ End Class
 ' unnecessary challenges regarding mutability
 ' later on
 Public Class Movie
+    Public Property Id As Integer
     Public Property Title As String
     Public Property Overview As String
     Public Property ReleaseDate As Date
