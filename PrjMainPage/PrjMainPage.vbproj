@@ -316,9 +316,17 @@
       <Project>{3609bb05-752e-4651-86de-ba5de611b0b5}</Project>
       <Name>RandomMovie</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RecAlgorythm\RecAlgorythm.vbproj">
+      <Project>{8cac1b7b-e8b9-4a4d-bbaa-952316e09c3d}</Project>
+      <Name>RecAlgorythm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SortClass\SortProject.vbproj">
       <Project>{ae4ca7b7-6267-4dc9-bf00-23a7f52f927c}</Project>
       <Name>SortProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WatchStatistics\WatchStatistics.vbproj">
+      <Project>{f20da00c-6764-45df-a934-fbd0aec12e58}</Project>
+      <Name>WatchStatistics</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

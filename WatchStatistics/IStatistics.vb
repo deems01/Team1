@@ -6,6 +6,6 @@ Public Interface IStatistics
 
     Function GetTotalWatchedTime() As Integer
 
-    Function GetMostWatchedMovie() As String
+    Function GetMostWatchedMovie() As Task(Of String)
 
 End Interface

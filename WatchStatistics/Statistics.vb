@@ -73,8 +73,8 @@ Public Class Statistics
         Return totalWatchedMinutes
     End Function
 
-    Public Function GetMostWatchedMovie() As String Implements IStatistics.GetMostWatchedMovie
-        Dim mostWatchedMovieName As String = ""
+    Public Async Function GetMostWatchedMovie() As Task(Of String) Implements IStatistics.GetMostWatchedMovie
+        Dim mostWatchedMoviePosterPath As String = String.Empty
 
         Try
             ' Group movies by their IDs and count the number of times each movie has been planned
@@ -90,16 +90,35 @@ Public Class Statistics
 
             ' Get the name of the most planned movie
             If mostPlannedMovieId.HasValue Then
-                Dim mostPlannedMovie = db.Films.Where(Function(f) f.Id = mostPlannedMovieId.Value).FirstOrDefault()
-                mostWatchedMovieName = mostPlannedMovie?.Name
+                mostWatchedMoviePosterPath = Await GetMoviePosterPath(mostPlannedMovieId)
+
             End If
         Catch ex As Exception
             Console.WriteLine($"Error: {ex.Message}")
         End Try
-
-        Return mostWatchedMovieName
+        Return mostWatchedMoviePosterPath
     End Function
 
+    Public Async Function GetMoviePosterPath(movieId As Integer) As Task(Of String)
+        Dim posterPath As String = String.Empty
+
+        Try
+            Dim url As String = $"{baseURL}/movie/{movieId}?api_key={apiKey}"
+            Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
+            response.EnsureSuccessStatusCode()
+            Dim json As String = Await response.Content.ReadAsStringAsync()
+
+            Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
+            Dim movieData As JObject = JObject.Parse(json)
+
+            posterPath = If(movieData("poster_path") IsNot Nothing, $"{imageBaseURL}{movieData("poster_path").ToString()}", String.Empty)
+
+        Catch ex As Exception
+            Console.WriteLine($"Error: {ex.Message}")
+        End Try
+
+        Return posterPath
+    End Function
 
 
 End Class
