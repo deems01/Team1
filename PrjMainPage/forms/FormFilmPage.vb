@@ -16,4 +16,8 @@ Public Class FormFilmPage
     Private Sub btnAddToWatchlist_Click(sender As Object, e As EventArgs) Handles btnAddToWatchlist.Click
         WatchlistFunctions.setWatchlistMember(FilmPageFunctions.getClickedMovie())
     End Sub
+
+    Private Sub pbPoster_Click(sender As Object, e As EventArgs) Handles pbPoster.Click
+
+    End Sub
 End Class
