@@ -107,6 +107,18 @@
       <DependentUpon>202404130931369_Mig_RemovedStatistics.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202404130931369_Mig_RemovedStatistics.vb" />
+    <Compile Include="Migrations\202404232017189_Mig_RemoveImdbId.designer.vb">
+      <DependentUpon>202404232017189_Mig_RemoveImdbId.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404232017189_Mig_RemoveImdbId.vb" />
+    <Compile Include="Migrations\202404232024151_Mig_AddedimdbAgain.designer.vb">
+      <DependentUpon>202404232024151_Mig_AddedimdbAgain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404232024151_Mig_AddedimdbAgain.vb" />
+    <Compile Include="Migrations\202404232103126_Mig_GenreAsInteger.designer.vb">
+      <DependentUpon>202404232103126_Mig_GenreAsInteger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404232103126_Mig_GenreAsInteger.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -139,6 +151,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404130931369_Mig_RemovedStatistics.resx">
       <DependentUpon>202404130931369_Mig_RemovedStatistics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404232017189_Mig_RemoveImdbId.resx">
+      <DependentUpon>202404232017189_Mig_RemoveImdbId.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404232024151_Mig_AddedimdbAgain.resx">
+      <DependentUpon>202404232024151_Mig_AddedimdbAgain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404232103126_Mig_GenreAsInteger.resx">
+      <DependentUpon>202404232103126_Mig_GenreAsInteger.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -99,6 +99,7 @@ Public Class CEmailSender
         Dim db As New FilmdbModel()
         Dim planning As New Planning()
 
+        planning.PlannedFilm = selectedMovie
         planning.PlannedDate = selectedDate
         planning.PlannedPlace = selectedLocation
         planning.Film_Id = db.Films.Where(Function(f) f.Name = selectedMovie).Select(Function(f) f.Id).FirstOrDefault()

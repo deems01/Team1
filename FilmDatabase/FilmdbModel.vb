@@ -63,8 +63,7 @@ Public Class Films
     <Key>
     Public Property Id As Integer
     <Index("AK_Films", IsUnique:=True)>
-    <StringLength(100)>
-    Public Property Imdb_Id As String
+    Public Property Imdb_Id As Integer
     Public Property Name As String
     Public Property ReleaseYear As String
     Public Property FilmLength As String

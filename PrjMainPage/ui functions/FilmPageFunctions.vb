@@ -29,11 +29,12 @@ Module FilmPageFunctions
         Dim db As New FilmdbModel()
         Dim film As New FilmDatabase.Films()
 
-        film.Imdb_Id = clickedMovie.ImdbId
+        film.Imdb_Id = clickedMovie.Id
         film.Name = clickedMovie.Title
         film.ReleaseYear = clickedMovie.ReleaseDate
         film.FilmLength = clickedMovie.Filmlength
-        film.Genre = clickedMovie.Genre
+        'tra noh mtea kuidas sa seda listi siin teha tahad orgu, ma nagu poolenisti tahan terve selle fkin genre tabeli teha listiks
+        'film.Genre =
 
         db.Films.Add(film)
         db.SaveChanges()

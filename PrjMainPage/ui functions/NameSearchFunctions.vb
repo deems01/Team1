@@ -209,18 +209,23 @@ Module NameSearchFunctions
                 dateFlag = 0
                 SetSelectedFilmName(movieTitle)
                 UiHelpFunctions.OpenChildForm(New FormConfirmNightChoices)
+
+                'mtea copyisin ja nyyd salvestab andmebaasi, enne sittus errori kuna polnud seda Movie informatsiooni kusalgilt saada
+                Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
+                FilmPageFunctions.setClickedMovie(movie)
+                SaveFilmToDatabase()
                 Return
             End If
         Else
             MessageBox.Show("Could not cast movie title!")
         End If
-
         If dateFlag = 0 Then
             'user just wants to see movie search results
             Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
             FilmPageFunctions.setClickedMovie(movie)
             UiHelpFunctions.OpenChildForm(New FormFilmPage)
         End If
+        SaveFilmToDatabase()
     End Sub
 
 

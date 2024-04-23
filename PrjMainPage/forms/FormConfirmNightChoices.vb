@@ -40,6 +40,11 @@ Public Class FormConfirmNightChoices
     Private Sub SendInvites()
         If emailList.Count > 0 Then
             If hostEmailFlag Then
+
+                ' Save planning details to the database
+                EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+
+
                 EmailSender.CEmailSender.SendEmails(emailList, NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
                 emailList.Clear()
                 UpdateEmailListDisplay()
