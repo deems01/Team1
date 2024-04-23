@@ -2,8 +2,8 @@
 Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text
-'Imports FilmDatabase.FilmdbModel
-'Imports FilmDatabase
+Imports FilmDatabase.FilmdbModel
+Imports FilmDatabase
 
 Public Class CEmailSender
     Private Shared hostEmail As String = ""
@@ -95,16 +95,16 @@ Public Class CEmailSender
         End Using
     End Function
 
-    'Public Shared Sub SavePlanningDetailsToDatabase(selectedDate As DateTime, selectedMovie As String, selectedLocation As String)
-    '    Dim db As New FilmdbModel()
-    '    Dim planning As New Planning()
+    Public Shared Sub SavePlanningDetailsToDatabase(selectedDate As DateTime, selectedMovie As String, selectedLocation As String)
+        Dim db As New FilmdbModel()
+        Dim planning As New Planning()
 
-    '    planning.Date = selectedDate
-    '    planning.Location = selectedLocation
-    '    planning.Film_Id = db.Films.Where(Function(f) f.Name = selectedMovie).Select(Function(f) f.Id).FirstOrDefault()
+        planning.PlannedDate = selectedDate
+        planning.PlannedPlace = selectedLocation
+        planning.Film_Id = db.Films.Where(Function(f) f.Name = selectedMovie).Select(Function(f) f.Id).FirstOrDefault()
 
-    '    db.Planning.Add(planning)
-    '    db.SaveChanges()
-    'End Sub
+        db.Planning.Add(planning)
+        db.SaveChanges()
+    End Sub
 
 End Class
