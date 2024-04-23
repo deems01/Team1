@@ -1,4 +1,6 @@
-﻿Module FilmPageFunctions
+﻿Imports FilmDatabase.FilmdbModel
+Imports FilmDatabase
+Module FilmPageFunctions
 
     Private clickedMovie As Object
 
@@ -23,4 +25,17 @@
         textBox.Text = clickedMovie.Overview
     End Sub
 
+    Sub SaveFilmToDatabase()
+        Dim db As New FilmdbModel()
+        Dim film As New FilmDatabase.Films()
+
+        film.Imdb_Id = clickedMovie.ImdbId
+        film.Name = clickedMovie.Title
+        film.ReleaseYear = clickedMovie.ReleaseDate
+        film.FilmLength = clickedMovie.Filmlength
+        film.Genre = clickedMovie.Genre
+
+        db.Films.Add(film)
+        db.SaveChanges()
+    End Sub
 End Module

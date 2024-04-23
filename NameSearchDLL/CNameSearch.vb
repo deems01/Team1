@@ -1,5 +1,4 @@
-﻿
-Imports System.Net.Http
+﻿Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
 
 Public Class CNameSearch
@@ -54,7 +53,8 @@ Public Class CNameSearch
                             .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
                             .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
                             .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
-                            .PosterUrl = fullPosterUrl
+                            .PosterUrl = fullPosterUrl,
+                            .FilmLength = If(item("runtime") IsNot Nothing, item("runtime").ToString(), "")
                         }
 
                     movies.Add(movie)
@@ -101,4 +101,5 @@ Public Class Movie
     Public Property ProductionCompanies As New List(Of String)
     Public Property Actors As New List(Of String)
     Public Property PosterUrl As String
+    Public Property FilmLength As String
 End Class
