@@ -19,9 +19,21 @@ Public Class FormStats
             crtWeekdays.Series("Series1").Points.AddXY(day.Key, day.Value) ' Adding data points (x, y)
         Next
 
-        lblGenre.Text = StatFunction.mostPopularGenre
-        lblTime.Text = StatFunction.minutesWatched
-        pbMostPopularMovie.Load(StatFunction.mostPopularMovie)
+        'lblGenre.Text = StatFunction.mostPopularGenre
+        'lblTime.Text = StatFunction.minutesWatched
+        'pbMostPopularMovie.Load(StatFunction.mostPopularMovie)
+
+        ' Check if inputs in StatFunction are empty
+        If String.IsNullOrEmpty(StatFunction.mostPopularMovie) Then
+            ' If empty, load the "no search result" image
+            pbMostPopularMovie.Load("https://cdn.dribbble.com/users/760295/screenshots/4433975/no-search-result.png")
+            lblGenre.Text = ""
+            lblTime.Text = ""
+        Else
+            lblGenre.Text = StatFunction.mostPopularGenre
+            lblTime.Text = StatFunction.minutesWatched
+            pbMostPopularMovie.Load(StatFunction.mostPopularMovie)
+        End If
 
     End Sub
 
