@@ -25,6 +25,7 @@ Partial Class FormNightPlanner
         Me.btnSubmit = New System.Windows.Forms.Button()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.txtBoxPlace = New System.Windows.Forms.TextBox()
+        Me.lblDateWarning = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnSubmit
@@ -50,11 +51,20 @@ Partial Class FormNightPlanner
         Me.txtBoxPlace.Size = New System.Drawing.Size(200, 20)
         Me.txtBoxPlace.TabIndex = 5
         '
+        'lblDateWarning
+        '
+        Me.lblDateWarning.AutoSize = True
+        Me.lblDateWarning.Location = New System.Drawing.Point(348, 69)
+        Me.lblDateWarning.Name = "lblDateWarning"
+        Me.lblDateWarning.Size = New System.Drawing.Size(0, 13)
+        Me.lblDateWarning.TabIndex = 6
+        '
         'FormNightPlanner
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(872, 371)
+        Me.Controls.Add(Me.lblDateWarning)
         Me.Controls.Add(Me.txtBoxPlace)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.btnSubmit)
@@ -68,4 +78,5 @@ Partial Class FormNightPlanner
     Friend WithEvents btnSubmit As Button
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents txtBoxPlace As TextBox
+    Friend WithEvents lblDateWarning As Label
 End Class

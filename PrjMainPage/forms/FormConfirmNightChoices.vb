@@ -6,6 +6,8 @@ Public Class FormConfirmNightChoices
     Private hostEmail As String = ""
     Private hostPassword As String = ""
     Private hostEmailFlag As Boolean = False
+    Private currentYPos = 0
+
 
     Private Sub FormConfirmNightChoices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtBoxSelectedDate.Text = NameSearchFunctions.GetSelectedDate().ToString(customFormat)
@@ -29,6 +31,7 @@ Public Class FormConfirmNightChoices
         If IsValidEmail(newEmail) Then
             emailList.Add(newEmail)
             UpdateEmailListDisplay()
+            AddRemoveButtonToListBox(newEmail)
             txtBoxNewEmail.Text = ""
             ValidateInviteButton()
         End If
@@ -113,6 +116,30 @@ Public Class FormConfirmNightChoices
 
     Private Sub btnAddHostEmail_Click(sender As Object, e As EventArgs) Handles btnAddHostEmail.Click
         SetHostCredentials()
+    End Sub
+
+    Private Sub RemoveEmail(sender As Object, e As EventArgs)
+        Dim btn As Button = DirectCast(sender, Button)
+        Dim emailToRemove As String = btn.Tag.ToString()
+
+        If emailList.Contains(emailToRemove) Then
+            emailList.Remove(emailToRemove)
+            UpdateEmailListDisplay()
+            ValidateInviteButton()
+            listBoxEmails.Controls.Remove(btn)
+        End If
+    End Sub
+
+    Private Sub AddRemoveButtonToListBox(email As String)
+        Dim removeButton As New Button()
+        removeButton.Text = "Remove"
+        removeButton.Tag = email
+        AddHandler removeButton.Click, AddressOf RemoveEmail
+
+        listBoxEmails.Controls.Add(removeButton)
+        removeButton.Location = New Point(listBoxEmails.Width - removeButton.Width, currentYPos)
+
+        currentYPos += removeButton.Height
     End Sub
 
 End Class

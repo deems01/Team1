@@ -1,11 +1,6 @@
 ﻿
 Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
-Imports System.Threading.Tasks
-Imports System.Runtime.CompilerServices
-Imports System.IO.MemoryMappedFiles
-Imports System.Threading
-
 
 Public Class CNameSearch
     ' default val temporary
@@ -29,7 +24,6 @@ Public Class CNameSearch
 
     Public Async Function SearchMovieAsync(movieName As String) As Task(Of List(Of Movie))
 
-        Console.WriteLine("Sening request")
         movies.Clear()
         Dim query As String = Uri.EscapeDataString(movieName)
         Dim url As String = $"{baseURL}/search/movie?api_key={apiKey}&query={query}"
@@ -43,10 +37,10 @@ Public Class CNameSearch
                 Dim results As JArray = DirectCast(data("results"), JArray)
 
                 Dim listLimit As Integer = 0
-                Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500" ' Adjust poster width if needed
+                Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
 
                 For Each item As JObject In results
-                    If listLimit > 10 Then
+                    If listLimit > 100 Then
                         Exit For
                     End If
 
