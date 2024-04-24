@@ -42,27 +42,32 @@ Public Class CNameSearch
                     If listLimit > 100 Then
                         Exit For
                     End If
-
+                    Dim genres As New List(Of Integer)()
+                    For Each genreId As JValue In item("genre_ids")
+                        Dim genreIdValue As Integer = genreId.Value
+                        genres.Add(genreIdValue)
+                    Next
                     Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
-                    Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
+                        Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                     Dim movie As New Movie With {
-                            .Id = item("id").ToObject(Of Integer)(), 'see lisaks
-                            .Title = item("title").ToString(),
-                            .Overview = item("overview").ToString(),
-                            .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
-                            .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
-                            .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
-                            .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
-                            .PosterUrl = fullPosterUrl,
-                            .FilmLength = If(item("runtime") IsNot Nothing, item("runtime").ToString(), "")
-                        }
+                                .Genres = genres,
+                                .Id = item("id").ToObject(Of Integer)(), 'see lisaks
+                                .Title = item("title").ToString(),
+                                .Overview = item("overview").ToString(),
+                                .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
+                                .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                                .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
+                                .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
+                                .PosterUrl = fullPosterUrl,
+                                .FilmLength = If(item("runtime") IsNot Nothing, item("runtime").ToString(), "")
+                            }
 
                     movies.Add(movie)
-                    listLimit += 1
+                        listLimit += 1
 
-                Next
-            Else
+                    Next
+                    Else
                 Throw New HttpRequestException($"Failed to fetch data. Status code: {response.StatusCode}")
             End If
         Catch ex As HttpRequestException
@@ -99,7 +104,7 @@ Public Class Movie
     Public Property Overview As String
     Public Property ReleaseDate As Date
     Public Property Language As String
-    Public Property Genres As New List(Of String)
+    Public Property Genres As New List(Of Integer)
     Public Property ProductionCompanies As New List(Of String)
     Public Property Actors As New List(Of String)
     Public Property PosterUrl As String

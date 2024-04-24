@@ -541,3 +541,4 @@ C:\Users\h1711\source\repos\Team111\PrjMainPage\bin\Debug\runtimes\win-x86\nativ
 C:\Users\h1711\source\repos\Team111\PrjMainPage\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
 C:\Users\h1711\source\repos\Team111\PrjMainPage\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
 C:\Users\h1711\source\repos\Team111\PrjMainPage\bin\Debug\EmailSender.dll.config
+C:\Users\User\Source\Repos\deems01\Team\PrjMainPage\bin\Debug\EmailSender.dll.config
