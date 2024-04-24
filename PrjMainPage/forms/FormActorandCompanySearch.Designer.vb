@@ -44,7 +44,7 @@ Partial Class FormActorandCompanySearch
         '
         'txtSearch
         '
-        Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Left
         Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
         Me.txtSearch.Location = New System.Drawing.Point(0, 0)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)

@@ -5,6 +5,7 @@ Public Class FilmMigrationsConfiguration
 
     Public Sub New()
         AutomaticMigrationsEnabled = True
+        AutomaticMigrationDataLossAllowed = True
         ' Other configuration settings can be added here
     End Sub
 End Class
