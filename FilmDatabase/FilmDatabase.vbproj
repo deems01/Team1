@@ -115,10 +115,14 @@
       <DependentUpon>202404232024151_Mig_AddedimdbAgain.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202404232024151_Mig_AddedimdbAgain.vb" />
-    <Compile Include="Migrations\202404232103126_Mig_GenreAsInteger.designer.vb">
-      <DependentUpon>202404232103126_Mig_GenreAsInteger.vb</DependentUpon>
+    <Compile Include="Migrations\202404240848555_Mig_genrenotsamename1231321.designer.vb">
+      <DependentUpon>202404240848555_Mig_genrenotsamename1231321.vb</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202404232103126_Mig_GenreAsInteger.vb" />
+    <Compile Include="Migrations\202404240848555_Mig_genrenotsamename1231321.vb" />
+    <Compile Include="Migrations\202404240850102_Mig_genreinteger213125432532.designer.vb">
+      <DependentUpon>202404240850102_Mig_genreinteger213125432532.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404240850102_Mig_genreinteger213125432532.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -158,8 +162,11 @@
     <EmbeddedResource Include="Migrations\202404232024151_Mig_AddedimdbAgain.resx">
       <DependentUpon>202404232024151_Mig_AddedimdbAgain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404232103126_Mig_GenreAsInteger.resx">
-      <DependentUpon>202404232103126_Mig_GenreAsInteger.vb</DependentUpon>
+    <EmbeddedResource Include="Migrations\202404240848555_Mig_genrenotsamename1231321.resx">
+      <DependentUpon>202404240848555_Mig_genrenotsamename1231321.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404240850102_Mig_genreinteger213125432532.resx">
+      <DependentUpon>202404240850102_Mig_genreinteger213125432532.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

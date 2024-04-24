@@ -5,14 +5,14 @@ Imports System.Data.Entity.Migrations.Infrastructure
 Imports System.Resources
 
 <GeneratedCode("EntityFramework.Migrations", "6.4.4")>
-Public NotInheritable Partial Class Mig_GenreAsInteger
+Public NotInheritable Partial Class Mig_genrenotsamename1231321
     Implements IMigrationMetadata
 
-    Private ReadOnly Resources As New ResourceManager(GetType(Mig_GenreAsInteger))
+    Private ReadOnly Resources As New ResourceManager(GetType(Mig_genrenotsamename1231321))
     
     Private ReadOnly Property IMigrationMetadata_Id() As String Implements IMigrationMetadata.Id
         Get
-            Return "202404232103126_Mig_GenreAsInteger"
+            Return "202404240848555_Mig_genrenotsamename1231321"
         End Get
     End Property
     

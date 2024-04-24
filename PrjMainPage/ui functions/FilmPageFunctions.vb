@@ -1,5 +1,6 @@
 ﻿Imports FilmDatabase.FilmdbModel
 Imports FilmDatabase
+Imports WatchStatistics
 Module FilmPageFunctions
 
     Private clickedMovie As Object
@@ -25,16 +26,16 @@ Module FilmPageFunctions
         textBox.Text = clickedMovie.Overview
     End Sub
 
-    Sub SaveFilmToDatabase()
+    Async Sub SaveFilmToDatabase()
         Dim db As New FilmdbModel()
         Dim film As New FilmDatabase.Films()
-
+        Dim stat As New WatchStatistics.Statistics("e9bb467295d762ec5f93dffdab6761bd")
         film.Imdb_Id = clickedMovie.Id
         film.Name = clickedMovie.Title
         film.ReleaseYear = clickedMovie.ReleaseDate
-        film.FilmLength = clickedMovie.Filmlength
+        film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
         'tra noh mtea kuidas sa seda listi siin teha tahad orgu, ma nagu poolenisti tahan terve selle fkin genre tabeli teha listiks
-        'film.Genre =
+        film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), String.Empty)
 
         db.Films.Add(film)
         db.SaveChanges()

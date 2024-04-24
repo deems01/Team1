@@ -65,30 +65,30 @@ Public Class Recommendation
 
 
     Public Function GetMostPopularGenreId() As Integer Implements IRecommendation.GetMostPopularGenreId
-        Dim db As New FilmdbModel()
-        Dim mostPopularGenre As Integer = 0
+        'Dim db As New FilmdbModel()
+        'Dim mostPopularGenre As Integer = 0
 
-        Try
-            ' Query the Films table to get all movies
-            Dim allMovies = db.Films
+        'Try
+        '    ' Query the Films table to get all movies
+        '    Dim allMovies = db.Films
 
-            ' Group movies by genre and count the number of movies in each genre
-            Dim genreCounts = allMovies.GroupBy(Function(m) m.Genre).
-                                  Select(Function(g) New With {.GenreId = g.Key, .Count = g.Count()}).
-                                  OrderByDescending(Function(x) x.Count)
+        '    ' Group movies by genre and count the number of movies in each genre
+        '    Dim genreCounts = allMovies.GroupBy(Function(m) m.Genre).
+        '                          Select(Function(g) New With {.GenreId = g.Key, .Count = g.Count()}).
+        '                          OrderByDescending(Function(x) x.Count)
 
-            ' Get the genre ID of the most popular genre
-            Dim mostPopularGenreId = genreCounts.FirstOrDefault()?.GenreId
+        '    ' Get the genre ID of the most popular genre
+        '    Dim mostPopularGenreId = genreCounts.FirstOrDefault()?.GenreId
 
-            ' Get the genre name corresponding to the genre ID
-            If mostPopularGenreId.HasValue Then
-                Return mostPopularGenreId
-            End If
-        Catch ex As Exception
-            Console.WriteLine($"Error: {ex.Message}")
-        End Try
+        '    ' Get the genre name corresponding to the genre ID
+        '    If mostPopularGenreId.HasValue Then
+        '        Return mostPopularGenreId
+        '    End If
+        'Catch ex As Exception
+        '    Console.WriteLine($"Error: {ex.Message}")
+        'End Try
 
-        Return mostPopularGenre
+        'Return mostPopularGenre
     End Function
 
     Public Function GetMostPopularYear() As Integer Implements IRecommendation.GetMostPopularYear
