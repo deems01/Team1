@@ -1,4 +1,6 @@
-﻿Module WatchHistoryFunctions
+﻿Imports FilmDatabase.FilmdbModel
+Imports FilmDatabase
+Module WatchHistoryFunctions
 
     Public watchHistory As New List(Of Dictionary(Of String, String)) From {
         New Dictionary(Of String, String) From {{"name", "Movie1"}, {"date", "2024-04-22"}},

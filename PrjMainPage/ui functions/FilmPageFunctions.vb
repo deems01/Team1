@@ -35,6 +35,7 @@ Module FilmPageFunctions
         film.ReleaseYear = clickedMovie.ReleaseDate
         film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
         film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), String.Empty)
+        'film.Counter =
 
         db.Films.Add(film)
         db.SaveChanges()
