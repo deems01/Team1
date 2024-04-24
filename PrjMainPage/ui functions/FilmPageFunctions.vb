@@ -38,6 +38,6 @@ Module FilmPageFunctions
         'film.Counter =
 
         db.Films.Add(film)
-        db.SaveChanges()
+        'db.SaveChanges()
     End Sub
 End Module

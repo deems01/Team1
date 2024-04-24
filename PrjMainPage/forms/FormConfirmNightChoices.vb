@@ -5,7 +5,7 @@ Public Class FormConfirmNightChoices
     Private listBoxEmails As ListBox
     Private hostEmail As String = ""
     Private hostPassword As String = ""
-    Private hostEmailFlag As Boolean = False
+    'Private hostEmailFlag As Boolean = False
     Private currentYPos = 0
     Private saveFlag As Boolean = False
 
@@ -42,22 +42,22 @@ Public Class FormConfirmNightChoices
 
     Private Sub SendInvites()
         If emailList.Count > 0 Then
-            If hostEmailFlag Then
+            'If hostEmailFlag Then
 
-                ' Save planning details to the database
-                'EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+            ' Save planning details to the database
+            'EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
 
 
-                EmailSender.CEmailSender.SendEmails(emailList, NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+            EmailSender.CEmailSender.SendEmails(emailList, NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
                 emailList.Clear()
                 UpdateEmailListDisplay()
                 lblInviteStatus.ForeColor = Color.Green
                 lblInviteStatus.Text = "Attempted to send invitation(s)"
                 btnSendInvites.Enabled = False
-            Else
-                lblInviteStatus.ForeColor = Color.Red
-                lblInviteStatus.Text = "Please add host email and password first."
-            End If
+            'Else
+            'lblInviteStatus.ForeColor = Color.Red
+            'lblInviteStatus.Text = "Please add host email and password first."
+            'End If
         Else
             lblInviteStatus.ForeColor = Color.Red
             lblInviteStatus.Text = "Please add at least one email address."
@@ -65,20 +65,20 @@ Public Class FormConfirmNightChoices
     End Sub
 
     Private Sub SetHostCredentials()
-        If Not hostEmailFlag Then
-            hostEmailFlag = True
-            'hostEmail = txtBoxAddHostEmail.Text
-            hostEmail = "toivopetrovski@gmail.com"
+        'If Not hostEmailFlag Then
+        'hostEmailFlag = True
+        'hostEmail = txtBoxAddHostEmail.Text
+        hostEmail = "toivopetrovski@gmail.com"
             EmailSender.CEmailSender.SetHostEmail(hostEmail)
             'hostPassword = txtBoxHostPassword.Text
             hostPassword = "rjjz hulm mlev tuua"
             EmailSender.CEmailSender.SetHostPassword(hostPassword)
             lblHostCredentialsStatus.ForeColor = Color.Green
-            'lblHostCredentialsStatus.Text = "Host credentials set"
-        Else
-            lblInviteStatus.ForeColor = Color.Red
-            lblHostCredentialsStatus.Text = "Host credentials already set."
-        End If
+        'lblHostCredentialsStatus.Text = "Host credentials set"
+        'Else
+        'lblInviteStatus.ForeColor = Color.Red
+        'lblHostCredentialsStatus.Text = "Host credentials already set."
+        'End If
     End Sub
 
     Private Sub btnSendInvites_Click(sender As Object, e As EventArgs) Handles btnSendInvites.Click
@@ -111,7 +111,10 @@ Public Class FormConfirmNightChoices
     'End Sub
 
     Private Sub ValidateInviteButton()
-        btnSendInvites.Enabled = hostEmailFlag AndAlso emailList.Count > 0 AndAlso saveFlag
+        btnSendInvites.Enabled = emailList.Count > 0
+
+        'btnSendInvites.Enabled = hostEmailFlag AndAlso emailList.Count > 0
+        'AndAlso saveFlag
     End Sub
 
     Private Sub txtBoxAddHostEmail_TextChanged(sender As Object, e As EventArgs)
@@ -155,7 +158,9 @@ Public Class FormConfirmNightChoices
     Private Sub btnConfirmWoEmail_Click(sender As Object, e As EventArgs) Handles btnConfirmWoEmail.Click
 
         saveFlag = True
-        EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+        SetHostCredentials()
+
+        'EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
 
     End Sub
 End Class
