@@ -132,4 +132,8 @@ Public Class MainPageForm
     Private Sub btnStats_Click(sender As Object, e As EventArgs) Handles btnStats.Click
         UiHelpFunctions.OpenChildForm(New FormStatsOrHistorySelection)
     End Sub
+
+    Private Sub btnPlanned_Click(sender As Object, e As EventArgs) Handles btnPlanned.Click
+        UiHelpFunctions.OpenChildForm(New FormPlannedNight)
+    End Sub
 End Class

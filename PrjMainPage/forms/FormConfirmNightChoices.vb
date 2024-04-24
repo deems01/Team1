@@ -7,6 +7,7 @@ Public Class FormConfirmNightChoices
     Private hostPassword As String = ""
     Private hostEmailFlag As Boolean = False
     Private currentYPos = 0
+    Private saveFlag As Boolean = False
 
 
     Private Sub FormConfirmNightChoices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -14,11 +15,12 @@ Public Class FormConfirmNightChoices
         txtBoxSelectedMovie.Text = NameSearchFunctions.GetSelectedFilmName()
         txtBoxSelectedLocation.Text = NameSearchFunctions.GetSelectedPlace()
 
+
         listBoxEmails = Me.Controls("ListBox1")
         btnAddEmail.Enabled = False
-        btnAddHostEmail.Enabled = False
+        'btnAddHostEmail.Enabled = False
 
-        txtBoxHostPassword.PasswordChar = "*"c
+        'txtBoxHostPassword.PasswordChar = "*"c
 
         ValidateInviteButton()
 
@@ -35,7 +37,7 @@ Public Class FormConfirmNightChoices
             txtBoxNewEmail.Text = ""
             ValidateInviteButton()
         End If
-        EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+        'EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
     End Sub
 
     Private Sub SendInvites()
@@ -43,7 +45,7 @@ Public Class FormConfirmNightChoices
             If hostEmailFlag Then
 
                 ' Save planning details to the database
-                EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+                'EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
 
 
                 EmailSender.CEmailSender.SendEmails(emailList, NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
@@ -65,12 +67,14 @@ Public Class FormConfirmNightChoices
     Private Sub SetHostCredentials()
         If Not hostEmailFlag Then
             hostEmailFlag = True
-            hostEmail = txtBoxAddHostEmail.Text
+            'hostEmail = txtBoxAddHostEmail.Text
+            hostEmail = "toivopetrovski@gmail.com"
             EmailSender.CEmailSender.SetHostEmail(hostEmail)
-            hostPassword = txtBoxHostPassword.Text
+            'hostPassword = txtBoxHostPassword.Text
+            hostPassword = "rjjz hulm mlev tuua"
             EmailSender.CEmailSender.SetHostPassword(hostPassword)
             lblHostCredentialsStatus.ForeColor = Color.Green
-            lblHostCredentialsStatus.Text = "Host credentials set"
+            'lblHostCredentialsStatus.Text = "Host credentials set"
         Else
             lblInviteStatus.ForeColor = Color.Red
             lblHostCredentialsStatus.Text = "Host credentials already set."
@@ -100,27 +104,27 @@ Public Class FormConfirmNightChoices
         Return Not String.IsNullOrWhiteSpace(password)
     End Function
 
-    Private Sub ValidateHostCredentials()
-        If Not hostEmailFlag Then
-            btnAddHostEmail.Enabled = IsValidEmail(txtBoxAddHostEmail.Text) AndAlso IsValidPassword(txtBoxHostPassword.Text)
-        End If
-    End Sub
+    'Private Sub ValidateHostCredentials()
+    'If Not hostEmailFlag Then
+    'btnAddHostEmail.Enabled = IsValidEmail(txtBoxAddHostEmail.Text) AndAlso IsValidPassword(txtBoxHostPassword.Text)
+    'End If
+    'End Sub
 
     Private Sub ValidateInviteButton()
-        btnSendInvites.Enabled = hostEmailFlag AndAlso emailList.Count > 0
+        btnSendInvites.Enabled = hostEmailFlag AndAlso emailList.Count > 0 AndAlso saveFlag
     End Sub
 
-    Private Sub txtBoxAddHostEmail_TextChanged(sender As Object, e As EventArgs) Handles txtBoxAddHostEmail.TextChanged
-        ValidateHostCredentials()
+    Private Sub txtBoxAddHostEmail_TextChanged(sender As Object, e As EventArgs)
+        'ValidateHostCredentials()
         ValidateInviteButton()
     End Sub
 
-    Private Sub txtBoxHostPassword_TextChanged(sender As Object, e As EventArgs) Handles txtBoxHostPassword.TextChanged
-        ValidateHostCredentials()
+    Private Sub txtBoxHostPassword_TextChanged(sender As Object, e As EventArgs)
+        'ValidateHostCredentials()
         ValidateInviteButton()
     End Sub
 
-    Private Sub btnAddHostEmail_Click(sender As Object, e As EventArgs) Handles btnAddHostEmail.Click
+    Private Sub btnAddHostEmail_Click(sender As Object, e As EventArgs)
         SetHostCredentials()
     End Sub
 
@@ -148,4 +152,10 @@ Public Class FormConfirmNightChoices
         currentYPos += removeButton.Height
     End Sub
 
+    Private Sub btnConfirmWoEmail_Click(sender As Object, e As EventArgs) Handles btnConfirmWoEmail.Click
+
+        saveFlag = True
+        EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+
+    End Sub
 End Class
