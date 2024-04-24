@@ -17,7 +17,7 @@ Module StatFunction
         {"Sun", 0}
     }
 
-    Private minutes As Integer = statisticsService.GetTotalWatchedTime
+    Private minutes As Integer = statisticsService.GetTotalWatchedTime()
     Public minutesWatched As String = minutes.ToString + " min"
     Public mostPopularGenre As String = recommendationService.GetGenreName(recommendationService.GetMostPopularGenreId())
     Public mostPopularMovie As String

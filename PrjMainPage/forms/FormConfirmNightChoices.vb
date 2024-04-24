@@ -35,6 +35,7 @@ Public Class FormConfirmNightChoices
             txtBoxNewEmail.Text = ""
             ValidateInviteButton()
         End If
+        EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
     End Sub
 
     Private Sub SendInvites()

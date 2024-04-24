@@ -25,7 +25,7 @@ Public Class CEmailSender
     End Sub
 
     Shared Sub New()
-        Dim filePath As String = "C:\Users\Kasutaja\source\repos\Team1\EmailSender\appppass2.txt"
+        Dim filePath As String = "C:\Users\Uku\source\repos\Team1Planner\EmailSender\appppass2.txt"
         'Dim filePath As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "passwords.txt")
         'Dim salt As String = GenerateSalt(70)
         'HashPassword(hostPassword, salt, 10101, 70)

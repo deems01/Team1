@@ -2,15 +2,27 @@
 Imports FilmDatabase
 Module WatchHistoryFunctions
 
-    Public watchHistory As New List(Of Dictionary(Of String, String)) From {
-        New Dictionary(Of String, String) From {{"name", "Movie1"}, {"date", "2024-04-22"}},
-        New Dictionary(Of String, String) From {{"name", "Movie2"}, {"date", "2024-04-21"}},
-        New Dictionary(Of String, String) From {{"name", "Movie3"}, {"date", "2024-04-31"}}
-    }
+    Public watchHistory As New List(Of Dictionary(Of String, String))
     'watchHistory.Add(New Dictionary(Of String, String) From {{"name", "Movie4"}, {"date", "2024-04-19"}})
 
+    Public Sub GetPlanningInfo()
+
+        watchHistory.Clear()
+
+        Dim db As New FilmdbModel()
+        Dim query = From history In db.Planning
+                    Select history
+
+        For Each history In query
+            Dim historyDict As New Dictionary(Of String, String)
+            historyDict.Add("name", history.Film.Name)
+            historyDict.Add("date", history.PlannedDate.ToString)
+            watchHistory.Add(historyDict)
+        Next
+    End Sub
     Public Sub AddHistoryDynamically(historyForm As Form)
 
+        GetPlanningInfo()
         Dim panelHeight As Integer = 30
         Dim panelWidth As Integer = 96
         Dim startY As Integer = 50
