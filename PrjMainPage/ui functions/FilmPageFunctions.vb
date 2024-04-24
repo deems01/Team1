@@ -34,7 +34,6 @@ Module FilmPageFunctions
         film.Name = clickedMovie.Title
         film.ReleaseYear = clickedMovie.ReleaseDate
         film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
-        'tra noh mtea kuidas sa seda listi siin teha tahad orgu, ma nagu poolenisti tahan terve selle fkin genre tabeli teha listiks
         film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), String.Empty)
 
         db.Films.Add(film)
