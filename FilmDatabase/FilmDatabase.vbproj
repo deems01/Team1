@@ -123,6 +123,10 @@
       <DependentUpon>202404240850102_Mig_genreinteger213125432532.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202404240850102_Mig_genreinteger213125432532.vb" />
+    <Compile Include="Migrations\202404240912252_Mig_CounterToFilms.designer.vb">
+      <DependentUpon>202404240912252_Mig_CounterToFilms.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404240912252_Mig_CounterToFilms.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404240850102_Mig_genreinteger213125432532.resx">
       <DependentUpon>202404240850102_Mig_genreinteger213125432532.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404240912252_Mig_CounterToFilms.resx">
+      <DependentUpon>202404240912252_Mig_CounterToFilms.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

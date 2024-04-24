@@ -68,6 +68,7 @@ Public Class Films
     Public Property ReleaseYear As String
     Public Property FilmLength As String
     Public Property Genre As Integer
+    Public Property Counter As Integer
 
     ' Navigation properties
     Public Overridable Property Tags As ICollection(Of Tags)
