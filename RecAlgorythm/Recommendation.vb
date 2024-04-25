@@ -3,10 +3,13 @@ Imports System.Net.Http
 Imports FilmDatabase
 Imports Newtonsoft.Json.Linq
 Imports SortClass
+Imports System.Environment
+
 Public Class Recommendation
     Implements IRecommendation
 
-    Private ReadOnly apiKey As String = "e9bb467295d762ec5f93dffdab6761bd"      'this to one universal
+    Private ReadOnly apiKey As String = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient
 

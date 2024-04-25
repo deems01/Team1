@@ -29,7 +29,7 @@ Module FilmPageFunctions
     Async Sub SaveFilmToDatabase()
         Dim db As New FilmdbModel()
         Dim film As New FilmDatabase.Films()
-        Dim stat As New WatchStatistics.Statistics("e9bb467295d762ec5f93dffdab6761bd")
+        Dim stat As New WatchStatistics.Statistics()
         film.Imdb_Id = clickedMovie.Id
         film.Name = clickedMovie.Title
         film.ReleaseYear = clickedMovie.ReleaseDate
