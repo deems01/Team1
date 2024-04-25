@@ -3,8 +3,9 @@ Imports Newtonsoft.Json.Linq
 Imports System.Environment
 
 Public Class CNameSearch
-    ' default val temporary
-    Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Implements INameSearch
+
+    Private ReadOnly apiKey As String = ""
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient = New HttpClient()
     Private movies As New List(Of Movie)()
@@ -25,7 +26,7 @@ Public Class CNameSearch
         End If
     End Function
 
-    Public Async Function SearchMovieAsync(movieName As String) As Task(Of List(Of Movie))
+    Public Async Function SearchMovieAsync(movieName As String) As Task(Of List(Of Movie)) Implements INameSearch.SearchMovieAsync
 
         movies.Clear()
         Dim query As String = Uri.EscapeDataString(movieName)
@@ -52,7 +53,7 @@ Public Class CNameSearch
                         genres.Add(genreIdValue)
                     Next
                     Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
-                        Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
+                    Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                     Dim movie As New Movie With {
                                 .Genres = genres,
@@ -68,10 +69,10 @@ Public Class CNameSearch
                             }
 
                     movies.Add(movie)
-                        listLimit += 1
+                    listLimit += 1
 
-                    Next
-                    Else
+                Next
+            Else
                 Throw New HttpRequestException($"Failed to fetch data. Status code: {response.StatusCode}")
             End If
         Catch ex As HttpRequestException
