@@ -4,6 +4,7 @@ Imports System.Security.Cryptography
 Imports System.Text
 Imports FilmDatabase.FilmdbModel
 Imports FilmDatabase
+Imports System.Net.Mime.MediaTypeNames
 
 Public Class CEmailSender
     Private Shared hostEmail As String = ""
@@ -24,22 +25,20 @@ Public Class CEmailSender
     Public Shared Sub SetHostEmailFlag(flag As Boolean)
         hostEmailFlag = flag
     End Sub
-
     Shared Sub New()
-        Dim filePath As String = "C:\Users\Kasutaja\source\repos\Team1\EmailSender\appppass3.txt"
-        'Dim filePath As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "passwords.txt")
+        Dim filePath As String = "C:\Users\Kasutaja\source\repos\Team1\EmailSender\appppassHash.txt"
         'Dim salt As String = GenerateSalt(70)
         'HashPassword(hostPassword, salt, 10101, 70)
 
         If File.Exists(filePath) Then
             Dim lines As String() = File.ReadAllLines(filePath)
-            'If lines.Length >= 2 Then
-            '    storedSalt = lines(0)
-            '    storedHash = lines(1)
-            'Else
-            '    Console.WriteLine("Password file format is incorrect.")
-            'End If
-            userPass = lines(0)
+            If lines.Length >= 2 Then
+                storedSalt = lines(0)
+                storedHash = lines(1)
+            Else
+                Console.WriteLine("Password file format is incorrect.")
+            End If
+            'userPass = lines(0)
         Else
             Console.WriteLine("Password file not found.")
         End If
@@ -55,18 +54,18 @@ Public Class CEmailSender
         Dim subject As String = $"Invitation to Movie Night: {selectedMovie}"
         Dim body As String = $"Dear friends, you are invited to a movie night on {selectedDate.ToString("yyyy-MM-dd HH:mm")} to watch {selectedMovie} at {selectedLocation}. Please join us!"
 
-        'If CheckPassword(hostPassword) Then
-        '    For Each recipient As String In recipients
-        '        SendEmail(recipient, subject, body, hostEmail, hostPassword)
-        '    Next
-        'Else
-        '    Console.WriteLine("Invalid password.")
-        'End If
-        If (hostPassword <> userPass) Then
+        If CheckPassword(hostPassword) Then
             For Each recipient As String In recipients
                 SendEmail(recipient, subject, body, hostEmail, hostPassword)
             Next
+        Else
+            Console.WriteLine("Invalid password.")
         End If
+        'If (hostPassword = userPass) Then
+        '    For Each recipient As String In recipients
+        '        SendEmail(recipient, subject, body, hostEmail, hostPassword)
+        '    Next
+        'End If
     End Sub
 
     Private Shared Sub SendEmail(ByVal recipient As String, ByVal subject As String, ByVal body As String, ByVal hostEmail As String, ByVal hostPassword As String)

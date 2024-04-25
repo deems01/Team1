@@ -1,5 +1,6 @@
 ﻿Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
+Imports System.Environment
 
 Public Class CNameSearch
     ' default val temporary
@@ -9,7 +10,10 @@ Public Class CNameSearch
     Private movies As New List(Of Movie)()
 
     Public Sub New(apiKey As String)
-        Me.apiKey = apiKey
+        Me.apiKey = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+        If String.IsNullOrEmpty(apiKey) Then
+            Throw New Exception("API key not found in environment variables.")
+        End If
     End Sub
 
     Public Function GetMoviesList()
