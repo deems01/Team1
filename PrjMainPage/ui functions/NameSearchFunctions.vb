@@ -1,10 +1,13 @@
 ﻿Imports System.Net
-Imports System.Security.Cryptography.X509Certificates
-Imports System.Threading
 Imports NameSearchDLL
+Imports System.Environment
+
 Module NameSearchFunctions
 
-    Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Private nameSearch As INameSearch
+    'Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Private ReadOnly apiKey = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+
     Private SearchedFilmName As String = ""
     Private inputData As New List(Of Movie)()
     Private selectedDate As DateTime = DateTime.MinValue
@@ -145,7 +148,7 @@ Module NameSearchFunctions
     End Sub
 
     Public Async Sub AddPosterDynamically(resultFlowPanel As FlowLayoutPanel)
-        Dim nameSearch As New CNameSearch(apiKey)
+        nameSearch = New CNameSearch(apiKey)
         inputData = Await nameSearch.SearchMovieAsync(GetSearchedFilmName())
 
         If inputData.Count = 0 Then

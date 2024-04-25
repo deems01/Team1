@@ -1,4 +1,6 @@
 ﻿
+Imports EmailSender
+
 Public Class FormConfirmNightChoices
     Dim customFormat As String = "yyyy-MM-dd HH:mm"
     Private emailList As New List(Of String)
@@ -7,9 +9,12 @@ Public Class FormConfirmNightChoices
     Private hostPassword As String = ""
     Private currentYPos = 0
     Private saveFlag As Boolean = False
+    Private emailSender As IEmailSender
 
 
     Private Sub FormConfirmNightChoices_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        emailSender = New CEmailSender()
+
         txtBoxSelectedDate.Text = NameSearchFunctions.GetSelectedDate().ToString(customFormat)
         txtBoxSelectedMovie.Text = NameSearchFunctions.GetSelectedFilmName()
         txtBoxSelectedLocation.Text = NameSearchFunctions.GetSelectedPlace()
@@ -96,9 +101,9 @@ Public Class FormConfirmNightChoices
 
             txtBoxMessage.Text = body
 
-            EmailSender.CEmailSender.SetHostEmail(hostEmail)
-            EmailSender.CEmailSender.SetHostPassword(hostPassword)
-            EmailSender.CEmailSender.SendEmails(emailList, txtBoxSubject.Text, txtBoxMessage.Text)
+            emailSender.SetHostEmail(hostEmail)
+            emailSender.SetHostPassword(hostPassword)
+            emailSender.SendEmails(emailList, txtBoxSubject.Text, txtBoxMessage.Text)
             lblInviteStatus.ForeColor = Color.Green
             lblInviteStatus.Text = "Invitations sent successfully."
             btnSendInvites.Enabled = False
@@ -160,8 +165,7 @@ Public Class FormConfirmNightChoices
     Private Sub btnConfirmWoEmail_Click(sender As Object, e As EventArgs) Handles btnConfirmWoEmail.Click
 
         saveFlag = True
-        'SetHostCredentials()
-        EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+        emailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
 
     End Sub
 
