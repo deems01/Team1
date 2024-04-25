@@ -3,8 +3,7 @@ Imports Newtonsoft.Json.Linq
 Imports System.Environment
 
 Public Class CNameSearch
-    ' default val temporary
-    Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Private ReadOnly apiKey As String = ""
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient = New HttpClient()
     Private movies As New List(Of Movie)()

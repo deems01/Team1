@@ -26,7 +26,8 @@ Public Class CEmailSender
         hostEmailFlag = flag
     End Sub
     Shared Sub New()
-        Dim filePath As String = "C:\Users\Kasutaja\source\repos\Team1\EmailSender\appppassHash.txt"
+        Dim filePath As String = Environment.GetEnvironmentVariable("MOVIE_NIGHT_HASH_FULL_PATH")
+        'Dim filePath As String = "C:\Users\Kasutaja\source\repos\Team1\EmailSender\appppassHash.txt"
         'Dim salt As String = GenerateSalt(70)
         'HashPassword(hostPassword, salt, 10101, 70)
 
