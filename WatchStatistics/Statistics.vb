@@ -3,16 +3,20 @@ Imports Newtonsoft.Json.Linq
 Imports System.Threading.Tasks
 Imports FilmDatabase.FilmdbModel
 Imports FilmDatabase
+Imports System.Environment
 
 Public Class Statistics
     Implements IStatistics
 
-    Private ReadOnly apiKey As String = "e9bb467295d762ec5f93dffdab6761bd"      'this to one universal
+    Private ReadOnly apiKey As String
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient
 
-    Public Sub New(apiKey As String)
-        Me.apiKey = apiKey
+    Public Sub New()
+        Me.apiKey = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+        If String.IsNullOrEmpty(apiKey) Then
+            Throw New Exception("API key not found in environment variables.")
+        End If
         Me.httpClient = New HttpClient()
     End Sub
     Public Async Function GetMovieLength(movieId As Integer) As Task(Of Integer) Implements IStatistics.GetMovieLength

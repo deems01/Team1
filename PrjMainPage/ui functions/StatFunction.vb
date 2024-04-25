@@ -3,7 +3,7 @@ Imports RecAlgorythm
 Module StatFunction
 
     ' Create an instance of a class that implements IStatistics
-    Private statisticsService As New Statistics("e9bb467295d762ec5f93dffdab6761bd")
+    Private statisticsService As New Statistics()
 
     Private recommendationService As New Recommendation()
 
