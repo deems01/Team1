@@ -45,13 +45,6 @@ Public Class Statistics
         Return length
     End Function
 
-    'emailsenderist datetime variable inputiks, siis saab nädala päeva vastu.
-    'väljakutse selline : Dim dayOfWeek As String = GetDayOfWeek(currentDate)
-    Public Function GetDayOfWeek(inputDate As DateTime) As String Implements IStatistics.GetDayOfWeek
-        Return inputDate.DayOfWeek.ToString()
-    End Function
-
-
     Dim db As New FilmdbModel()
 
     Public Function GetTotalWatchedTime() As Integer Implements IStatistics.GetTotalWatchedTime

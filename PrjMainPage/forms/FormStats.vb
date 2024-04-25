@@ -1,9 +1,11 @@
 ﻿Imports System.Drawing.Drawing2D
+Imports System.Threading
 Imports System.Windows.Media.Effects
 
 Public Class FormStats
 
     Private Sub FormStats_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StatFunction.InitializeModuleAsync()
 
         crtWeekdays.ChartAreas(0).AxisY.Interval = 1
         ' Assuming crtWeekdays is your chart control
