@@ -51,9 +51,9 @@ Public Class CEmailSender
 
     End Function
 
-    Public Shared Sub SendEmails(recipients As List(Of String), selectedDate As DateTime, selectedMovie As String, selectedLocation As String)
-        Dim subject As String = $"Invitation to Movie Night: {selectedMovie}"
-        Dim body As String = $"Dear friends, you are invited to a movie night on {selectedDate.ToString("yyyy-MM-dd HH:mm")} to watch {selectedMovie} at {selectedLocation}. Please join us!"
+    Public Shared Sub SendEmails(recipients As List(Of String), subject As String, body As String)
+        'Dim subject As String = $"Invitation to Movie Night: {selectedMovie}"
+        'Dim body As String = $"Dear friends, you are invited to a movie night on {selectedDate.ToString("yyyy-MM-dd HH:mm")} to watch {selectedMovie} at {selectedLocation}. Please join us!"
 
         If CheckPassword(hostPassword) Then
             For Each recipient As String In recipients
@@ -68,6 +68,24 @@ Public Class CEmailSender
         '    Next
         'End If
     End Sub
+
+    'Public Shared Sub SendEmails(recipients As List(Of String), selectedDate As DateTime, selectedMovie As String, selectedLocation As String)
+    '    Dim subject As String = $"Invitation to Movie Night: {selectedMovie}"
+    '    Dim body As String = $"Dear friends, you are invited to a movie night on {selectedDate.ToString("yyyy-MM-dd HH:mm")} to watch {selectedMovie} at {selectedLocation}. Please join us!"
+
+    '    If CheckPassword(hostPassword) Then
+    '        For Each recipient As String In recipients
+    '            SendEmail(recipient, subject, body, hostEmail, hostPassword)
+    '        Next
+    '    Else
+    '        Console.WriteLine("Invalid password.")
+    '    End If
+    '    'If (hostPassword = userPass) Then
+    '    '    For Each recipient As String In recipients
+    '    '        SendEmail(recipient, subject, body, hostEmail, hostPassword)
+    '    '    Next
+    '    'End If
+    'End Sub
 
     Private Shared Sub SendEmail(ByVal recipient As String, ByVal subject As String, ByVal body As String, ByVal hostEmail As String, ByVal hostPassword As String)
         Dim message As New MailMessage(hostEmail, recipient, subject, body)

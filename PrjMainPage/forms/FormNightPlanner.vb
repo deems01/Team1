@@ -9,14 +9,22 @@
         DateTimePicker1.Format = DateTimePickerFormat.Custom
         DateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm"
 
-        Dim lblInstructions As New Label()
-        lblInstructions.AutoSize = True
-        lblInstructions.Text = "Enter the date, time and location for your movie night:"
-        lblInstructions.ForeColor = Color.Black
-        lblInstructions.Font = New Font("Microsoft Sans Serif", 12, FontStyle.Regular)
-        lblInstructions.Location = New Point(10, 10)
+        Dim lblDateTime As New Label()
+        lblDateTime.AutoSize = True
+        lblDateTime.Text = "Choose date and time:"
+        lblDateTime.ForeColor = Color.Black
+        lblDateTime.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Regular)
+        lblDateTime.Location = New Point(DateTimePicker1.Location.X, DateTimePicker1.Location.Y - 20) ' Adjust as necessary
 
-        Me.Controls.Add(lblInstructions)
+        Dim lblLocation As New Label()
+        lblLocation.AutoSize = True
+        lblLocation.Text = "Specify location:"
+        lblLocation.ForeColor = Color.Black
+        lblLocation.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Regular)
+        lblLocation.Location = New Point(txtBoxPlace.Location.X, txtBoxPlace.Location.Y - 20) ' Adjust as necessary
+
+        Me.Controls.Add(lblDateTime)
+        Me.Controls.Add(lblLocation)
 
         btnSubmit.Enabled = False
 
@@ -27,6 +35,7 @@
         If selectedDateTime < DateTime.Now Then
             lblDateWarning.ForeColor = Color.Red
             lblDateWarning.Text = "Please select a date and time later than the current date and time."
+            lblDateWarning.Location = New Point(DateTimePicker1.Location.X, DateTimePicker1.Location.Y - 40)
             DateTimeFlag = False
         Else
             lblDateWarning.Text = ""

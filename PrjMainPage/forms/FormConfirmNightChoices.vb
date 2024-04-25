@@ -5,7 +5,6 @@ Public Class FormConfirmNightChoices
     Private listBoxEmails As ListBox
     Private hostEmail As String = ""
     Private hostPassword As String = ""
-    Private hostEmailFlag As Boolean = False
     Private currentYPos = 0
     Private saveFlag As Boolean = False
 
@@ -15,14 +14,20 @@ Public Class FormConfirmNightChoices
         txtBoxSelectedMovie.Text = NameSearchFunctions.GetSelectedFilmName()
         txtBoxSelectedLocation.Text = NameSearchFunctions.GetSelectedPlace()
 
+        Me.AutoScroll = True
+
+        txtBoxHostPassword.PasswordChar = "*"c
+        'txtBoxHostEmail.Text = "Enter your Gmail address..."
+        'txtBoxHostPassword.Text = "Enter your password..."
+
+        txtBoxSubject.Text = "Invitation to Movie Night"
+        txtBoxMessage.Multiline = True
+        txtBoxMessage.ScrollBars = ScrollBars.Vertical
+        txtBoxMessage.Text = "Please select a group to generate the invitation message."
 
         listBoxEmails = Me.Controls("ListBox1")
         btnAddEmail.Enabled = False
-        'btnAddHostEmail.Enabled = False
-
-        'txtBoxHostPassword.PasswordChar = "*"c
-
-        ValidateInviteButton()
+        btnSendInvites.Enabled = False
 
         lblInviteStatus.Text = ""
         lblHostCredentialsStatus.Text = ""
@@ -42,46 +47,73 @@ Public Class FormConfirmNightChoices
 
     Private Sub SendInvites()
         If emailList.Count > 0 Then
-            'If hostEmailFlag Then
 
-            ' Save planning details to the database
-            'EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+            Dim movieName As String = NameSearchFunctions.GetSelectedFilmName()
+            Dim selectedDate As DateTime = NameSearchFunctions.GetSelectedDate()
+            Dim selectedLocation As String = NameSearchFunctions.GetSelectedPlace()
+            Dim subject As String = "Invitation to Movie Night: " & movieName
+            Dim body As String = String.Empty
 
+            If checkBoxFriends.Checked Then
+                body = $"Hey there, Movie Buffs!{Environment.NewLine}{Environment.NewLine}" &
+                   $"Are you ready for an epic night of popcorn, laughter, and great cinema? We’re screening {movieName} and you’re on our VIP list!{Environment.NewLine}" &
+                   $"🗓 Date: {selectedDate.ToString(customFormat)}{Environment.NewLine}" &
+                   $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
+                   $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
+                   $"So, mark your calendars and bring your favorite movie snacks! Can’t wait to see you there.{Environment.NewLine}{Environment.NewLine}" &
+                   $"Cheers,{Environment.NewLine}[Your Name]"
+            End If
 
-            EmailSender.CEmailSender.SendEmails(emailList, NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
-                emailList.Clear()
-                UpdateEmailListDisplay()
-                lblInviteStatus.ForeColor = Color.Green
-                lblInviteStatus.Text = "Attempted to send invitation(s)"
-                btnSendInvites.Enabled = False
-            'Else
-            '    lblInviteStatus.ForeColor = Color.Red
-            '    lblInviteStatus.Text = "Please add host email and password first."
-            'End If
+            If checkBoxFamily.Checked Then
+                body = $"Dear Family,{Environment.NewLine}{Environment.NewLine}" &
+                   $"It’s time for some quality family bonding! We’ve got a special night planned just for us with the screening of {movieName}.{Environment.NewLine}" &
+                   $"🗓 Date: {selectedDate.ToString(customFormat)}{Environment.NewLine}" &
+                   $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
+                   $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
+                   $"Let’s gather for a cozy evening filled with laughter and heartwarming moments. See you all at movie night!{Environment.NewLine}{Environment.NewLine}" &
+                   $"Warm regards,{Environment.NewLine}[Your Name]"
+            End If
+
+            If checkBoxColleagues.Checked Then
+                body = $"Dear Colleagues,{Environment.NewLine}{Environment.NewLine}" &
+                   $"Break away from the desks and join us for an office movie night where work talk is banned, and fun is mandatory! We’ll be watching {movieName}, and it’s going to be great!{Environment.NewLine}" &
+                   $"🗓 Date: {selectedDate.ToString(customFormat)}{Environment.NewLine}" &
+                   $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
+                   $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
+                   $"It’s the perfect chance to kick back and enjoy some time together outside the office. Your presence is eagerly awaited!{Environment.NewLine}{Environment.NewLine}" &
+                   $"Best,{Environment.NewLine}[Your Name]"
+            End If
+
+            If checkBoxAcquaintances.Checked Then
+                body = $"Hello,{Environment.NewLine}{Environment.NewLine}" &
+                   $"I hope this message finds you well! I wanted to extend an invitation to join us for a movie night where we will be enjoying the captivating story of {movieName}.{Environment.NewLine}" &
+                   $"🗓 Date: {selectedDate.ToString(customFormat)}{Environment.NewLine}" &
+                   $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
+                   $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
+                   $"It’s a great opportunity to catch up and share a few laughs. Looking forward to an enjoyable evening with you!{Environment.NewLine}{Environment.NewLine}" &
+                   $"Kind regards,{Environment.NewLine}[Your Name]"
+            End If
+
+            txtBoxMessage.Text = body
+
+            EmailSender.CEmailSender.SetHostEmail(hostEmail)
+            EmailSender.CEmailSender.SetHostPassword(hostPassword)
+            EmailSender.CEmailSender.SendEmails(emailList, txtBoxSubject.Text, txtBoxMessage.Text)
+            lblInviteStatus.ForeColor = Color.Green
+            lblInviteStatus.Text = "Invitations sent successfully."
+            btnSendInvites.Enabled = False
+            emailList.Clear()
+            UpdateEmailListDisplay()
         Else
             lblInviteStatus.ForeColor = Color.Red
             lblInviteStatus.Text = "Please add at least one email address."
         End If
     End Sub
 
-    Private Sub SetHostCredentials()
-        'If Not hostEmailFlag Then
-        hostEmailFlag = True
-            'hostEmail = txtBoxAddHostEmail.Text
-            hostEmail = "toivopetrovski@gmail.com"
-            EmailSender.CEmailSender.SetHostEmail(hostEmail)
-            'hostPassword = txtBoxHostPassword.Text
-            hostPassword = "rjjz hulm mlev tuua"
-            EmailSender.CEmailSender.SetHostPassword(hostPassword)
-            lblHostCredentialsStatus.ForeColor = Color.Green
-        'lblHostCredentialsStatus.Text = "Host credentials set"
-        'Else
-        '    lblInviteStatus.ForeColor = Color.Red
-        '    lblHostCredentialsStatus.Text = "Host credentials already set."
-        'End If
-    End Sub
 
     Private Sub btnSendInvites_Click(sender As Object, e As EventArgs) Handles btnSendInvites.Click
+        hostEmail = txtBoxHostEmail.Text
+        hostPassword = txtBoxHostPassword.Text
         SendInvites()
     End Sub
 
@@ -92,41 +124,13 @@ Public Class FormConfirmNightChoices
         Next
     End Sub
 
-    Private Function IsValidEmail(email As String) As Boolean
-        Return email.Contains("@gmail.com")
-    End Function
-
     Private Sub txtBoxNewEmail_TextChanged(sender As Object, e As EventArgs) Handles txtBoxNewEmail.TextChanged
         btnAddEmail.Enabled = IsValidEmail(txtBoxNewEmail.Text)
     End Sub
 
-    Private Function IsValidPassword(password As String) As Boolean
-        Return Not String.IsNullOrWhiteSpace(password)
-    End Function
-
-    'Private Sub ValidateHostCredentials()
-    'If Not hostEmailFlag Then
-    'btnAddHostEmail.Enabled = IsValidEmail(txtBoxAddHostEmail.Text) AndAlso IsValidPassword(txtBoxHostPassword.Text)
-    'End If
-    'End Sub
-
     Private Sub ValidateInviteButton()
         'btnSendInvites.Enabled = hostEmailFlag AndAlso emailList.Count > 0 'AndAlso saveFlag
         btnSendInvites.Enabled = emailList.Count > 0
-    End Sub
-
-    Private Sub txtBoxAddHostEmail_TextChanged(sender As Object, e As EventArgs)
-        'ValidateHostCredentials()
-        ValidateInviteButton()
-    End Sub
-
-    Private Sub txtBoxHostPassword_TextChanged(sender As Object, e As EventArgs)
-        'ValidateHostCredentials()
-        ValidateInviteButton()
-    End Sub
-
-    Private Sub btnAddHostEmail_Click(sender As Object, e As EventArgs)
-        SetHostCredentials()
     End Sub
 
     Private Sub RemoveEmail(sender As Object, e As EventArgs)
@@ -156,8 +160,101 @@ Public Class FormConfirmNightChoices
     Private Sub btnConfirmWoEmail_Click(sender As Object, e As EventArgs) Handles btnConfirmWoEmail.Click
 
         saveFlag = True
-        SetHostCredentials()
+        'SetHostCredentials()
         EmailSender.CEmailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
 
     End Sub
+
+    Private Sub txtBoxHostEmail_TextChanged(sender As Object, e As EventArgs) Handles txtBoxHostEmail.TextChanged
+        ValidateCredentials()
+    End Sub
+
+    Private Sub txtBoxHostPassword_TextChanged(sender As Object, e As EventArgs) Handles txtBoxHostPassword.TextChanged
+        ValidateCredentials()
+    End Sub
+
+    Private Function IsValidEmail(email As String) As Boolean
+        Return email.Contains("@gmail.com") AndAlso email.Length > 10
+    End Function
+
+    Private Function IsValidPassword(password As String) As Boolean
+        Return Not String.IsNullOrWhiteSpace(password)
+    End Function
+
+    Private Sub ValidateCredentials()
+        If IsValidEmail(txtBoxHostEmail.Text) AndAlso IsValidPassword(txtBoxHostPassword.Text) Then
+            lblHostCredentialsStatus.ForeColor = Color.Green
+            lblHostCredentialsStatus.Text = "Credentials valid."
+            btnSendInvites.Enabled = True
+        Else
+            lblHostCredentialsStatus.ForeColor = Color.Red
+            lblHostCredentialsStatus.Text = "Invalid email or password."
+            btnSendInvites.Enabled = False
+        End If
+    End Sub
+
+
+    Private Sub checkBoxFriends_CheckedChanged(sender As Object, e As EventArgs) Handles checkBoxFriends.CheckedChanged
+        UncheckOthers(checkBoxFriends)
+        UpdateEmailContent(checkBoxFriends)
+    End Sub
+
+    Private Sub checkBoxFamily_CheckedChanged(sender As Object, e As EventArgs) Handles checkBoxFamily.CheckedChanged
+        UncheckOthers(checkBoxFamily)
+        UpdateEmailContent(checkBoxFamily)
+    End Sub
+
+    Private Sub checkBoxColleagues_CheckedChanged(sender As Object, e As EventArgs) Handles checkBoxColleagues.CheckedChanged
+        UncheckOthers(checkBoxColleagues)
+        UpdateEmailContent(checkBoxColleagues)
+    End Sub
+
+    Private Sub checkBoxAcquaintances_CheckedChanged(sender As Object, e As EventArgs) Handles checkBoxAcquaintances.CheckedChanged
+        UncheckOthers(checkBoxAcquaintances)
+        UpdateEmailContent(checkBoxAcquaintances)
+    End Sub
+
+    Private Sub UncheckOthers(checkedBox As CheckBox)
+        If checkedBox.Checked Then
+            For Each control As Control In Me.Controls
+                If TypeOf control Is CheckBox AndAlso control IsNot checkedBox Then
+                    CType(control, CheckBox).Checked = False
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub UpdateEmailContent(checkedBox As CheckBox)
+        Dim movieName As String = NameSearchFunctions.GetSelectedFilmName()
+        Dim selectedDate As String = NameSearchFunctions.GetSelectedDate().ToString(customFormat)
+        Dim selectedLocation As String = NameSearchFunctions.GetSelectedPlace()
+
+        Dim subject As String = String.Empty
+        Dim body As String = String.Empty
+
+        If checkedBox.Checked Then
+            Select Case checkedBox.Name
+                Case "checkBoxFriends"
+                    subject = "Let's Watch a Movie Together!"
+                    body = $"Hey Friends!{Environment.NewLine}{Environment.NewLine}Join me for a movie night where we'll be watching {movieName} at {selectedLocation} on {selectedDate}.{Environment.NewLine}{Environment.NewLine}Bring your favorite snacks!{Environment.NewLine}Toivo"
+
+                Case "checkBoxFamily"
+                    subject = "Family Movie Night!"
+                    body = $"Hello Family!{Environment.NewLine}{Environment.NewLine}We're planning a family movie night featuring {movieName} at {selectedLocation} on {selectedDate}.{Environment.NewLine}{Environment.NewLine}Looking forward to a great evening together.{Environment.NewLine}Toivo"
+
+                Case "checkBoxColleagues"
+                    subject = "Movie Night with Colleagues!"
+                    body = $"Dear Colleagues,{Environment.NewLine}{Environment.NewLine}Escape the office and join us for a movie night. We're watching {movieName} at {selectedLocation} on {selectedDate}.{Environment.NewLine}{Environment.NewLine}Hope to see you there,{Environment.NewLine}Toivo"
+
+                Case "checkBoxAcquaintances"
+                    subject = "Come and Join Us for a Movie!"
+                    body = $"Hi There,{Environment.NewLine}{Environment.NewLine}I'd love for you to join us for a movie night. We're screening {movieName} at {selectedLocation} on {selectedDate}.{Environment.NewLine}{Environment.NewLine}Best,{Environment.NewLine}Toivo"
+
+            End Select
+        End If
+
+        txtBoxSubject.Text = subject
+        txtBoxMessage.Text = body
+    End Sub
+
 End Class
