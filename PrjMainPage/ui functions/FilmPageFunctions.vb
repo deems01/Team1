@@ -1,6 +1,7 @@
 ﻿Imports FilmDatabase.FilmdbModel
 Imports FilmDatabase
 Imports WatchStatistics
+Imports DllHandler
 Module FilmPageFunctions
 
     Private clickedMovie As Object
@@ -39,5 +40,6 @@ Module FilmPageFunctions
 
         db.Films.Add(film)
         db.SaveChanges()
+
     End Sub
 End Module

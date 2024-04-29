@@ -724,3 +724,7 @@ C:\Users\User\source\repos\Team1\PrjMainPage\obj\Debug\PrjMainPage.pdb
 C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
 C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
 C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\CSVExporterDNF.dll
+C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\DllHandler.dll
+C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\DllHandler.pdb
+C:\Users\User\source\repos\Team1\PrjMainPage\bin\Debug\DllHandler.xml

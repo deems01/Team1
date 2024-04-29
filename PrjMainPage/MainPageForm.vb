@@ -136,4 +136,5 @@ Public Class MainPageForm
     Private Sub btnPlanned_Click(sender As Object, e As EventArgs) Handles btnPlanned.Click
         UiHelpFunctions.OpenChildForm(New FormPlannedNight)
     End Sub
+
 End Class
