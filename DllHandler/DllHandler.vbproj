@@ -46,6 +46,10 @@
   <ItemGroup>
     <Reference Include="CSVExporterDNF">
       <HintPath>..\..\CSVExporterDNF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CSVExporterDNF %282%29">
+      <HintPath>..\..\..\..\Downloads\CSVExporterDNF (2).dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -103,6 +107,23 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmailSender\EmailSender.vbproj">
+      <Project>{1a845aed-dc4c-41a4-b1e3-a7de3ee9bd45}</Project>
+      <Name>EmailSender</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FilmDatabase\FilmDatabase.vbproj">
+      <Project>{84c66ce3-a2fd-4d9c-8f4a-3be875d75e2a}</Project>
+      <Name>FilmDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NameSearchDLL\NameSearchDLL.vbproj">
+      <Project>{93f33b6a-680e-4486-a44b-ee7800c75b88}</Project>
+      <Name>NameSearchDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
