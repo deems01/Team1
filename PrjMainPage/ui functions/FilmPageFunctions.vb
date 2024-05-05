@@ -119,6 +119,32 @@ Module FilmPageFunctions
     End Sub
 
     Public Sub saveTagsToDatabase(tag As String)
+        If tag <> "" Then ' Check if the tag is not an empty string
+            Dim db As New FilmdbModel()
+
+            Dim clickedMovieId = clickedMovie.Id
+
+            ' Retrieve all films from the database
+            Dim films = db.Films.ToList()
+
+            ' Find the film ID based on the movie name in-memory
+            Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+            ' Check if filmId is found before proceeding
+            If filmId.HasValue Then
+                Dim tags As New FilmDatabase.Tags()
+                tags.Film_Id = filmId.Value
+                tags.Tag = tag
+                db.Tags.Add(tags)
+                db.SaveChanges()
+            Else
+                ' Handle the case where the movie is not found in the database
+                Console.WriteLine("Movie not found in the database.")
+            End If
+        End If
+    End Sub
+
+    Public Sub DeleteTagfromDatabase(tag As String)
         Dim db As New FilmdbModel()
 
         Dim clickedMovieId = clickedMovie.Id
@@ -131,10 +157,52 @@ Module FilmPageFunctions
 
         ' Check if filmId is found before proceeding
         If filmId.HasValue Then
-            Dim tags As New FilmDatabase.Tags()
-            tags.Film_Id = filmId.Value
-            tags.Tag = tag
-            db.Tags.Add(tags)
+            Dim tagToDelete = db.Tags.FirstOrDefault(Function(t) t.Film_Id = filmId And t.Tag = tag)
+            db.Tags.Remove(tagToDelete)
+            db.SaveChanges()
+        Else
+            ' Handle the case where the movie is not found in the database
+            Console.WriteLine("Movie not found in the database.")
+        End If
+    End Sub
+
+    Public Sub DeleteCommentfromDatabase(comment As String)
+        Dim db As New FilmdbModel()
+
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the movie name in-memory
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            Dim commentToDelete = db.Comments.FirstOrDefault(Function(c) c.Film_Id = filmId And c.Comment = comment)
+            db.Comments.Remove(commentToDelete)
+            db.SaveChanges()
+        Else
+            ' Handle the case where the movie is not found in the database
+            Console.WriteLine("Movie not found in the database.")
+        End If
+    End Sub
+
+    Public Sub DeleteFromWatchlist()
+        Dim db As New FilmdbModel()
+
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the movie name in-memory
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            Dim watchlistToDelete = db.Watchlist.FirstOrDefault(Function(w) w.Film_Id = filmId)
+            db.Watchlist.Remove(watchlistToDelete)
             db.SaveChanges()
         Else
             ' Handle the case where the movie is not found in the database
@@ -364,6 +432,7 @@ Module FilmPageFunctions
 
     Sub DeleteTag(panel As Panel, tag As String, form As Form)
         tags.Remove(tag)
+        DeleteTagfromDatabase(tag)
         form.Controls.Remove(panel)
         panel.Dispose()
         AddTagsDynamically(helpTagFlowPanel)
