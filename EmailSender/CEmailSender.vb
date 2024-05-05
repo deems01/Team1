@@ -106,13 +106,23 @@ Public Class CEmailSender
         Dim db As New FilmdbModel()
         Dim planning As New Planning()
 
-        planning.PlannedFilm = selectedMovie
-        planning.PlannedDate = selectedDate
-        planning.PlannedPlace = selectedLocation
-        planning.Film_Id = db.Films.Where(Function(f) f.Name = selectedMovie).Select(Function(f) f.Id).FirstOrDefault()
+        Try
+            planning.PlannedFilm = selectedMovie
+            planning.PlannedDate = selectedDate
+            planning.PlannedPlace = selectedLocation
+            planning.Film_Id = db.Films.Where(Function(f) f.Name = selectedMovie).Select(Function(f) f.Id).FirstOrDefault()
 
-        db.Planning.Add(planning)
-        db.SaveChanges()
+            db.Planning.Add(planning)
+            db.SaveChanges()
+            ' Increment the counter for the added film in the Films table
+            Dim existingFilm = db.Films.FirstOrDefault(Function(f) f.Id = planning.Film_Id)
+            If existingFilm IsNot Nothing Then
+                existingFilm.Counter += 1
+                db.SaveChanges()
+            End If
+        Catch ex As Exception
+            Console.WriteLine($"Data already in database: {ex.Message}")
+        End Try
     End Sub
 
 End Class

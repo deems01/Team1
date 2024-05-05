@@ -5,6 +5,8 @@ Imports DllHandler
 Imports System.Security.Cryptography
 Imports System.ComponentModel
 Imports System.Windows.Controls.Primitives
+Imports System.Net.Mail
+Imports System.IO
 Module FilmPageFunctions
 
     Private clickedMovie As Object
@@ -12,12 +14,132 @@ Module FilmPageFunctions
     Public tags As New List(Of String)
 
     Public comments As New List(Of String)
-    Sub setTags()
+    Public Sub setTags()
+        Dim db As New FilmdbModel()
 
+        ' Get the clicked movie ID
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the clicked movie ID
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            ' Retrieve all tags for the specified film from the database
+            Dim filmTags = db.Tags.Where(Function(t) t.Film_Id = filmId.Value).ToList()
+
+            ' Display the tags
+            For Each tag In filmTags
+                tags.Add(tag.Tag)
+            Next
+        Else
+            Console.WriteLine("Movie not found in the database.")
+        End If
     End Sub
 
-    Sub setComments()
+    Public Sub setComments()
+        Dim db As New FilmdbModel()
 
+        ' Get the clicked movie ID
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the clicked movie ID
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            ' Retrieve all comments for the specified film from the database
+            Dim filmComments = db.Comments.Where(Function(c) c.Film_Id = filmId.Value).ToList()
+
+            ' Display the comments
+            For Each comment In filmComments
+                comments.Add(comment.Comment)
+            Next
+        Else
+            Console.WriteLine("Movie not found in the database.")
+        End If
+    End Sub
+
+
+    Public Sub SaveToWatchlist()
+        Dim db As New FilmdbModel()
+        'bullshit fix for LINQ error LINQ to Entities does not 
+        'recognize the method 'System.Object CompareObjectEqual(System.Object, System.Object, Boolean)' 
+        'method, and this method cannot be translated into a store expression.'
+
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the movie name in-memory
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            Dim watchlist As New FilmDatabase.Watchlist()
+            watchlist.Film_Id = filmId.Value
+            db.Watchlist.Add(watchlist)
+            db.SaveChanges()
+        Else
+            ' Handle the case where the movie is not found in the database
+            Console.WriteLine("Movie not found in the database.")
+        End If
+    End Sub
+
+    Public Sub saveCommentsToDatabase(comment As String)
+        Dim db As New FilmdbModel()
+
+
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the movie name in-memory
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            Dim comments As New FilmDatabase.Comments()
+            comments.Film_Id = filmId.Value
+            comments.Comment = comment
+            db.Comments.Add(comments)
+            db.SaveChanges()
+        Else
+            ' Handle the case where the movie is not found in the database
+            Console.WriteLine("Movie not found in the database.")
+        End If
+    End Sub
+
+    Public Sub saveTagsToDatabase(tag As String)
+        Dim db As New FilmdbModel()
+
+        Dim clickedMovieId = clickedMovie.Id
+
+        ' Retrieve all films from the database
+        Dim films = db.Films.ToList()
+
+        ' Find the film ID based on the movie name in-memory
+        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+
+        ' Check if filmId is found before proceeding
+        If filmId.HasValue Then
+            Dim tags As New FilmDatabase.Tags()
+            tags.Film_Id = filmId.Value
+            tags.Tag = tag
+            db.Tags.Add(tags)
+            db.SaveChanges()
+        Else
+            ' Handle the case where the movie is not found in the database
+            Console.WriteLine("Movie not found in the database.")
+        End If
     End Sub
 
     Public helpTagFlowPanel As New FlowLayoutPanel
@@ -43,25 +165,84 @@ Module FilmPageFunctions
     End Sub
 
     Async Sub SaveFilmToDatabase()
-        Dim db As New FilmdbModel()
-        Dim film As New FilmDatabase.Films()
-        Dim stat As New WatchStatistics.Statistics()
-        film.Imdb_Id = clickedMovie.Id
-        film.Name = clickedMovie.Title
-        film.ReleaseYear = clickedMovie.ReleaseDate
-        film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
-        film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), String.Empty)
-        'film.Counter =
+        Try
+            Dim db As New FilmdbModel()
+            Dim film As New FilmDatabase.Films()
+            Dim stat As New WatchStatistics.Statistics()
+            film.Imdb_Id = clickedMovie.Id
+            film.Name = clickedMovie.Title
+            film.ReleaseYear = clickedMovie.ReleaseDate
+            film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
+            film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), String.Empty)
+            'film.Counter =
 
-        db.Films.Add(film)
-        db.SaveChanges()
+            db.Films.Add(film)
+            db.SaveChanges()
+        Catch ex As Exception
+            'MessageBox.Show("ERROR NAMESEARCH")
+        End Try
 
     End Sub
 
-    Sub SubmitTag(flowpanel As FlowLayoutPanel, text As String, addPanel As Panel)
+    Public Sub SaveFilmFromCategorytoDatabase(movie As Object)
+        Try
+            Dim db As New FilmdbModel()
+            Dim film As New FilmDatabase.Films()
+            Dim stat As New WatchStatistics.Statistics()
+
+            Dim tempId As Integer = GenerateUniqueRandomId(db) ' Generate a unique random ID
+
+            film.Imdb_Id = tempId 'movie.Id
+            film.Name = movie.Title
+            film.ReleaseYear = movie.ReleaseDate
+            'film.FilmLength = stat.GetMovieLength(movie.Id).Result
+            'film.Genre = If(movie.Genres IsNot Nothing, movie.Genres(0), String.Empty)
+            'film.Counter =
+
+            db.Films.Add(film)
+            db.SaveChanges()
+        Catch ex As Exception
+            'MessageBox.Show("ERROR CATEGORY")
+        End Try
+    End Sub
+
+
+    'Because SortClass doesn't have id, we need to generate a unique id for the film
+    Private Function GenerateUniqueRandomId(db As FilmdbModel) As Integer
+        Dim rnd As New Random()
+        Dim tempId As Integer
+        Dim isUnique As Boolean = False
+
+        ' Loop until a unique random ID is generated
+        Do
+            tempId = rnd.Next(100000, 999999)
+            ' Check if the generated ID already exists in the database
+            If Not db.Films.Any(Function(f) f.Imdb_Id = tempId) Then
+                isUnique = True
+            End If
+        Loop Until isUnique
+
+        Return tempId
+    End Function
+
+
+    ' Function to clear all data from the database for debugging purposes
+    Sub ClearAllTableDataFromDatabase()
+        Dim db As New FilmdbModel()
+        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Films")
+        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Planning")
+        'db.Database.ExecuteSqlCommand("TRUNCATE TABLE Statistics")
+        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Tags")
+        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Watchlist")
+        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Comments")
+    End Sub
+
+    Sub SubmitComment(flowpanel As FlowLayoutPanel, text As String, addPanel As Panel)
 
         If Not text = " " Then
             comments.Add(text)
+            'TODO save comments DB
+            saveCommentsToDatabase(text)
             If addPanel IsNot Nothing Then
                 Dim child = UiHelpFunctions.getChildForm
                 child.Controls.Remove(addPanel)
@@ -107,7 +288,7 @@ Module FilmPageFunctions
         btnSubmit.Text = "Submit"
         btnSubmit.Size = New Size(75, 23)
         btnSubmit.Location = New Point(10, 40)
-        AddHandler btnSubmit.Click, Sub(sender, e) SubmitTag(flowpanel, txtInput.Text, commentPanel)
+        AddHandler btnSubmit.Click, Sub(sender, e) SubmitComment(flowpanel, txtInput.Text, commentPanel)
 
         ' Add controls to the comment panel
         commentPanel.Controls.Add(txtInput)
@@ -142,7 +323,7 @@ Module FilmPageFunctions
         flowLayoutPanel.BackColor = Color.Black
         flowLayoutPanel.AutoScroll = True
         flowLayoutPanel.Location = New Point(20, 80)
-        SubmitTag(flowLayoutPanel, " ", Nothing)
+        SubmitComment(flowLayoutPanel, " ", Nothing)
         ' Close Button
         Dim btnClose As New Button()
         btnClose.Text = "Close"
@@ -170,6 +351,8 @@ Module FilmPageFunctions
 
         If ValidateTagInput(tag) Then
             tags.Add(tag)
+            'TODO save tags DB
+            saveTagsToDatabase(tag)
             AddTagsDynamically(helpTagFlowPanel)
             childForm.Controls.Remove(tagPanel)
             tagPanel.Dispose()

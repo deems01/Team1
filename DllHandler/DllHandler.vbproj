@@ -44,12 +44,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSVExporterDNF">
-      <HintPath>..\..\CSVExporterDNF.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="CSVExporterDNF %282%29">
-      <HintPath>..\..\..\..\Downloads\CSVExporterDNF (2).dll</HintPath>
+    <Reference Include="CSVExporterDNF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CSVExporterDNF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

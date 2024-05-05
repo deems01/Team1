@@ -84,6 +84,8 @@ Module CategoryFunctions
         Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
         FilmPageFunctions.setClickedMovie(movie)
         UiHelpFunctions.OpenChildForm(New FormFilmPage)
+        SaveFilmFromCategorytoDatabase(movie)
+        'TODO SAVING TO DB CATEGORY
     End Sub
 
     Private Sub posterPicBox_MouseEnter(sender As Object, e As EventArgs)

@@ -201,7 +201,7 @@ Module NameSearchFunctions
 
 
     End Sub
-
+    'TODO CURRENTLY SAVING BY POSTER CLICK NAMESEARCH
     Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
         Dim movieTitle As String = TryCast(pictureBox.Tag.Title, String)
@@ -213,9 +213,9 @@ Module NameSearchFunctions
                 SetSelectedFilmName(movieTitle)
                 UiHelpFunctions.OpenChildForm(New FormConfirmNightChoices)
 
-                'mtea copyisin ja nyyd salvestab andmebaasi, enne sittus errori kuna polnud seda Movie informatsiooni kusalgilt saada
+                'Saving Planning PosterClick to Database
                 Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
-                FilmPageFunctions.setClickedMovie(movie)
+                FilmPageFunctions.setClickedMovie(Movie)
                 SaveFilmToDatabase()
                 Return
             End If
@@ -227,6 +227,7 @@ Module NameSearchFunctions
             Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
             FilmPageFunctions.setClickedMovie(movie)
             UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            SaveFilmToDatabase()
         End If
         SaveFilmToDatabase()
     End Sub
