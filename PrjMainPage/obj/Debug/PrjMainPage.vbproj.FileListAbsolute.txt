@@ -949,3 +949,4 @@ C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.exe
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.xml
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\obj\Debug\PrjMainPage.pdb
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\CSVExporterDNF.dll
+C:\Users\veiko\source\repos\finalui\PrjMainPage\bin\Debug\CSVExporterDNF.dll
