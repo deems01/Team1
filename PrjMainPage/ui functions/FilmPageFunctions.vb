@@ -309,6 +309,7 @@ Module FilmPageFunctions
 
         If Not text = " " Then
             comments.Add(text)
+            'add to db 
             'TODO save comments DB
             saveCommentsToDatabase(text)
             If addPanel IsNot Nothing Then
@@ -421,6 +422,7 @@ Module FilmPageFunctions
             tags.Add(tag)
             'TODO save tags DB
             saveTagsToDatabase(tag)
+            'add to db
             AddTagsDynamically(helpTagFlowPanel)
             childForm.Controls.Remove(tagPanel)
             tagPanel.Dispose()
@@ -445,39 +447,40 @@ Module FilmPageFunctions
 
         ' Title Label
         Dim lblTitle As New Label()
-        lblTitle.Text = "Feedback Form"
+        lblTitle.Text = "Tags"
         lblTitle.Font = New Font(lblTitle.Font, FontStyle.Bold)
-        lblTitle.Size = New Size(150, 20)
-        lblTitle.Location = New Point(50, 10)
+        lblTitle.AutoSize = True
+        lblTitle.Location = New Point((panel.Width - lblTitle.Width) \ 2, 10)
 
         ' Input TextBox
         Dim txtInput As New TextBox()
         txtInput.Size = New Size(200, 20)
-        txtInput.Location = New Point(25, 40)
+        txtInput.Location = New Point((panel.Width - txtInput.Width) \ 2, 40)
 
         ' Submit Button
         Dim btnSubmit As New Button()
         btnSubmit.Text = "Submit"
         btnSubmit.Size = New Size(75, 23)
-        btnSubmit.Location = New Point(85, 70)
-        If tags.Count >= 10 Then
-            btnSubmit.Enabled = False
-        End If
-        AddHandler btnSubmit.Click, Sub(sender, e) SubmitTag(txtInput.Text, panel, UiHelpFunctions.getChildForm())
+        btnSubmit.Location = New Point((panel.Width - btnSubmit.Width) \ 2, 70)
 
         ' ComboBox
         Dim cmbValues As New ComboBox()
         cmbValues.DropDownStyle = ComboBoxStyle.DropDownList
         cmbValues.Size = New Size(150, 20)
-        cmbValues.Location = New Point(50, 100)
+        cmbValues.Location = New Point((panel.Width - cmbValues.Width) \ 2, 100)
 
         ' Delete Button
         Dim btnDelete As New Button()
         btnDelete.Text = "Delete"
         btnDelete.Size = New Size(75, 23)
-        btnDelete.Location = New Point(50, 120)
+        btnDelete.Location = New Point((panel.Width - btnDelete.Width) \ 2 - 90, 120)
         btnDelete.Enabled = False ' Initially disabled
-        AddHandler btnDelete.Click, Sub(sender, e) DeleteTag(panel, cmbValues.SelectedItem.ToString(), UiHelpFunctions.getChildForm())
+
+        ' Close Button
+        Dim btnClose As New Button()
+        btnClose.Text = "Close"
+        btnClose.Size = New Size(75, 23)
+        btnClose.Location = New Point((panel.Width - btnClose.Width) \ 2 + 90, 120)
 
         ' Add items to ComboBox
         cmbValues.Items.AddRange(tags.ToArray())
@@ -488,8 +491,22 @@ Module FilmPageFunctions
         panel.Controls.Add(btnSubmit)
         panel.Controls.Add(cmbValues)
         panel.Controls.Add(btnDelete)
+        panel.Controls.Add(btnClose)
 
-        ' Event handler for checkbox
+        ' Event handler for Submit button
+        AddHandler btnSubmit.Click, Sub(sender, e)
+                                        If tags.Count >= 10 Then
+                                            btnSubmit.Enabled = False
+                                        End If
+                                        SubmitTag(txtInput.Text, panel, UiHelpFunctions.getChildForm())
+                                    End Sub
+
+        ' Event handler for Delete button
+        AddHandler btnDelete.Click, Sub(sender, e)
+                                        DeleteTag(panel, cmbValues.SelectedItem.ToString(), UiHelpFunctions.getChildForm())
+                                    End Sub
+
+        ' Event handler for ComboBox selection change
         AddHandler cmbValues.SelectedIndexChanged, Sub(sender, e)
                                                        If cmbValues.SelectedIndex <> -1 Then
                                                            btnDelete.Enabled = True
@@ -497,6 +514,12 @@ Module FilmPageFunctions
                                                            btnDelete.Enabled = False
                                                        End If
                                                    End Sub
+
+        ' Event handler for Close button
+        AddHandler btnClose.Click, Sub(sender, e)
+                                       panel.Parent.Controls.Remove(panel)
+                                   End Sub
+
         Return panel
     End Function
 

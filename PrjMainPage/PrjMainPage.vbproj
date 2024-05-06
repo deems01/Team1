@@ -111,98 +111,99 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="forms\FormActorandCompanySearch.Designer.vb">
+    <Compile Include="forms\Categories\FormActorandCompanySearch.Designer.vb">
       <DependentUpon>FormActorandCompanySearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormActorandCompanySearch.vb">
+    <Compile Include="forms\Categories\FormActorandCompanySearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormCategoryResult.Designer.vb">
+    <Compile Include="forms\Categories\FormCategoryResult.Designer.vb">
       <DependentUpon>FormCategoryResult.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormCategoryResult.vb">
+    <Compile Include="forms\Categories\FormCategoryResult.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormConfirmNightChoices.Designer.vb">
+    <Compile Include="forms\PlanNight\FormConfirmNightChoices.Designer.vb">
       <DependentUpon>FormConfirmNightChoices.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormConfirmNightChoices.vb">
+    <Compile Include="forms\PlanNight\FormConfirmNightChoices.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormFilmPage.Designer.vb">
+    <Compile Include="forms\OtherForms\FormFilmPage.Designer.vb">
       <DependentUpon>FormFilmPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormFilmPage.vb">
+    <Compile Include="forms\OtherForms\FormFilmPage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormGenreSelection.Designer.vb">
+    <Compile Include="forms\Categories\FormGenreSelection.Designer.vb">
       <DependentUpon>FormGenreSelection.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormGenreSelection.vb">
+    <Compile Include="forms\Categories\FormGenreSelection.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormCategories.Designer.vb">
+    <Compile Include="forms\Categories\FormCategories.Designer.vb">
       <DependentUpon>FormCategories.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormCategories.vb">
+    <Compile Include="forms\Categories\FormCategories.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormLanguageSelection.Designer.vb">
+    <Compile Include="forms\Categories\FormLanguageSelection.Designer.vb">
       <DependentUpon>FormLanguageSelection.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormLanguageSelection.vb">
+    <Compile Include="forms\Categories\FormLanguageSelection.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormNightPlanner.Designer.vb">
+    <Compile Include="forms\PlanNight\FormNightPlanner.Designer.vb">
       <DependentUpon>FormNightPlanner.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormNightPlanner.vb">
+    <Compile Include="forms\PlanNight\FormNightPlanner.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormPlannedNight.Designer.vb">
+    <Compile Include="forms\SeePlan\FormPlannedNight.Designer.vb">
       <DependentUpon>FormPlannedNight.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormPlannedNight.vb">
+    <Compile Include="forms\SeePlan\FormPlannedNight.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormSearchBar.Designer.vb">
+    <Compile Include="forms\OtherForms\FormSearchBar.Designer.vb">
       <DependentUpon>FormSearchBar.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormSearchBar.vb">
+    <Compile Include="forms\OtherForms\FormSearchBar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormSearchResultPage.Designer.vb">
+    <Compile Include="forms\OtherForms\FormSearchResultPage.Designer.vb">
       <DependentUpon>FormSearchResultPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormSearchResultPage.vb">
+    <Compile Include="forms\OtherForms\FormSearchResultPage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormStats.Designer.vb">
+    <Compile Include="forms\Stats\FormStats.Designer.vb">
       <DependentUpon>FormStats.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormStats.vb">
+    <Compile Include="forms\Stats\FormStats.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormWatchHistory.Designer.vb">
+    <Compile Include="forms\Stats\FormWatchHistory.Designer.vb">
       <DependentUpon>FormWatchHistory.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormWatchHistory.vb">
+    <Compile Include="forms\Stats\FormWatchHistory.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormWatchlist.Designer.vb">
+    <Compile Include="forms\Watchlist\FormWatchlist.Designer.vb">
       <DependentUpon>FormWatchlist.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormWatchlist.vb">
+    <Compile Include="forms\Watchlist\FormWatchlist.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\FormStatsOrHistorySelection.Designer.vb">
+    <Compile Include="forms\Categories\FormStatsOrHistorySelection.Designer.vb">
       <DependentUpon>FormStatsOrHistorySelection.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormStatsOrHistorySelection.vb">
+    <Compile Include="forms\Categories\FormStatsOrHistorySelection.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ui functions\CategoryFunctions.vb" />
     <Compile Include="ui functions\FilmPageFunctions.vb" />
+    <Compile Include="ui functions\MovieComparisonFunctions.vb" />
     <Compile Include="ui functions\NameSearchFunctions.vb" />
     <Compile Include="ui functions\NightPlannerFunctions.vb" />
     <Compile Include="ui functions\StatFunction.vb" />
@@ -233,46 +234,46 @@
     <Compile Include="ui functions\WatchlistFunctions.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="forms\FormActorandCompanySearch.resx">
+    <EmbeddedResource Include="forms\Categories\FormActorandCompanySearch.resx">
       <DependentUpon>FormActorandCompanySearch.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormCategoryResult.resx">
+    <EmbeddedResource Include="forms\Categories\FormCategoryResult.resx">
       <DependentUpon>FormCategoryResult.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormConfirmNightChoices.resx">
+    <EmbeddedResource Include="forms\PlanNight\FormConfirmNightChoices.resx">
       <DependentUpon>FormConfirmNightChoices.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormFilmPage.resx">
+    <EmbeddedResource Include="forms\OtherForms\FormFilmPage.resx">
       <DependentUpon>FormFilmPage.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormGenreSelection.resx">
+    <EmbeddedResource Include="forms\Categories\FormGenreSelection.resx">
       <DependentUpon>FormGenreSelection.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormCategories.resx">
+    <EmbeddedResource Include="forms\Categories\FormCategories.resx">
       <DependentUpon>FormCategories.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormLanguageSelection.resx">
+    <EmbeddedResource Include="forms\Categories\FormLanguageSelection.resx">
       <DependentUpon>FormLanguageSelection.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormNightPlanner.resx">
+    <EmbeddedResource Include="forms\PlanNight\FormNightPlanner.resx">
       <DependentUpon>FormNightPlanner.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormSearchBar.resx">
+    <EmbeddedResource Include="forms\OtherForms\FormSearchBar.resx">
       <DependentUpon>FormSearchBar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormSearchResultPage.resx">
+    <EmbeddedResource Include="forms\OtherForms\FormSearchResultPage.resx">
       <DependentUpon>FormSearchResultPage.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormStats.resx">
+    <EmbeddedResource Include="forms\Stats\FormStats.resx">
       <DependentUpon>FormStats.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormWatchHistory.resx">
+    <EmbeddedResource Include="forms\Stats\FormWatchHistory.resx">
       <DependentUpon>FormWatchHistory.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormWatchlist.resx">
+    <EmbeddedResource Include="forms\Watchlist\FormWatchlist.resx">
       <DependentUpon>FormWatchlist.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\FormStatsOrHistorySelection.resx">
+    <EmbeddedResource Include="forms\Categories\FormStatsOrHistorySelection.resx">
       <DependentUpon>FormStatsOrHistorySelection.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPageForm.resx">
@@ -346,6 +347,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="background\blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
