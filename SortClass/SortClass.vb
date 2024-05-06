@@ -59,6 +59,9 @@ Public Class TMDBClient
                     .id = item("id").ToObject(Of Integer)()
                 }
                 movies.Add(movie)
+
+                limit += 1
+
             Next
 
         Catch ex As HttpRequestException
@@ -297,9 +300,16 @@ Public Class TMDBClient
             Dim data As JObject = JObject.Parse(json)
             Dim cast As JArray = DirectCast(data("cast"), JArray)
 
+            Dim limit As Integer = 0
+
             Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
             ' Process each movie in the cast
             For Each item As JObject In cast
+
+                If limit > 20 Then
+                    Exit For
+                End If
+
                 Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
                 Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
                 Dim movie As New Movie With {
@@ -310,6 +320,8 @@ Public Class TMDBClient
                     .PosterUrl = fullPosterUrl
                 }
                 movies.Add(movie)
+
+                limit += 1
             Next
         Catch ex As Exception
             Console.WriteLine($"Error: {ex.Message}")

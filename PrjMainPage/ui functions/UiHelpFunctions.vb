@@ -4,6 +4,14 @@ Module UiHelpFunctions
     Private currentChildForm As Form
     Private mainPanel As Panel
 
+    Public loadFlag As Integer = 0
+
+    Public Sub ChangeLoadFlag()
+
+        loadFlag = 1
+
+    End Sub
+
     Public Function getChildForm()
         Return currentChildForm
     End Function

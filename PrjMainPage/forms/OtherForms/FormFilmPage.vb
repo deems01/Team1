@@ -12,16 +12,15 @@ Public Class FormFilmPage
         FilmPageFunctions.attachPoster(pbPoster)
         FilmPageFunctions.attachFilmTitle(lblFilmName)
         FilmPageFunctions.attachFilmOverview(rTxtDescription)
-        FilmPageFunctions.AddTagsDynamically(flowPanelTags)
-
         FilmPageFunctions.setTags()
         FilmPageFunctions.setComments()
+        FilmPageFunctions.AddTagsDynamically(flowPanelTags)
+
     End Sub
 
     Private Sub btnAddToWatchlist_Click(sender As Object, e As EventArgs) Handles btnAddToWatchlist.Click
         SaveToWatchlist()
         WatchlistFunctions.setWatchlistMember(FilmPageFunctions.getClickedMovie())
-        'TODO SAVE TO WATCHLIST
     End Sub
 
     Private Sub flowPanelTags_MouseEnter(sender As Object, e As EventArgs) Handles flowPanelTags.MouseEnter
@@ -37,8 +36,6 @@ Public Class FormFilmPage
     Private Sub flowPanelTags_Click(sender As Object, e As EventArgs) Handles flowPanelTags.Click
         Dim childForm As Form = UiHelpFunctions.getChildForm()
         Dim tagPanel As Panel = FilmPageFunctions.CreateTagForm()
-        'TODO ADD TO DB TAGS
-        'SaveFilmToDatabase()
 
         If FilmPageFunctions.tags.Count > 10 Then
             MessageBox.Show("Movie can have max 10 tags")

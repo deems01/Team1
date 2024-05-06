@@ -47,8 +47,13 @@ Public Class MainPageForm
         btnExit.BackColor = Color.Transparent
     End Sub
 
-    Private Sub MainPageForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub MainPageForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         db.UpdateDatabaseStructureFromMigration()
+
+        If UiHelpFunctions.loadFlag = 0 Then
+            Await StatFunction.InitializeModuleAsync()
+            UiHelpFunctions.ChangeLoadFlag()
+        End If
 
         UiHelpFunctions.setMainPanel(pnlPage)
 

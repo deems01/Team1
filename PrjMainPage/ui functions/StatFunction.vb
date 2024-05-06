@@ -16,6 +16,14 @@ Module StatFunction
         {"Sat", 0},
         {"Sun", 0}
     }
+
+    Public Sub ResetDict()
+        Dim keys As New List(Of String)(weekdayMoviesWatched.Keys)
+        For Each key In keys
+            weekdayMoviesWatched(key) = 0
+        Next
+    End Sub
+
     Dim minutes As Integer = statisticsService.GetTotalWatchedTime()
     Public minutesWatched As String = minutes.ToString() + " min"
     Dim mostPopularGenreId As Integer = recommendationService.GetMostPopularGenreId()
@@ -29,7 +37,7 @@ Module StatFunction
         mostPopularMovie = mostPopularMovieName
     End Function
 
-    Private Sub ReadAndUpdateWeekdayMoviesWatched()
+    Public Sub ReadAndUpdateWeekdayMoviesWatched()
         Using context As New FilmdbModel()
             ' Query the database to get the relevant data
             Dim planningData = context.Planning.ToList()

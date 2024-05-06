@@ -1,5 +1,6 @@
 ﻿Imports SortClass
 Imports RandomMovie
+Imports RecAlgorythm
 
 Module CategoryFunctions
 
@@ -26,6 +27,7 @@ Module CategoryFunctions
         ' Create an instance of TMDBClient with your API key
         Dim tmdbClient As ISortClass = New TMDBClient()
         Dim RandomClient As IRandomMovieRec = New RandomMovieRec()
+        Dim Recommendation As IRecommendation = New Recommendation()
         ' Fetch popular movies
         Dim inputData As List(Of Movie)
         'inputData = Await tmdbClient.FetchPopularMovies()
@@ -48,6 +50,8 @@ Module CategoryFunctions
                 sortedMovies = Await tmdbClient.GetMoviesByCompany(enteredSearch)
             Case "Actor"
                 sortedMovies = Await tmdbClient.GetMoviesByActor(enteredSearch)
+            Case "Rec"
+                sortedMovies = Await Recommendation.FetchRecommendedMovies(Recommendation.GetMostPopularYear(), Recommendation.GetMostPopularGenreId())
             Case "Random"
                 sortedMovies.Clear() ' Clear the contents of the list
                 Dim randomMovie As Movie = Await RandomClient.GetRandomMovie()
@@ -91,6 +95,8 @@ Module CategoryFunctions
         Else
             FilmPageFunctions.setClickedMovie(movie)
             UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            'SaveFilmFromCategorytoDatabase(movie)
+            SaveFilmToDatabase2()
         End If
     End Sub
 

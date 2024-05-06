@@ -11,7 +11,7 @@ Public Class Recommendation
     Private ReadOnly apiKey As String = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
 
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
-    Private ReadOnly httpClient As HttpClient
+    Private httpClient As New HttpClient
 
 
     'Et saada soovitatud filme kasutaja dataga on vaja teha siuke request, kui ühe reaga :
@@ -31,7 +31,7 @@ Public Class Recommendation
         End If
 
         Try
-            Dim response As HttpResponseMessage = Await HttpClient.GetAsync(url)
+            Dim response As HttpResponseMessage = Await httpClient.GetAsync(url)
             response.EnsureSuccessStatusCode()
             Dim json As String = Await response.Content.ReadAsStringAsync()
             Dim data As JObject = JObject.Parse(json)

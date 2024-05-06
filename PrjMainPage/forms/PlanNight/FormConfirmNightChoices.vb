@@ -167,6 +167,10 @@ Public Class FormConfirmNightChoices
         saveFlag = True
         emailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
 
+        StatFunction.ResetDict()
+
+        StatFunction.InitializeModuleAsync()
+
     End Sub
 
     Private Sub txtBoxHostEmail_TextChanged(sender As Object, e As EventArgs) Handles txtBoxHostEmail.TextChanged

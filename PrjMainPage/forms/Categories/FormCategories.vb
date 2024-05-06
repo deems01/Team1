@@ -151,6 +151,8 @@ Public Class FormCategories
 
         If Not disableMouseEnterEvents Then
 
+            CategoryFunctions.setPickedCategory("Rec")
+            UiHelpFunctions.OpenChildForm(FormCategoryResult)
 
         End If
 
@@ -163,4 +165,11 @@ Public Class FormCategories
     '    CategoryFunctions.setPickedCategory("Random")
     '    UiHelpFunctions.OpenChildForm(FormCategoryResult)
     'End Sub
+
+    'Et saada soovitatud filme kasutaja dataga on vaja teha siuke request, kui ühe reaga :
+
+    'dim variable as list(of movie) = Await IRecommendation.FetchRecommendedMovies(GetMostPopularYear(), GetMostPopularGenreId())
+
+    'NB!! võtab andmebaasisit kõige populaarsemad aastad ja zanrid ja selle alusel teeb api requesti.
+    'toimimiseks vaja ka SortClass (kuna sealt tuleb movie list)
 End Class

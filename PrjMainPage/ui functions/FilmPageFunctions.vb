@@ -7,6 +7,7 @@ Imports System.ComponentModel
 Imports System.Windows.Controls.Primitives
 Imports System.Net.Mail
 Imports System.IO
+Imports RecAlgorythm
 Module FilmPageFunctions
 
     Private clickedMovie As Object
@@ -16,7 +17,7 @@ Module FilmPageFunctions
     Public comments As New List(Of String)
     Public Sub setTags()
         Dim db As New FilmdbModel()
-
+        tags.Clear()
         ' Get the clicked movie ID
         Dim clickedMovieId = clickedMovie.Id
 
@@ -42,7 +43,7 @@ Module FilmPageFunctions
 
     Public Sub setComments()
         Dim db As New FilmdbModel()
-
+        comments.Clear()
         ' Get the clicked movie ID
         Dim clickedMovieId = clickedMovie.Id
 
@@ -237,11 +238,12 @@ Module FilmPageFunctions
             Dim db As New FilmdbModel()
             Dim film As New FilmDatabase.Films()
             Dim stat As New WatchStatistics.Statistics()
+            Dim rec As New RecAlgorythm.Recommendation()
             film.Imdb_Id = clickedMovie.Id
             film.Name = clickedMovie.Title
             film.ReleaseYear = clickedMovie.ReleaseDate
             film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
-            film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), String.Empty)
+            film.Genre = If(clickedMovie.Genres IsNot Nothing, clickedMovie.Genres(0), 0)
             'film.Counter =
 
             db.Films.Add(film)
@@ -252,47 +254,26 @@ Module FilmPageFunctions
 
     End Sub
 
-    Public Sub SaveFilmFromCategorytoDatabase(movie As Object)
+    Async Sub SaveFilmToDatabase2()
         Try
             Dim db As New FilmdbModel()
             Dim film As New FilmDatabase.Films()
             Dim stat As New WatchStatistics.Statistics()
-
-            Dim tempId As Integer = GenerateUniqueRandomId(db) ' Generate a unique random ID
-
-            film.Imdb_Id = tempId 'movie.Id
-            film.Name = movie.Title
-            film.ReleaseYear = movie.ReleaseDate
-            'film.FilmLength = stat.GetMovieLength(movie.Id).Result
-            'film.Genre = If(movie.Genres IsNot Nothing, movie.Genres(0), String.Empty)
+            Dim rec As New RecAlgorythm.Recommendation()
+            film.Imdb_Id = clickedMovie.Id
+            film.Name = clickedMovie.Title
+            film.ReleaseYear = clickedMovie.ReleaseDate
+            film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
+            film.Genre = If(clickedMovie.Genres IsNot Nothing, rec.GetGenreId(clickedMovie.Genres(0)), 0)
             'film.Counter =
 
             db.Films.Add(film)
             db.SaveChanges()
         Catch ex As Exception
-            'MessageBox.Show("ERROR CATEGORY")
+            'MessageBox.Show("ERROR NAMESEARCH")
         End Try
+
     End Sub
-
-
-    'Because SortClass doesn't have id, we need to generate a unique id for the film
-    Private Function GenerateUniqueRandomId(db As FilmdbModel) As Integer
-        Dim rnd As New Random()
-        Dim tempId As Integer
-        Dim isUnique As Boolean = False
-
-        ' Loop until a unique random ID is generated
-        Do
-            tempId = rnd.Next(100000, 999999)
-            ' Check if the generated ID already exists in the database
-            If Not db.Films.Any(Function(f) f.Imdb_Id = tempId) Then
-                isUnique = True
-            End If
-        Loop Until isUnique
-
-        Return tempId
-    End Function
-
 
     ' Function to clear all data from the database for debugging purposes
     Sub ClearAllTableDataFromDatabase()
