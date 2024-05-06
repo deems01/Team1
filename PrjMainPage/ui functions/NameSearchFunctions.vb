@@ -202,7 +202,7 @@ Module NameSearchFunctions
 
     End Sub
 
-    Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
+    Private Sub posterPicBox_Click(sender As Object, e As MouseEventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
         Dim movieTitle As String = TryCast(pictureBox.Tag.Title, String)
 
@@ -216,7 +216,9 @@ Module NameSearchFunctions
                 'mtea copyisin ja nyyd salvestab andmebaasi, enne sittus errori kuna polnud seda Movie informatsiooni kusalgilt saada
                 Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
                 FilmPageFunctions.setClickedMovie(movie)
-                SaveFilmToDatabase()
+                If e.Button = MouseButtons.Left Then
+                    SaveFilmToDatabase()
+                End If
                 Return
             End If
         Else
@@ -224,11 +226,24 @@ Module NameSearchFunctions
         End If
         If dateFlag = 0 Then
             'user just wants to see movie search results
+
             Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
-            FilmPageFunctions.setClickedMovie(movie)
-            UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            'add to comaprison
+            If e.Button = MouseButtons.Right Then
+                Dim result As Boolean = MovieComparisonFunctions.SetMoviesForComparison(movie)
+                If result = False Then
+                    MessageBox.Show("You can compare 2 movies at max")
+                End If
+            Else
+                FilmPageFunctions.setClickedMovie(movie)
+                UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            End If
+
         End If
-        SaveFilmToDatabase()
+
+        If e.Button = MouseButtons.Left Then
+            SaveFilmToDatabase()
+        End If
     End Sub
 
 

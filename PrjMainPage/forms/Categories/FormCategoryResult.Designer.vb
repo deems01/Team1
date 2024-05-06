@@ -30,6 +30,8 @@ Partial Class FormCategoryResult
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.flowPanelResult = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnComparison = New System.Windows.Forms.Button()
+        Me.lblComparison = New System.Windows.Forms.Label()
         Me.pnlSearchResult.SuspendLayout()
         Me.pnlOptionalResult.SuspendLayout()
         Me.SuspendLayout()
@@ -40,30 +42,27 @@ Partial Class FormCategoryResult
         Me.pnlSearchResult.Controls.Add(Me.lbl)
         Me.pnlSearchResult.Controls.Add(Me.lblSearch)
         Me.pnlSearchResult.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.pnlSearchResult.Location = New System.Drawing.Point(16, 15)
-        Me.pnlSearchResult.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlSearchResult.Location = New System.Drawing.Point(12, 12)
         Me.pnlSearchResult.Name = "pnlSearchResult"
-        Me.pnlSearchResult.Size = New System.Drawing.Size(287, 33)
+        Me.pnlSearchResult.Size = New System.Drawing.Size(215, 27)
         Me.pnlSearchResult.TabIndex = 1
         '
         'lbl
         '
         Me.lbl.AutoSize = True
         Me.lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.lbl.Location = New System.Drawing.Point(120, 0)
-        Me.lbl.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lbl.Location = New System.Drawing.Point(90, 0)
         Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(0, 29)
+        Me.lbl.Size = New System.Drawing.Size(0, 24)
         Me.lbl.TabIndex = 1
         '
         'lblSearch
         '
         Me.lblSearch.AutoSize = True
         Me.lblSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.lblSearch.Location = New System.Drawing.Point(4, 0)
-        Me.lblSearch.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSearch.Location = New System.Drawing.Point(3, 0)
         Me.lblSearch.Name = "lblSearch"
-        Me.lblSearch.Size = New System.Drawing.Size(122, 29)
+        Me.lblSearch.Size = New System.Drawing.Size(95, 24)
         Me.lblSearch.TabIndex = 0
         Me.lblSearch.Text = "Category: "
         '
@@ -74,40 +73,36 @@ Partial Class FormCategoryResult
         Me.pnlOptionalResult.Controls.Add(Me.Label1)
         Me.pnlOptionalResult.Controls.Add(Me.Label2)
         Me.pnlOptionalResult.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.pnlOptionalResult.Location = New System.Drawing.Point(311, 15)
-        Me.pnlOptionalResult.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlOptionalResult.Location = New System.Drawing.Point(233, 12)
         Me.pnlOptionalResult.Name = "pnlOptionalResult"
-        Me.pnlOptionalResult.Size = New System.Drawing.Size(287, 33)
+        Me.pnlOptionalResult.Size = New System.Drawing.Size(215, 27)
         Me.pnlOptionalResult.TabIndex = 2
         '
         'lblCateSearch
         '
         Me.lblCateSearch.AutoSize = True
         Me.lblCateSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.lblCateSearch.Location = New System.Drawing.Point(103, 0)
-        Me.lblCateSearch.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCateSearch.Location = New System.Drawing.Point(77, 0)
         Me.lblCateSearch.Name = "lblCateSearch"
-        Me.lblCateSearch.Size = New System.Drawing.Size(0, 29)
+        Me.lblCateSearch.Size = New System.Drawing.Size(0, 24)
         Me.lblCateSearch.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label1.Location = New System.Drawing.Point(103, 0)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(77, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(0, 29)
+        Me.Label1.Size = New System.Drawing.Size(0, 24)
         Me.Label1.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Label2.Location = New System.Drawing.Point(4, 0)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(3, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(101, 29)
+        Me.Label2.Size = New System.Drawing.Size(80, 24)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Search: "
         '
@@ -117,20 +112,42 @@ Partial Class FormCategoryResult
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flowPanelResult.AutoScroll = True
-        Me.flowPanelResult.Location = New System.Drawing.Point(16, 66)
+        Me.flowPanelResult.Location = New System.Drawing.Point(12, 54)
+        Me.flowPanelResult.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.flowPanelResult.Name = "flowPanelResult"
-        Me.flowPanelResult.Size = New System.Drawing.Size(1320, 324)
+        Me.flowPanelResult.Size = New System.Drawing.Size(990, 263)
         Me.flowPanelResult.TabIndex = 3
+        '
+        'btnComparison
+        '
+        Me.btnComparison.Location = New System.Drawing.Point(858, 12)
+        Me.btnComparison.Name = "btnComparison"
+        Me.btnComparison.Size = New System.Drawing.Size(155, 30)
+        Me.btnComparison.TabIndex = 6
+        Me.btnComparison.Text = "See Comparison"
+        Me.btnComparison.UseVisualStyleBackColor = True
+        '
+        'lblComparison
+        '
+        Me.lblComparison.AutoSize = True
+        Me.lblComparison.BackColor = System.Drawing.Color.Silver
+        Me.lblComparison.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.lblComparison.Location = New System.Drawing.Point(475, 16)
+        Me.lblComparison.Name = "lblComparison"
+        Me.lblComparison.Size = New System.Drawing.Size(344, 20)
+        Me.lblComparison.TabIndex = 5
+        Me.lblComparison.Text = "Right Click on a movie to add to the comparison"
         '
         'FormCategoryResult
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1367, 421)
+        Me.ClientSize = New System.Drawing.Size(1025, 342)
+        Me.Controls.Add(Me.btnComparison)
+        Me.Controls.Add(Me.lblComparison)
         Me.Controls.Add(Me.flowPanelResult)
         Me.Controls.Add(Me.pnlOptionalResult)
         Me.Controls.Add(Me.pnlSearchResult)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormCategoryResult"
         Me.Text = "FormCategoryResult"
         Me.pnlSearchResult.ResumeLayout(False)
@@ -138,6 +155,7 @@ Partial Class FormCategoryResult
         Me.pnlOptionalResult.ResumeLayout(False)
         Me.pnlOptionalResult.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -149,4 +167,6 @@ Partial Class FormCategoryResult
     Friend WithEvents Label2 As Label
     Friend WithEvents lblCateSearch As Label
     Friend WithEvents flowPanelResult As FlowLayoutPanel
+    Friend WithEvents btnComparison As Button
+    Friend WithEvents lblComparison As Label
 End Class

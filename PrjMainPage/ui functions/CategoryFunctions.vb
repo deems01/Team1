@@ -79,11 +79,19 @@ Module CategoryFunctions
 
     End Sub
 
-    Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
+    Private Sub posterPicBox_Click(sender As Object, e As MouseEventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
         Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
-        FilmPageFunctions.setClickedMovie(movie)
-        UiHelpFunctions.OpenChildForm(New FormFilmPage)
+
+        If e.Button = MouseButtons.Right Then
+            Dim result As Boolean = MovieComparisonFunctions.SetMoviesForComparison(movie)
+            If result = False Then
+                MessageBox.Show("You can compare 2 movies at max")
+            End If
+        Else
+            FilmPageFunctions.setClickedMovie(movie)
+            UiHelpFunctions.OpenChildForm(New FormFilmPage)
+        End If
     End Sub
 
     Private Sub posterPicBox_MouseEnter(sender As Object, e As EventArgs)

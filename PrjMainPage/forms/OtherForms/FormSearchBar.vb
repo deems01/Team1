@@ -32,5 +32,18 @@
         End If
 
         txtSearch.Text = "Search"
+
+        AdjustTextBoxFontSize()
+
     End Sub
+
+    Private Sub AdjustTextBoxFontSize()
+        ' Calculate the font size based on the screen resolution
+        Dim screenSize As Size = Screen.PrimaryScreen.WorkingArea.Size
+        Dim fontSize As Single = Math.Min(screenSize.Width, screenSize.Height) / 50 ' Adjust this factor as needed
+
+        ' Set the font size for the TextBox
+        txtSearch.Font = New Font("Microsoft Sans Serif", fontSize, FontStyle.Bold)
+    End Sub
+
 End Class
