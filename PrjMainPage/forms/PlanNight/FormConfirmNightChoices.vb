@@ -171,6 +171,8 @@ Public Class FormConfirmNightChoices
 
         StatFunction.InitializeModuleAsync()
 
+        btnConfirmWoEmail.Enabled = False
+
     End Sub
 
     Private Sub txtBoxHostEmail_TextChanged(sender As Object, e As EventArgs) Handles txtBoxHostEmail.TextChanged

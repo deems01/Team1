@@ -16,55 +16,55 @@ Module FilmPageFunctions
 
     Public comments As New List(Of String)
     Public Sub setTags()
-        Dim db As New FilmdbModel()
-        tags.Clear()
-        ' Get the clicked movie ID
-        Dim clickedMovieId = clickedMovie.Id
+        ''Dim db As New FilmdbModel()
+        'tags.Clear()
+        '' Get the clicked movie ID
+        'Dim clickedMovieId = clickedMovie.Id
 
-        ' Retrieve all films from the database
-        Dim films = db.Films.ToList()
+        '' Retrieve all films from the database
+        'Dim films = db.Films.ToList()
 
-        ' Find the film ID based on the clicked movie ID
-        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+        '' Find the film ID based on the clicked movie ID
+        'Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
 
-        ' Check if filmId is found before proceeding
-        If filmId.HasValue Then
-            ' Retrieve all tags for the specified film from the database
-            Dim filmTags = db.Tags.Where(Function(t) t.Film_Id = filmId.Value).ToList()
+        '' Check if filmId is found before proceeding
+        'If filmId.HasValue Then
+        '    ' Retrieve all tags for the specified film from the database
+        '    Dim filmTags = db.Tags.Where(Function(t) t.Film_Id = filmId.Value).ToList()
 
-            ' Display the tags
-            For Each tag In filmTags
-                tags.Add(tag.Tag)
-            Next
-        Else
-            Console.WriteLine("Movie not found in the database.")
-        End If
+        '    ' Display the tags
+        '    For Each tag In filmTags
+        '        tags.Add(tag.Tag)
+        '    Next
+        'Else
+        '    Console.WriteLine("Movie not found in the database.")
+        'End If
     End Sub
 
     Public Sub setComments()
-        Dim db As New FilmdbModel()
-        comments.Clear()
-        ' Get the clicked movie ID
-        Dim clickedMovieId = clickedMovie.Id
+        'Dim db As New FilmdbModel()
+        'comments.Clear()
+        '' Get the clicked movie ID
+        'Dim clickedMovieId = clickedMovie.Id
 
-        ' Retrieve all films from the database
-        Dim films = db.Films.ToList()
+        '' Retrieve all films from the database
+        'Dim films = db.Films.ToList()
 
-        ' Find the film ID based on the clicked movie ID
-        Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
+        '' Find the film ID based on the clicked movie ID
+        'Dim filmId = films.FirstOrDefault(Function(f) f.Imdb_Id = clickedMovieId)?.Id
 
-        ' Check if filmId is found before proceeding
-        If filmId.HasValue Then
-            ' Retrieve all comments for the specified film from the database
-            Dim filmComments = db.Comments.Where(Function(c) c.Film_Id = filmId.Value).ToList()
+        '' Check if filmId is found before proceeding
+        'If filmId.HasValue Then
+        '    ' Retrieve all comments for the specified film from the database
+        '    Dim filmComments = db.Comments.Where(Function(c) c.Film_Id = filmId.Value).ToList()
 
-            ' Display the comments
-            For Each comment In filmComments
-                comments.Add(comment.Comment)
-            Next
-        Else
-            Console.WriteLine("Movie not found in the database.")
-        End If
+        '    ' Display the comments
+        '    For Each comment In filmComments
+        '        comments.Add(comment.Comment)
+        '    Next
+        'Else
+        '    Console.WriteLine("Movie not found in the database.")
+        'End If
     End Sub
 
 
@@ -412,7 +412,7 @@ Module FilmPageFunctions
             childForm.Controls.Remove(tagPanel)
             tagPanel.Dispose()
         Else
-            MessageBox.Show($"Tag can't be longer than 10 letters")
+            MessageBox.Show($"Tag can't be longer than 10 letters or empty")
         End If
 
     End Sub
@@ -512,6 +512,8 @@ Module FilmPageFunctions
     Function ValidateTagInput(input As String)
 
         If input.Length > 10 Then
+            Return False
+        ElseIf input = "" AndAlso input = "" Then
             Return False
         Else
             Return True
