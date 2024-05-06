@@ -46,7 +46,7 @@
   <ItemGroup>
     <Reference Include="CSVExporterDNF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\CSVExporterDNF.dll</HintPath>
+      <HintPath>.\CSVExporterDNF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
