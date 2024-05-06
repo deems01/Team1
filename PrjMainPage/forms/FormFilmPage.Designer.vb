@@ -40,7 +40,7 @@ Partial Class FormFilmPage
         'btnAddToWatchlist
         '
         Me.btnAddToWatchlist.Location = New System.Drawing.Point(658, 8)
-        Me.btnAddToWatchlist.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAddToWatchlist.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAddToWatchlist.Name = "btnAddToWatchlist"
         Me.btnAddToWatchlist.Size = New System.Drawing.Size(103, 22)
         Me.btnAddToWatchlist.TabIndex = 0
@@ -50,7 +50,7 @@ Partial Class FormFilmPage
         'pbPoster
         '
         Me.pbPoster.Location = New System.Drawing.Point(2, 0)
-        Me.pbPoster.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pbPoster.Margin = New System.Windows.Forms.Padding(2)
         Me.pbPoster.Name = "pbPoster"
         Me.pbPoster.Size = New System.Drawing.Size(235, 309)
         Me.pbPoster.TabIndex = 2
@@ -61,7 +61,7 @@ Partial Class FormFilmPage
         Me.pnlFilmName.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.pnlFilmName.Controls.Add(Me.lblFilmName)
         Me.pnlFilmName.Location = New System.Drawing.Point(8, 14)
-        Me.pnlFilmName.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlFilmName.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlFilmName.Name = "pnlFilmName"
         Me.pnlFilmName.Size = New System.Drawing.Size(645, 41)
         Me.pnlFilmName.TabIndex = 3
@@ -78,7 +78,7 @@ Partial Class FormFilmPage
         'btnComments
         '
         Me.btnComments.Location = New System.Drawing.Point(658, 34)
-        Me.btnComments.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnComments.Margin = New System.Windows.Forms.Padding(2)
         Me.btnComments.Name = "btnComments"
         Me.btnComments.Size = New System.Drawing.Size(103, 21)
         Me.btnComments.TabIndex = 4
@@ -87,9 +87,9 @@ Partial Class FormFilmPage
         '
         'flowPanelTags
         '
-        Me.flowPanelTags.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.flowPanelTags.BackColor = System.Drawing.Color.BurlyWood
         Me.flowPanelTags.Location = New System.Drawing.Point(8, 66)
-        Me.flowPanelTags.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.flowPanelTags.Margin = New System.Windows.Forms.Padding(2)
         Me.flowPanelTags.Name = "flowPanelTags"
         Me.flowPanelTags.Size = New System.Drawing.Size(753, 65)
         Me.flowPanelTags.TabIndex = 5
@@ -99,7 +99,7 @@ Partial Class FormFilmPage
         Me.pnlDescription.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.pnlDescription.Controls.Add(Me.rTxtDescription)
         Me.pnlDescription.Location = New System.Drawing.Point(8, 142)
-        Me.pnlDescription.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlDescription.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlDescription.Name = "pnlDescription"
         Me.pnlDescription.Size = New System.Drawing.Size(753, 181)
         Me.pnlDescription.TabIndex = 6
@@ -111,7 +111,7 @@ Partial Class FormFilmPage
         Me.rTxtDescription.Enabled = False
         Me.rTxtDescription.Font = New System.Drawing.Font("Rockwell", 14.0!)
         Me.rTxtDescription.Location = New System.Drawing.Point(16, 9)
-        Me.rTxtDescription.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.rTxtDescription.Margin = New System.Windows.Forms.Padding(2)
         Me.rTxtDescription.Name = "rTxtDescription"
         Me.rTxtDescription.Size = New System.Drawing.Size(720, 153)
         Me.rTxtDescription.TabIndex = 0
@@ -121,7 +121,7 @@ Partial Class FormFilmPage
         '
         Me.pnlPoster.Controls.Add(Me.pbPoster)
         Me.pnlPoster.Location = New System.Drawing.Point(773, 14)
-        Me.pnlPoster.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlPoster.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlPoster.Name = "pnlPoster"
         Me.pnlPoster.Size = New System.Drawing.Size(235, 309)
         Me.pnlPoster.TabIndex = 7
@@ -137,7 +137,7 @@ Partial Class FormFilmPage
         Me.Controls.Add(Me.btnComments)
         Me.Controls.Add(Me.pnlFilmName)
         Me.Controls.Add(Me.btnAddToWatchlist)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FormFilmPage"
         Me.Text = "FormFilmPage"
         CType(Me.pbPoster, System.ComponentModel.ISupportInitialize).EndInit()

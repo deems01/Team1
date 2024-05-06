@@ -55,7 +55,8 @@ Public Class TMDBClient
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
                     .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
-                    .PosterUrl = fullPosterUrl
+                    .PosterUrl = fullPosterUrl,
+                    .id = item("id").ToObject(Of Integer)()
                 }
                 movies.Add(movie)
             Next
@@ -380,4 +381,5 @@ Public Class Movie      ' this for all, to main
     Public Property Language As String
     Public Property Genres As New List(Of String)
     Public Property PosterUrl As String
+    Public Property Id As Integer
 End Class

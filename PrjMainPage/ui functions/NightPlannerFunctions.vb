@@ -2,13 +2,34 @@
 Imports FilmDatabase
 Module NightPlannerFunctions
 
-    Public filmPlanning As New List(Of Dictionary(Of String, String)) From {
-        New Dictionary(Of String, String) From {{"name", "Movie1"}, {"date", "2024-04-22"}, {"place", "bosniaherzegovina"}},
-        New Dictionary(Of String, String) From {{"name", "Movie2"}, {"date", "2024-04-21"}, {"place", "bosniaherzegovina"}},
-        New Dictionary(Of String, String) From {{"name", "Movie3"}, {"date", "2024-04-31"}, {"place", "tere"}}
-    }
+    Public filmPlanning As New List(Of Dictionary(Of String, String)) 'From {
+    'New Dictionary(Of String, String) From {{"name", "Movie1"}, {"date", "2024-04-22"}, {"place", "bosniaherzegovina"}},
+    'New Dictionary(Of String, String) From {{"name", "Movie2"}, {"date", "2024-04-21"}, {"place", "bosniaherzegovina"}},
+    ' New Dictionary(Of String, String) From {{"name", "Movie3"}, {"date", "2024-04-31"}, {"place", "tere"}}
+    ' }
+
+    Public Sub GetPlannedInformation()
+        filmPlanning.Clear()
+
+        Dim db As New FilmdbModel()
+        Dim currentDate As Date = Date.Today
+
+        Dim query = From plan In db.Planning
+                    Where plan.PlannedDate >= currentDate
+                    Select plan
+
+        For Each plan In query
+            Dim planDict As New Dictionary(Of String, String)
+            planDict.Add("name", plan.Film.Name)
+            planDict.Add("date", plan.PlannedDate.ToString)
+            planDict.Add("place", plan.PlannedPlace)
+            filmPlanning.Add(planDict)
+        Next
+    End Sub
+
 
     Public Sub AddPlanDynamically(planForm As Form)
+        GetPlannedInformation()
 
         Dim panelHeight As Integer = 30
         Dim panelWidth As Integer = 96

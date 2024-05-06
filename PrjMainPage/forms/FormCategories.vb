@@ -29,6 +29,7 @@ Public Class FormCategories
             If TableLayoutPanel1.ColumnStyles(columnIndex).Width = columnOriginalWidths(columnIndex) Then
                 TableLayoutPanel1.ColumnStyles(columnIndex).Width = columnWidth * 2
             End If
+
         End If
     End Sub
 
