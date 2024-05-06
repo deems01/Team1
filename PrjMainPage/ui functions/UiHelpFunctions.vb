@@ -88,4 +88,8 @@ Module UiHelpFunctions
         MakeRoundedEdgesForm(form, 20)
     End Sub
 
+    Public Sub CenterLabel(label As Label, clientWitdh As Integer)
+        label.Location = New Point((clientWitdh - label.Width) / 2, 15)
+    End Sub
+
 End Module

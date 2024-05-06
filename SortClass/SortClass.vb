@@ -3,16 +3,20 @@ Imports System.Diagnostics.Eventing.Reader
 Imports System.Net.Http
 Imports System.Reflection
 Imports Newtonsoft.Json.Linq
+Imports System.Environment
 
 Public Class TMDBClient
     Implements ISortClass
 
-    Private ReadOnly apiKey As String = "e9bb467295d762ec5f93dffdab6761bd"      'this to one universal
+    Private ReadOnly apiKey As String = ""
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient
 
-    Public Sub New(apiKey As String)
-        Me.apiKey = apiKey
+    Public Sub New()
+        Me.apiKey = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+        If String.IsNullOrEmpty(apiKey) Then
+            Throw New Exception("API key not found in environment variables.")
+        End If
         Me.httpClient = New HttpClient()
     End Sub
 
@@ -51,7 +55,8 @@ Public Class TMDBClient
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
                     .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
-                    .PosterUrl = fullPosterUrl
+                    .PosterUrl = fullPosterUrl,
+                    .id = item("id").ToObject(Of Integer)()
                 }
                 movies.Add(movie)
             Next
@@ -376,4 +381,5 @@ Public Class Movie      ' this for all, to main
     Public Property Language As String
     Public Property Genres As New List(Of String)
     Public Property PosterUrl As String
+    Public Property Id As Integer
 End Class

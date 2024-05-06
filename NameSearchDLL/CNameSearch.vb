@@ -1,21 +1,20 @@
-﻿
-Imports System.Net.Http
+﻿Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
-Imports System.Threading.Tasks
-Imports System.Runtime.CompilerServices
-Imports System.IO.MemoryMappedFiles
-Imports System.Threading
-
+Imports System.Environment
 
 Public Class CNameSearch
-    ' default val temporary
-    Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Implements INameSearch
+
+    Private ReadOnly apiKey As String = ""
     Private ReadOnly baseURL As String = "https://api.themoviedb.org/3"
     Private ReadOnly httpClient As HttpClient = New HttpClient()
     Private movies As New List(Of Movie)()
 
     Public Sub New(apiKey As String)
-        Me.apiKey = apiKey
+        Me.apiKey = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+        If String.IsNullOrEmpty(apiKey) Then
+            Throw New Exception("API key not found in environment variables.")
+        End If
     End Sub
 
     Public Function GetMoviesList()
@@ -27,9 +26,8 @@ Public Class CNameSearch
         End If
     End Function
 
-    Public Async Function SearchMovieAsync(movieName As String) As Task(Of List(Of Movie))
+    Public Async Function SearchMovieAsync(movieName As String) As Task(Of List(Of Movie)) Implements INameSearch.SearchMovieAsync
 
-        Console.WriteLine("Sening request")
         movies.Clear()
         Dim query As String = Uri.EscapeDataString(movieName)
         Dim url As String = $"{baseURL}/search/movie?api_key={apiKey}&query={query}"
@@ -43,25 +41,32 @@ Public Class CNameSearch
                 Dim results As JArray = DirectCast(data("results"), JArray)
 
                 Dim listLimit As Integer = 0
-                Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500" ' Adjust poster width if needed
+                Dim imageBaseURL As String = "https://image.tmdb.org/t/p/w500"
 
                 For Each item As JObject In results
-                    If listLimit > 10 Then
+                    If listLimit > 100 Then
                         Exit For
                     End If
-
+                    Dim genres As New List(Of Integer)()
+                    For Each genreId As JValue In item("genre_ids")
+                        Dim genreIdValue As Integer = genreId.Value
+                        genres.Add(genreIdValue)
+                    Next
                     Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
                     Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                     Dim movie As New Movie With {
-                            .Title = item("title").ToString(),
-                            .Overview = item("overview").ToString(),
-                            .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
-                            .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
-                            .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
-                            .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
-                            .PosterUrl = fullPosterUrl
-                        }
+                                .Genres = genres,
+                                .Id = item("id").ToObject(Of Integer)(), 'see lisaks
+                                .Title = item("title").ToString(),
+                                .Overview = item("overview").ToString(),
+                                .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
+                                .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
+                                .ProductionCompanies = If(item("production_companies") IsNot Nothing, item("production_companies").Select(Function(pc) pc("name").ToString()).ToList(), New List(Of String)()),
+                                .Actors = If(item("credits") IsNot Nothing AndAlso item("credits")("cast") IsNot Nothing, item("credits")("cast").Select(Function(actor) actor("name").ToString()).ToList(), New List(Of String)()),
+                                .PosterUrl = fullPosterUrl,
+                                .FilmLength = If(item("runtime") IsNot Nothing, item("runtime").ToString(), "")
+                            }
 
                     movies.Add(movie)
                     listLimit += 1
@@ -99,12 +104,14 @@ End Class
 ' unnecessary challenges regarding mutability
 ' later on
 Public Class Movie
+    Public Property Id As Integer
     Public Property Title As String
     Public Property Overview As String
     Public Property ReleaseDate As Date
     Public Property Language As String
-    Public Property Genres As New List(Of String)
+    Public Property Genres As New List(Of Integer)
     Public Property ProductionCompanies As New List(Of String)
     Public Property Actors As New List(Of String)
     Public Property PosterUrl As String
+    Public Property FilmLength As String
 End Class

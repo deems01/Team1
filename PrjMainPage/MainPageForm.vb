@@ -66,32 +66,7 @@ Public Class MainPageForm
         Next
     End Sub
 
-    'TODO REMOVE LATER
-    Private Sub DatabaseExampleUseEF()
-        Dim uusfilm As New Films()
-        uusfilm.Name = "8"
-        uusfilm.Imdb_Id = Guid.NewGuid().ToString()
-        uusfilm.Tags = New List(Of Tags) From {New Tags() With {.Tag = "v2ga hea 4"}, New Tags() With {.Tag = "another tag 4"}}
-        db.Films.Add(uusfilm)
-        db.SaveChanges()
-
-
-
-        Dim esimeneleitudfilm = db.Films.Where(Function(a) a.Name = "8").FirstOrDefault()
-        esimeneleitudfilm.Name = "muudetud 8"
-        esimeneleitudfilm.Tags(0).Tag = "v2ga hea 88"
-        db.SaveChanges()
-
-
-
-        Dim kustutatavleitudfilm = db.Films.Where(Function(a) a.Name = "muudetud 7").FirstOrDefault()
-        db.Films.Remove(kustutatavleitudfilm)
-        db.SaveChanges()
-
-    End Sub
-
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        'DatabaseExampleUseEF()
         Application.Exit()
     End Sub
 
@@ -130,4 +105,13 @@ Public Class MainPageForm
     Private Sub btnWatchlist_Click(sender As Object, e As EventArgs) Handles btnWatchlist.Click
         UiHelpFunctions.OpenChildForm(New FormWatchlist)
     End Sub
+
+    Private Sub btnStats_Click(sender As Object, e As EventArgs) Handles btnStats.Click
+        UiHelpFunctions.OpenChildForm(New FormStatsOrHistorySelection)
+    End Sub
+
+    Private Sub btnPlanned_Click(sender As Object, e As EventArgs) Handles btnPlanned.Click
+        UiHelpFunctions.OpenChildForm(New FormPlannedNight)
+    End Sub
+
 End Class

@@ -40,7 +40,6 @@ Public Class FilmdbModel
     Public Overridable Property Tags() As DbSet(Of Tags)
     Public Overridable Property Comments() As DbSet(Of Comments)
     Public Overridable Property Watchlist() As DbSet(Of Watchlist)
-    Public Overridable Property Statistics() As DbSet(Of Statistics)
     Public Overridable Property Planning() As DbSet(Of Planning)
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
         ' Configure one-to-many relationship between Films and Tags
@@ -51,9 +50,6 @@ Public Class FilmdbModel
 
         ' Configure one-to-many relationship between Films and Watchlist
         modelBuilder.Entity(Of Watchlist)().HasRequired(Function(w) w.Film).WithMany(Function(f) f.Watchlist).HasForeignKey(Function(w) w.Film_Id)
-
-        ' Configure one-to-many relationship between Films and Statistics
-        modelBuilder.Entity(Of Statistics)().HasRequired(Function(s) s.Film).WithMany(Function(f) f.Statistics).HasForeignKey(Function(s) s.Film_Id)
 
         ' Configure one-to-many relationship between Films and Planning
         modelBuilder.Entity(Of Planning)().HasRequired(Function(p) p.Film).WithMany(Function(f) f.Planning).HasForeignKey(Function(p) p.Film_Id)
@@ -67,17 +63,17 @@ Public Class Films
     <Key>
     Public Property Id As Integer
     <Index("AK_Films", IsUnique:=True)>
-    <StringLength(100)>
-    Public Property Imdb_Id As String
+    Public Property Imdb_Id As Integer
     Public Property Name As String
     Public Property ReleaseYear As String
     Public Property FilmLength As String
+    Public Property Genre As Integer
+    Public Property Counter As Integer
 
     ' Navigation properties
     Public Overridable Property Tags As ICollection(Of Tags)
     Public Overridable Property Comments As ICollection(Of Comments)
     Public Overridable Property Watchlist As ICollection(Of Watchlist)
-    Public Overridable Property Statistics As ICollection(Of Statistics)
     Public Overridable Property Planning As ICollection(Of Planning)
 End Class
 
@@ -110,16 +106,6 @@ Public Class Watchlist
     ' Navigation property
     Public Overridable Property Film As Films
 
-End Class
-
-Public Class Statistics
-    <Key>
-    Public Property Id As Integer
-    Public Property Film_Id As Integer
-    Public Property WatchedTime As DateTime
-
-    ' Navigation property
-    Public Overridable Property Film As Films
 End Class
 
 Public Class Planning
