@@ -25,6 +25,11 @@ Partial Class FormStatsOrHistorySelection
         Me.btnHistory = New System.Windows.Forms.Button()
         Me.btnStats = New System.Windows.Forms.Button()
         Me.BtnExport = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnHistory
@@ -60,11 +65,64 @@ Partial Class FormStatsOrHistorySelection
         Me.BtnExport.Text = "Export"
         Me.BtnExport.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(104, 231)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(76, 20)
+        Me.CheckBox1.TabIndex = 3
+        Me.CheckBox1.Text = "append"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {",", ";", ":"})
+        Me.ComboBox1.Location = New System.Drawing.Point(104, 271)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 24)
+        Me.ComboBox1.TabIndex = 4
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Items.AddRange(New Object() {"""""", "'"})
+        Me.ComboBox2.Location = New System.Drawing.Point(104, 301)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(121, 24)
+        Me.ComboBox2.TabIndex = 5
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(242, 274)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(100, 16)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "Field Separator"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(242, 304)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(85, 16)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Text Qualifier"
+        '
         'FormStatsOrHistorySelection
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1363, 421)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.BtnExport)
         Me.Controls.Add(Me.btnStats)
         Me.Controls.Add(Me.btnHistory)
@@ -72,10 +130,16 @@ Partial Class FormStatsOrHistorySelection
         Me.Name = "FormStatsOrHistorySelection"
         Me.Text = "StatsOrHistorySelectionForm"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents btnHistory As Button
     Friend WithEvents btnStats As Button
     Friend WithEvents BtnExport As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
 End Class

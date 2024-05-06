@@ -10,8 +10,8 @@ Public Class CDllHandler
     '    Console.WriteLine("Failed to save data to CSV.")
     'End If
     Public Function SaveDataToCsv(data As String(,), Optional delimiter As String = ":",
-                                  Optional textQualifier As String = """", Optional appendData As Boolean = False, Optional file As Boolean = False) As String _
-                                    Implements IDllHandler.SaveDataToCsv
+                                  Optional textQualifier As String = """", Optional appendData As Boolean = False) _
+                                  As String Implements IDllHandler.SaveDataToCsv
 
         Dim exporter As IExporter = New CExporter()
 
@@ -19,14 +19,9 @@ Public Class CDllHandler
             ' Set delimiter and text qualifier
             exporter.delimiter = delimiter
             exporter.textQualifier = textQualifier
-            Dim filepaths As String = ""
-            If file Then
-                filepaths = exporter.setFileToSave()
-                Dim rowsWritten As Integer = exporter.saveDataToCsv(data, appendData)
-            Else
-                filepaths = exporter.setFileToSave()
-                Dim rowsWritten As Integer = exporter.saveDataToCsv(data, appendData)
-            End If
+            Dim filepaths As String = exporter.setFileToSave()
+            Dim rowsWritten As Integer = exporter.saveDataToCsv(data, appendData)
+
 
             ' Return the filepath
             Return filepaths
