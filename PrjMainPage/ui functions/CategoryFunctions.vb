@@ -91,6 +91,8 @@ Module CategoryFunctions
         Else
             FilmPageFunctions.setClickedMovie(movie)
             UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            'SaveFilmFromCategorytoDatabase(movie)
+            SaveFilmToDatabase2()
         End If
     End Sub
 
