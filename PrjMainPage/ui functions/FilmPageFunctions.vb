@@ -275,15 +275,19 @@ Module FilmPageFunctions
 
     End Sub
 
-    ' Function to clear all data from the database for debugging purposes
     Sub ClearAllTableDataFromDatabase()
         Dim db As New FilmdbModel()
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Films")
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Planning")
-        'db.Database.ExecuteSqlCommand("TRUNCATE TABLE Statistics")
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Tags")
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Watchlist")
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Comments")
+
+        ' Delete records from dependent tables first
+        db.Database.ExecuteSqlCommand("DELETE FROM Tags")
+        db.Database.ExecuteSqlCommand("DELETE FROM Comments")
+        db.Database.ExecuteSqlCommand("DELETE FROM Watchlists")
+        db.Database.ExecuteSqlCommand("DELETE FROM Plannings")
+    End Sub
+
+    Public Sub ClearDataFromFilmsTable()
+        Dim db As New FilmdbModel()
+        db.Database.ExecuteSqlCommand("DELETE FROM Films")
     End Sub
 
     Sub SubmitComment(flowpanel As FlowLayoutPanel, text As String, addPanel As Panel)
