@@ -1,10 +1,13 @@
 ﻿Imports System.Net
-Imports System.Security.Cryptography.X509Certificates
-Imports System.Threading
 Imports NameSearchDLL
+Imports System.Environment
+
 Module NameSearchFunctions
 
-    Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Private nameSearch As INameSearch
+    'Private ReadOnly apiKey As String = "36d0af349fe1d35fc3babe753de0aa8e"
+    Private ReadOnly apiKey = GetEnvironmentVariable("MOVIE_NIGHT_API_KEY")
+
     Private SearchedFilmName As String = ""
     Private inputData As New List(Of Movie)()
     Private selectedDate As DateTime = DateTime.MinValue
@@ -145,7 +148,7 @@ Module NameSearchFunctions
     End Sub
 
     Public Async Sub AddPosterDynamically(resultFlowPanel As FlowLayoutPanel)
-        Dim nameSearch As New CNameSearch(apiKey)
+        nameSearch = New CNameSearch(apiKey)
         inputData = Await nameSearch.SearchMovieAsync(GetSearchedFilmName())
 
         If inputData.Count = 0 Then
@@ -199,7 +202,7 @@ Module NameSearchFunctions
 
     End Sub
 
-    Private Sub posterPicBox_Click(sender As Object, e As EventArgs)
+    Private Sub posterPicBox_Click(sender As Object, e As MouseEventArgs)
         Dim pictureBox As PictureBox = DirectCast(sender, PictureBox)
         Dim movieTitle As String = TryCast(pictureBox.Tag.Title, String)
 
@@ -209,17 +212,37 @@ Module NameSearchFunctions
                 dateFlag = 0
                 SetSelectedFilmName(movieTitle)
                 UiHelpFunctions.OpenChildForm(New FormConfirmNightChoices)
+
+                'Saving Planning PosterClick to Database
+                Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
+                FilmPageFunctions.setClickedMovie(movie)
+                If e.Button = MouseButtons.Left Then
+                    SaveFilmToDatabase()
+                End If
                 Return
             End If
         Else
             MessageBox.Show("Could not cast movie title!")
         End If
-
         If dateFlag = 0 Then
             'user just wants to see movie search results
+
             Dim movie As Movie = DirectCast(pictureBox.Tag, Movie)
-            FilmPageFunctions.setClickedMovie(movie)
-            UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            'add to comaprison
+            If e.Button = MouseButtons.Right Then
+                Dim result As Boolean = MovieComparisonFunctions.SetMoviesForComparison(movie)
+                If result = False Then
+                    MessageBox.Show("You can compare 2 movies at max")
+                End If
+            Else
+                FilmPageFunctions.setClickedMovie(movie)
+                UiHelpFunctions.OpenChildForm(New FormFilmPage)
+            End If
+
+        End If
+
+        If e.Button = MouseButtons.Left Then
+            SaveFilmToDatabase()
         End If
     End Sub
 
