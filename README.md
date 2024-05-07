@@ -14,6 +14,7 @@ Kaur Andro Orgusaar
 ### For the program to work, the user must define 2 environment variables.
 - the first being their TMDb API key: this environment variable must be called 'MOVIE_NIGHT_API_KEY'.
 - and the second being the path to the hashed password file in the EmailSender component. The hashed password file is named 'appppassHash.txt' and it is in the same directory as the EmailSender code files. This environment variable must be called 'MOVIE_NIGHT_HASH_FULL_PATH'.
+- API key has to be acquired from the creators of the program privately.
 
 ### To create an environment variable on Windows: 
 - Press the Windows Key – This is usually located in the bottom left corner of your keyboard, also known as the "Start" button.
