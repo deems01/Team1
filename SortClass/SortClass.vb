@@ -56,7 +56,7 @@ Public Class TMDBClient
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
                     .Language = If(item("original_language") IsNot Nothing, item("original_language").ToString(), ""),
                     .PosterUrl = fullPosterUrl,
-                    .id = item("id").ToObject(Of Integer)()
+                    .Id = item("id").ToObject(Of Integer)()
                 }
                 movies.Add(movie)
 
@@ -161,6 +161,7 @@ Public Class TMDBClient
                 Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
                 Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
                 Dim movie As New Movie With {
+                                .Id = item("id").ToObject(Of Integer)(), 'see lisaks
                                 .Title = item("title").ToString(),
                                 .Overview = item("overview").ToString(),
                                 .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
@@ -248,6 +249,7 @@ Public Class TMDBClient
                 Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
 
                 Dim movie As New Movie With {
+                    .Id = item("id").ToObject(Of Integer)(),
                     .Title = item("title").ToString(),
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
@@ -313,6 +315,7 @@ Public Class TMDBClient
                 Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
                 Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
                 Dim movie As New Movie With {
+                    .Id = item("id").ToObject(Of Integer)(),
                     .Title = item("title").ToString(),
                     .Overview = item("overview").ToString(),
                     .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
@@ -371,7 +374,7 @@ Public Class TMDBClient
 
                 ' Select a random movie from the list
                 Dim randomMovieData As JObject = DirectCast(results(randomIndex), JObject)
-
+                randomMovie.Id = randomMovieData("id").ToObject(Of Integer)()
                 randomMovie.Title = randomMovieData("title").ToString()
                 randomMovie.Overview = randomMovieData("overview").ToString()
                 randomMovie.ReleaseDate = If(randomMovieData("release_date") IsNot Nothing, Date.Parse(randomMovieData("release_date").ToString()), Nothing)
