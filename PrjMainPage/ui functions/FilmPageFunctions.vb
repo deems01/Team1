@@ -264,7 +264,12 @@ Module FilmPageFunctions
             film.Name = clickedMovie.Title
             film.ReleaseYear = clickedMovie.ReleaseDate
             film.FilmLength = Await stat.GetMovieLength(clickedMovie.Id)
-            film.Genre = If(clickedMovie.Genres IsNot Nothing, rec.GetGenreId(clickedMovie.Genres(0)), 0)
+            If clickedMovie.Genres IsNot Nothing AndAlso clickedMovie.Genres.Count > 0 Then
+                film.Genre = rec.GetGenreId(clickedMovie.Genres(0))
+            Else
+                film.Genre = 1 ' Set genre to 0 if not available
+            End If
+            'film.Genre = If(clickedMovie.Genres IsNot Nothing, rec.GetGenreId(clickedMovie.Genres(0)), 0)
             'film.Counter =
 
             db.Films.Add(film)
