@@ -40,7 +40,7 @@ Public Class RandomMovieRec
 
                 ' Select a random movie from the list
                 Dim randomMovieData As JObject = DirectCast(results(randomIndex), JObject)
-
+                randomMovie.Id = randomMovieData("id").ToObject(Of Integer)()
                 randomMovie.Title = randomMovieData("title").ToString()
                 randomMovie.Overview = randomMovieData("overview").ToString()
                 randomMovie.ReleaseDate = If(randomMovieData("release_date") IsNot Nothing, Date.Parse(randomMovieData("release_date").ToString()), Nothing)

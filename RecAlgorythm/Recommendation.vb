@@ -48,6 +48,7 @@ Public Class Recommendation
                 Dim posterPath As String = If(item("poster_path") IsNot Nothing, item("poster_path").ToString(), String.Empty)
                 Dim fullPosterUrl As String = If(Not String.IsNullOrEmpty(posterPath), $"{imageBaseURL}{posterPath}", String.Empty)
                 Dim movie As New Movie With {
+                            .Id = item("id").ToObject(Of Integer)(), 'see lisaks
                             .Title = item("title").ToString(),
                             .Overview = item("overview").ToString(),
                             .ReleaseDate = If(item("release_date") IsNot Nothing, Date.Parse(item("release_date").ToString()), Nothing),
