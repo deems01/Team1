@@ -284,9 +284,9 @@ Module FilmPageFunctions
         Dim db As New FilmdbModel()
 
         ' Delete records from dependent tables first
-        'db.Database.ExecuteSqlCommand("DELETE FROM Tags")
-        'db.Database.ExecuteSqlCommand("DELETE FROM Comments")
-        'db.Database.ExecuteSqlCommand("DELETE FROM Watchlists")
+        db.Database.ExecuteSqlCommand("DELETE FROM Tags")
+        db.Database.ExecuteSqlCommand("DELETE FROM Comments")
+        db.Database.ExecuteSqlCommand("DELETE FROM Watchlists")
         db.Database.ExecuteSqlCommand("DELETE FROM Plannings")
     End Sub
 
@@ -296,6 +296,7 @@ Module FilmPageFunctions
     End Sub
 
     Sub SubmitComment(flowpanel As FlowLayoutPanel, text As String, addPanel As Panel)
+
         If Not text = " " Then
             comments.Add(text)
             'add to db 

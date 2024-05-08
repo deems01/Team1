@@ -70,32 +70,52 @@ Public Class Statistics
         Return totalWatchedMinutes
     End Function
 
+    'Public Async Function GetMostWatchedMovie() As Task(Of String) Implements IStatistics.GetMostWatchedMovie
+    '    Dim mostWatchedMoviePosterPath As String = String.Empty
+
+    '    Try
+    '        ' Group movies by their IDs and count the number of times each movie has been planned
+    '        Dim moviePlanCounts = db.Planning.GroupBy(Function(p) p.Film_Id).
+    '                                          Select(Function(g) New With {
+    '                                                     .MovieId = g.Key,
+    '                                                     .PlanCount = g.Count()
+    '                                                 }).
+    '                                          OrderByDescending(Function(x) x.PlanCount)
+
+    '        ' Get the ID of the most planned movie
+    '        Dim mostPlannedMovieId = moviePlanCounts.FirstOrDefault()?.MovieId
+
+    '        ' Get the name of the most planned movie
+    '        If mostPlannedMovieId.HasValue Then
+    '            mostWatchedMoviePosterPath = Await GetMoviePosterPath(mostPlannedMovieId)
+
+    '        End If
+    '    Catch ex As Exception
+    '        Console.WriteLine($"Error: {ex.Message}")
+    '    End Try
+    '    Return mostWatchedMoviePosterPath
+    'End Function
     Public Async Function GetMostWatchedMovie() As Task(Of String) Implements IStatistics.GetMostWatchedMovie
-        Dim mostWatchedMoviePosterPath As String = String.Empty
+        Dim mostWatchedMovieImdbId As String = String.Empty
 
         Try
-            ' Group movies by their IDs and count the number of times each movie has been planned
-            Dim moviePlanCounts = db.Planning.GroupBy(Function(p) p.Film_Id).
-                                              Select(Function(g) New With {
-                                                         .MovieId = g.Key,
-                                                         .PlanCount = g.Count()
-                                                     }).
-                                              OrderByDescending(Function(x) x.PlanCount)
+            ' Find the film with the highest counter value
+            Dim mostWatchedFilm = db.Films.OrderByDescending(Function(f) f.Counter).FirstOrDefault()
 
-            ' Get the ID of the most planned movie
-            Dim mostPlannedMovieId = moviePlanCounts.FirstOrDefault()?.MovieId
+            ' Get the IMDb ID of the most watched film
+            If mostWatchedFilm IsNot Nothing Then
+                mostWatchedMovieImdbId = mostWatchedFilm.Imdb_Id.ToString()
 
-            ' Get the name of the most planned movie
-            If mostPlannedMovieId.HasValue Then
-                mostWatchedMoviePosterPath = Await GetMoviePosterPath(mostPlannedMovieId)
 
+                ' Get the poster path for the most watched movie
+                mostWatchedMovieImdbId = Await GetMoviePosterPath(mostWatchedMovieImdbId)
             End If
         Catch ex As Exception
             Console.WriteLine($"Error: {ex.Message}")
         End Try
-        Return mostWatchedMoviePosterPath
-    End Function
 
+        Return mostWatchedMovieImdbId
+    End Function
     Public Async Function GetMoviePosterPath(movieId As Integer) As Task(Of String)
         Dim posterPath As String = String.Empty
 
