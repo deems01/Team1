@@ -875,9 +875,6 @@ C:\Users\h1711\Source\Repos\Team1111\PrjMainPage\bin\Debug\Microsoft.Web.WebView
 C:\Users\h1711\Source\Repos\Team1111\PrjMainPage\bin\Debug\Newtonsoft.Json.xml
 C:\Users\h1711\Source\Repos\Team1111\PrjMainPage\obj\Debug\PrjMainPage.vbproj.CopyComplete
 C:\Users\h1711\Source\Repos\Team1111\PrjMainPage\bin\Debug\CSVExporterDNF.dll
-C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
-C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
-C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\PrjMainPage.exe.config
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\PrjMainPage.exe
 C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\PrjMainPage.pdb
@@ -1246,3 +1243,6 @@ C:\Users\Uku\Source\Repos\FilmiPlaneerija\PrjMainPage\obj\Debug\PrjMainPage.pdb
 C:\Users\Uku\source\repos\FilmiPlaneerija\PrjMainPage\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
 C:\Users\Uku\source\repos\FilmiPlaneerija\PrjMainPage\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
 C:\Users\Uku\source\repos\FilmiPlaneerija\PrjMainPage\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\User\Source\Repos\deems01\Team1\PrjMainPage\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll

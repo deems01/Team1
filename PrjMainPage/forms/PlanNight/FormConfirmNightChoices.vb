@@ -1,5 +1,6 @@
 ﻿
 Imports EmailSender
+Imports System.Threading
 
 Public Class FormConfirmNightChoices
     Dim customFormat As String = "yyyy-MM-dd HH:mm"
@@ -8,7 +9,6 @@ Public Class FormConfirmNightChoices
     Private hostEmail As String = ""
     Private hostPassword As String = ""
     Private currentYPos = 0
-    Private saveFlag As Boolean = False
     Private emailSender As IEmailSender
 
 
@@ -66,7 +66,7 @@ Public Class FormConfirmNightChoices
                    $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
                    $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
                    $"So, mark your calendars and bring your favorite movie snacks! Can’t wait to see you there.{Environment.NewLine}{Environment.NewLine}" &
-                   $"Cheers,{Environment.NewLine}[Your Name]"
+                   $"Cheers!"
             End If
 
             If checkBoxFamily.Checked Then
@@ -76,7 +76,7 @@ Public Class FormConfirmNightChoices
                    $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
                    $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
                    $"Let’s gather for a cozy evening filled with laughter and heartwarming moments. See you all at movie night!{Environment.NewLine}{Environment.NewLine}" &
-                   $"Warm regards,{Environment.NewLine}[Your Name]"
+                   $"Warm regards."
             End If
 
             If checkBoxColleagues.Checked Then
@@ -86,7 +86,7 @@ Public Class FormConfirmNightChoices
                    $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
                    $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
                    $"It’s the perfect chance to kick back and enjoy some time together outside the office. Your presence is eagerly awaited!{Environment.NewLine}{Environment.NewLine}" &
-                   $"Best,{Environment.NewLine}[Your Name]"
+                   $"All the best!"
             End If
 
             If checkBoxAcquaintances.Checked Then
@@ -96,19 +96,31 @@ Public Class FormConfirmNightChoices
                    $"⏰ Time: {selectedDate.ToString("HH:mm")}{Environment.NewLine}" &
                    $"📍 Location: {selectedLocation}{Environment.NewLine}{Environment.NewLine}" &
                    $"It’s a great opportunity to catch up and share a few laughs. Looking forward to an enjoyable evening with you!{Environment.NewLine}{Environment.NewLine}" &
-                   $"Kind regards,{Environment.NewLine}[Your Name]"
+                   $"Kind regards."
             End If
 
             txtBoxMessage.Text = body
 
             emailSender.SetHostEmail(hostEmail)
             emailSender.SetHostPassword(hostPassword)
-            emailSender.SendEmails(emailList, txtBoxSubject.Text, txtBoxMessage.Text)
-            lblInviteStatus.ForeColor = Color.Green
-            lblInviteStatus.Text = "Invitations sent successfully."
-            btnSendInvites.Enabled = False
-            emailList.Clear()
-            UpdateEmailListDisplay()
+            Dim success As Boolean = emailSender.SendEmails(emailList, txtBoxSubject.Text, txtBoxMessage.Text)
+            If success Then
+                lblInviteStatus.ForeColor = Color.Green
+                lblInviteStatus.Text = "Invitations sent successfully."
+                emailList.Clear()
+                UpdateEmailListDisplay()
+                btnSendInvites.Enabled = False
+                emailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
+
+                StatFunction.ResetDict()
+
+                StatFunction.InitializeModuleAsync()
+
+                UiHelpFunctions.OpenChildForm(FormSearchBar)
+            Else
+                lblInviteStatus.ForeColor = Color.Red
+                lblInviteStatus.Text = "Failed to send invitations. Please check your credentials."
+            End If
         Else
             lblInviteStatus.ForeColor = Color.Red
             lblInviteStatus.Text = "Please add at least one email address."
@@ -120,6 +132,7 @@ Public Class FormConfirmNightChoices
         hostEmail = txtBoxHostEmail.Text
         hostPassword = txtBoxHostPassword.Text
         SendInvites()
+
     End Sub
 
     Private Sub UpdateEmailListDisplay()
@@ -162,18 +175,6 @@ Public Class FormConfirmNightChoices
         currentYPos += removeButton.Height
     End Sub
 
-    Private Sub btnConfirmWoEmail_Click(sender As Object, e As EventArgs) Handles btnConfirmWoEmail.Click
-
-        saveFlag = True
-        emailSender.SavePlanningDetailsToDatabase(NameSearchFunctions.GetSelectedDate(), NameSearchFunctions.GetSelectedFilmName(), NameSearchFunctions.GetSelectedPlace())
-
-        StatFunction.ResetDict()
-
-        StatFunction.InitializeModuleAsync()
-
-        btnConfirmWoEmail.Enabled = False
-
-    End Sub
 
     Private Sub txtBoxHostEmail_TextChanged(sender As Object, e As EventArgs) Handles txtBoxHostEmail.TextChanged
         ValidateCredentials()

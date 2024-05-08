@@ -51,37 +51,40 @@ Public Class CEmailSender
 
     End Function
 
-    Public Sub SendEmails(recipients As List(Of String), subject As String, body As String) Implements IEmailSender.SendEmails
+    Public Function SendEmails(recipients As List(Of String), subject As String, body As String) Implements IEmailSender.SendEmails
         'Dim subject As String = $"Invitation to Movie Night: {selectedMovie}"
         'Dim body As String = $"Dear friends, you are invited to a movie night on {selectedDate.ToString("yyyy-MM-dd HH:mm")} to watch {selectedMovie} at {selectedLocation}. Please join us!"
 
-        If CheckPassword(hostPassword) Then
+        If Not CheckPassword(hostPassword) Then
+            Console.WriteLine("Invalid password.")
+            Return False
+        End If
+
+        Try
             For Each recipient As String In recipients
                 SendEmail(recipient, subject, body, hostEmail, hostPassword)
             Next
-        Else
-            Console.WriteLine("Invalid password.")
-        End If
+            Return True
+        Catch ex As Exception
+            Console.WriteLine($"An unexpected error occurred: {ex.Message}")
+            Return False
+        End Try
         'If (hostPassword = userPass) Then
         '    For Each recipient As String In recipients
         '        SendEmail(recipient, subject, body, hostEmail, hostPassword)
         '    Next
         'End If
-    End Sub
+    End Function
 
     Private Sub SendEmail(ByVal recipient As String, ByVal subject As String, ByVal body As String, ByVal hostEmail As String, ByVal hostPassword As String)
         Dim message As New MailMessage(hostEmail, recipient, subject, body)
+        Dim smtpClient As New SmtpClient()
+        smtpClient.Host = "smtp.gmail.com"
+        smtpClient.Port = 587
+        smtpClient.EnableSsl = True
+        smtpClient.Credentials = New System.Net.NetworkCredential(hostEmail, hostPassword)
+        smtpClient.Send(message)
 
-        Try
-            Dim smtpClient As New SmtpClient()
-            smtpClient.Host = "smtp.gmail.com"
-            smtpClient.Port = 587
-            smtpClient.EnableSsl = True
-            smtpClient.Credentials = New System.Net.NetworkCredential(hostEmail, hostPassword)
-            smtpClient.Send(message)
-        Catch ex As Exception
-            Console.WriteLine($"An unexpected error occurred: {ex.Message}")
-        End Try
     End Sub
 
     Private Function GenerateSalt(ByVal nSalt As Integer) As String
