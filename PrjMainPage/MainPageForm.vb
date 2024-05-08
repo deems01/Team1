@@ -72,6 +72,8 @@ Public Class MainPageForm
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        'ClearAllTableDataFromDatabase()
+        'ClearDataFromFilmsTable()
         Application.Exit()
     End Sub
 
